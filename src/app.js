@@ -3,7 +3,7 @@ import { handleIndex, handleAbout, handleAddGet, handleAddPost, handleEdit } fro
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import nunjucks from "npm:nunjucks@3.2.4";
 
-const db = new DB("./data/notes.sqlite");
+const db = new DB("./data/data.sqlite");
 
 nunjucks.configure("templates", { 
 	autoescape: true, 
