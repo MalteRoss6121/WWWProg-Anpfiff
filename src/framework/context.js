@@ -10,5 +10,6 @@ export const createContext = (request, extras) => ({
   },
   db: extras.db,
   staticPath: extras.staticPath,
+  nunjucks: extras.nunjucks,
  ...extras 
  });

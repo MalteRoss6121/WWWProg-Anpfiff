@@ -1,9 +1,9 @@
 // formController.js
-import * as view from './view.js';
+
 import * as model from "./model.js";
 
-export const handleForm = async (ctx, formData, formErrors) => {
-  const body = await view.renderForm(formData, formErrors);
+export const handleForm = async (ctx, formData, formErrors, nunjucks) => {
+  const body = nunjucks.render('form.html', {formData,formErrors});
   return createResponse(ctx, body, 400, "text/html");
 };
 

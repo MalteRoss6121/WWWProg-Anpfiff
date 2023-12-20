@@ -1,29 +1,29 @@
 // controller.js
-import * as view from './view.js';
+
 import * as model from "./model.js";
 import { handleForm } from './formController.js';
 
-export const handleIndex = async (ctx, db) => {
-  const body = await view.renderIndex(await model.index(db));
+export const handleIndex = async (ctx, db, nunjucks) => {
+  const body = nunjucks.render('index.html', {notes: await model.index(db),});
   return createResponse(ctx, body, 200, "text/html");
 };
 
-export const handleAbout = async (ctx) => {
-  const body = await view.renderAbout();
+export const handleAbout = async (ctx, nunjucks) => {
+  const body = nunjucks.render('about.html', {});
   return createResponse(ctx, body, 200, "text/html");
 };
 
-export const handleAddGet = async (ctx) => {
-  const body = await view.renderForm([], []);
+export const handleAddGet = async (ctx, nunjucks) => {
+  const body = nunjucks.render('form.html', {});
   return createResponse(ctx, body, 200, "text/html");
 };
 
-export const handleAddPost = async (ctx, db, request) => {
+export const handleAddPost = async (ctx, db, request, nunjucks) => {
   const formData = await request.formData();
   const { date, title, text, formErrors } = processFormData(formData);
 
   if (Object.keys(formErrors).length > 0) {
-    return handleForm(ctx, formData, formErrors);
+    return handleForm(ctx, formData, formErrors, nunjucks);
   }
 
   model.add(db, { date, title, text });
@@ -31,13 +31,13 @@ export const handleAddPost = async (ctx, db, request) => {
   return ctx;
 };
 
-export const handleEdit = async (ctx, db, request) => {
+export const handleEdit = async (ctx, db, request, nunjucks) => {
   const url = ctx.Url;
   const noteId = parseInt(url.pathname.split("/")[2], 10);
   const note = await model.getById(db, noteId);
 
   if (request.method === 'GET') {
-    const body = await view.renderForm(note, {});
+    const body = nunjucks.render('form.html', {formData: note});
     return createResponse(ctx, body, 200, "text/html");
   }
 
@@ -46,7 +46,7 @@ export const handleEdit = async (ctx, db, request) => {
     const { date, title, text, formErrors } = processFormData(formData);
 
     if (Object.keys(formErrors).length > 0) {
-      return handleForm(ctx, formData, formErrors);
+      return handleForm(ctx, formData, formErrors, nunjucks);
     }
 
     await model.update(db, { date, title, text }, noteId);
