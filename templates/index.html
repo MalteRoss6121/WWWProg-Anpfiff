@@ -38,9 +38,12 @@
         
         <li>
           
-          <h2>{{ note.title }}</h2>
-          <p>{{ note.date }}</p>
-          <div>{{ note.text }}</div>
+          <h2>{{ note.titel }}</h2>
+          <h3>{{ note.uhrzeit }}</h3>
+          <p>{{ note.datum }}</p>
+          <div>{{ note.beschreibung }}</div>
+          <img src="{{ note.bildurl }}" alt="Bild" class="note-image">
+          <div>{{ note.tag }}</div>
           <p><a href="/edit/{{ note.id }}">Bearbeiten</a></p>
           
         </li>

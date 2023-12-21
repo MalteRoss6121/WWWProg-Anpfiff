@@ -17,7 +17,7 @@ export const index = async (db) => {
  * @returns {Promise<Record<string, any> | null>}
  */
 export const getById = async (db, id) => {
-  const sql = "SELECT * FROM events WHERE id = $id";
+  const sql = "SELECT * FROM events WHERE EID = $id";
   const result = await db.queryEntries(sql, { $id: id });
   return result.length > 0 ? result[0] : null;
 };
@@ -28,8 +28,8 @@ export const getById = async (db, id) => {
  * @param {Record<string, any>} formData
  */
 export const add = async (db, formData) => {
-  const sql = "INSERT INTO events (title, text, date) VALUES ( $title, $text, $date)";
-  await db.queryEntries(sql, { $title: formData.title, $text: formData.text, $date: formData.date });
+  const sql = "INSERT INTO events (titel, beschreibung, datum, tag, uhrzeit, bildurl) VALUES ( $titel, $beschreibung, $datum, $tag, $uhrzeit, $bildurl)";
+  await db.queryEntries(sql, { $titel: formData.title, $beschreibung: formData.text, $datum: formData.date, $tag: formData.tag, $uhrzeit: formData.zeit, $bildurl: formData.bild });
 };
 
 /**
@@ -39,7 +39,7 @@ export const add = async (db, formData) => {
  * @param {Integer} id
  */
 export const update = async (db, formData, id) => {
-  const sql = "UPDATE events SET title = $title, text = $text, date = $date WHERE id = $id";
+  const sql = "UPDATE events SET title = $title, text = $text, date = $date WHERE EID = $id";
   await db.queryEntries(sql, {
     $id: id,
     $title: formData.title,

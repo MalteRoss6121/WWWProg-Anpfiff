@@ -126,6 +126,19 @@
     box-shadow: 0px 5px 5px rgb(50, 50, 50) inset;
   }
 
+  .eventContainer ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Abstand zwischen den Elementen */
+        }
+
+        .eventContainer li {
+            flex: 1 0 300px; /* Flexbox-Regeln für jedes Element */
+            border: 1px solid #ddd; /* Einfacher Rand für Sichtbarkeit */
+            padding: 10px;
+        }
+
   .event {
     flex: 0 0 auto;
     margin-right: 20px;
@@ -172,6 +185,11 @@
   .header {
     box-shadow: 0px -4px 4px rgb(92, 92, 92) inset;
   }
+
+  .note-image {
+        max-width: 70%;
+        height: auto;
+    }
   </style>
 </head>
 

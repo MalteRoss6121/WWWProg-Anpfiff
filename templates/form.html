@@ -6,21 +6,48 @@
 <form action="#" method="POST">
     <label for="date">Datum</label>
     <div>
-        {{ formErrors.date }}
+        {{ formErrors.datum }}
         <input type="datetime-local" id="date" name="date" value="{{ formData.date }}">
     </div>
+
     <label for="title">Titel</label>
     <div>
-        {{ formErrors.title }}
+        {{ formErrors.titel }}
         <input type="text" id="title" name="title" autofocus value="{{ formData.title }}">
     </div>
+
     <label for="text">Text</label>
     <div>
-        {{ formErrors.text }}
+        {{ formErrors.beschreibung }}
         <textarea id="text" name="text" rows="8" cols="20">{{ formData.text }}</textarea>
     </div>
+
+    <label for="tag">Tag</label>
+    <div>
+        {{ formErrors.tag }}
+        <select id="tag" name="tag">
+            <option value="sport">Sport</option>
+            <option value="musik">Musik</option>
+            <option value="kultur">Kultur</option>
+            <!-- Weitere Optionen nach Bedarf hinzufügen -->
+        </select>
+    </div>
+
+    <label for="bildurl">Bild-URL</label>
+    <div>
+        {{ formErrors.bildurl }}
+        <input type="url" id="bildurl" name="bildurl" value="{{ formData.bildurl }}">
+    </div>
+
+    <label for="uhrzeit">Uhrzeit</label>
+    <div>
+        {{ formErrors.uhrzeit }}
+        <input type="time" id="uhrzeit" name="uhrzeit" value="{{ formData.uhrzeit }}">
+    </div>
+
     <button type="submit">Speichern</button>
 </form>
+
 
 
 {% endblock %}
