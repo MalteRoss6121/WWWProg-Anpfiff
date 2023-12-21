@@ -127,17 +127,17 @@
   }
 
   .eventContainer ul {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px; /* Abstand zwischen den Elementen */
-        }
+        list-style: none;
+        display: flex;
+        gap: 20px; /* Abstand zwischen den Elementen */
+        overflow-x: auto; /* Aktiviert horizontales Scrollen, wenn nötig */
+    }
 
-        .eventContainer li {
-            flex: 1 0 300px; /* Flexbox-Regeln für jedes Element */
-            border: 1px solid #ddd; /* Einfacher Rand für Sichtbarkeit */
-            padding: 10px;
-        }
+    .eventContainer li {
+        flex: 0 0 200px; /* Flexbox-Regeln für jedes Element */
+        border: 1px solid #ddd; /* Einfacher Rand für Sichtbarkeit */
+        padding: 10px;
+    }
 
   .event {
     flex: 0 0 auto;
@@ -189,7 +189,8 @@
   .note-image {
         max-width: 70%;
         height: auto;
-    }
+  }
+
   </style>
 </head>
 

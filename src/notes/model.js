@@ -39,11 +39,14 @@ export const add = async (db, formData) => {
  * @param {Integer} id
  */
 export const update = async (db, formData, id) => {
-  const sql = "UPDATE events SET title = $title, text = $text, date = $date WHERE EID = $id";
+  const sql = "UPDATE events SET titel = $title, beschreibung = $text, datum = $date, tag = $tag, uhrzeit = $zeit, bildurl = $bildurl WHERE EID = $id";
   await db.queryEntries(sql, {
     $id: id,
     $title: formData.title,
     $text: formData.text,
     $date: formData.date,
+    $tag: formData.tag,
+    $zeit: formData.zeit,
+    $bildurl: formData.bild,
   });
 };

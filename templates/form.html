@@ -6,19 +6,19 @@
 <form action="#" method="POST">
     <label for="date">Datum</label>
     <div>
-        {{ formErrors.datum }}
-        <input type="datetime-local" id="date" name="date" value="{{ formData.date }}">
+        {{ formErrors.date }}
+        <input type="date" id="date" name="date" value="{{ formData.date }}">
     </div>
 
     <label for="title">Titel</label>
     <div>
-        {{ formErrors.titel }}
+        {{ formErrors.title }}
         <input type="text" id="title" name="title" autofocus value="{{ formData.title }}">
     </div>
 
     <label for="text">Text</label>
     <div>
-        {{ formErrors.beschreibung }}
+        {{ formErrors.text }}
         <textarea id="text" name="text" rows="8" cols="20">{{ formData.text }}</textarea>
     </div>
 
@@ -35,14 +35,14 @@
 
     <label for="bildurl">Bild-URL</label>
     <div>
-        {{ formErrors.bildurl }}
-        <input type="url" id="bildurl" name="bildurl" value="{{ formData.bildurl }}">
+        {{ formErrors.bild }}
+        <input type="url" id="bildurl" name="bildurl" value="{{ formData.bild }}">
     </div>
 
     <label for="uhrzeit">Uhrzeit</label>
     <div>
-        {{ formErrors.uhrzeit }}
-        <input type="time" id="uhrzeit" name="uhrzeit" value="{{ formData.uhrzeit }}">
+        {{ formErrors.zeit }}
+        <input type="time" id="uhrzeit" name="uhrzeit" value="{{ formData.zeit }}">
     </div>
 
     <button type="submit">Speichern</button>
