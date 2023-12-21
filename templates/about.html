@@ -2,8 +2,47 @@
 
 {% block content %}
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <title>Anpfiff Flensburg</title>
 
-  <h1>MALTE STINKT</h1>
+</head>
+<div class="Contact">
+  <h1>BESUCHT UNS GERNE! </h1>
+  <h2>Kontaktiere Uns</h2>
+  <p>
+    Wir freuen uns, von Ihnen zu hören! Wenn Sie Fragen, Anmerkungen oder Anfragen haben,
+    zögern Sie nicht, uns über E-mail oder übers Telefon zu erreichen. Wir sind bestrebt, Ihnen so
+    schnell wie möglich zu antworten.
+  </p>
+
+  <div class="Contactformular">
+    <ul>
+      <li>Telefon: </li>
+      <li>E-Mail: </li>
+      <li>Kp was noch:</li>
+    </ul>
+    
+    <fieldset>
+      <legend>Kontaktformular</legend>
+      <label for="name">Vorname</label>
+      <input id="name" name="vorname" type="text" value="Name">
+      <label for="surname">Name</label>
+      <input id="surname" name="name" type="text" value="Nachname">
+    </fieldset>
+    <fieldset>
+      <label for="text">Text</label>
+      <input id="text" name="text" type="text" value="Ihr Text">
+      <button type="submit" class="positive">
+        <img src="tick.png" alt="">senden
+      </button>
+    </fieldset>
+  </div>
+</div>
+
 
 
 {% endblock %}

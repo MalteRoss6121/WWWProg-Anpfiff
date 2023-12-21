@@ -10,64 +10,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <title>Anpfiff Flensburg</title>
-    
 </head>
 
-
 <body>
-    
+
     <div class="firstContainer">
         <div class="firstContent">
-            <span>
-            </span>
             <a href="#events">
                 <div class="btn-event">EVENTS</div>
             </a>
         </div>
-
     </div>
-
 
     <div class="eventsHead">
         <h1 id="events">EVENTS</h1>
     </div>
     <div class="eventContainer">
 
-      <ul>
-        {% for note in notes %}
-        
-        <li>
-          
-          <h2>{{ note.titel }}</h2>
-          <h3>{{ note.uhrzeit }}</h3>
-          <p>{{ note.datum }}</p>
-          <div>{{ note.beschreibung }}</div>
-          <img src="{{ note.bildurl }}" alt="Bild" class="note-image">
-          <div>{{ note.tag }}</div>
-          <p><a href="/edit/{{ note.id }}">Bearbeiten</a></p>
-          
-        </li>
-        {% endfor %}
-        <li><a href="/add"class="nav-link">Event hinzufügen</a></li>
-      </ul>
+        <ul>
+            {% for note in notes %}
+
+            <li>
+
+                <h2>{{ note.titel }}</h2>
+                <h3>{{ note.uhrzeit }}</h3>
+                <p>{{ note.datum }}</p>
+                <div>{{ note.beschreibung }}</div>
+                <img src="{{ note.bildurl }}" alt="Bild" class="note-image">
+                <div>{{ note.tag }}</div>
+                <p><a href="/edit/{{ note.id }}">Bearbeiten</a></p>
+
+            </li>
+            {% endfor %}
+            <li><a href="/add" class="nav-link">Event hinzufügen</a></li>
+        </ul>
 
     </div>
     <div class="info">
         <div class="infoelement">
             <h2>Was machen wir?</h2>
-            <p> In unserer Sportbar dreht sich alles um die perfekte Mischung aus Sport, Geselligkeit und Unterhaltung. Wir sind der ultimative Treffpunkt für Sportbegeisterte und Fans der sportlichen Atmosphäre.</p>
+            <p> In unserer Sportbar dreht sich alles um die perfekte Mischung aus Sport, Geselligkeit und Unterhaltung.
+                Wir sind der ultimative Treffpunkt für Sportbegeisterte und Fans der sportlichen Atmosphäre.</p>
         </div>
         <div class="infoelement">
             <h2>Wo sind wir?</h2>
-            <p> Unsere Sportbar befindet sich in Flensburg, Straße 3, leicht erreichbar und perfekt für spontane Treffen oder geplante Abende. Schauen Sie vorbei und erleben Sie die Begeisterung in unserer gemütlichen Atmosphäre.</p>
+            <p> Unsere Sportbar befindet sich in Flensburg, Straße 3, leicht erreichbar und perfekt für spontane Treffen
+                oder geplante Abende. Schauen Sie vorbei und erleben Sie die Begeisterung in unserer gemütlichen
+                Atmosphäre.</p>
         </div>
         <div class="infoelement">
             <h2>Wer sind wir?</h2>
-            <p> Wir sind ein leidenschaftliches Team von Sportenthusiasten und Gastgebern. Unser Ziel ist es, Ihnen unvergessliche Erlebnisse zu bieten, sei es beim Anfeuern Ihrer Lieblingsmannschaften oder beim Genießen unserer breiten Auswahl an Getränken.</p>
+            <p> Wir sind ein leidenschaftliches Team von Sportenthusiasten und Gastgebern. Unser Ziel ist es, Ihnen
+                unvergessliche Erlebnisse zu bieten, sei es beim Anfeuern Ihrer Lieblingsmannschaften oder beim Genießen
+                unserer breiten Auswahl an Getränken.</p>
         </div>
         <div class="infoelement">
             <h2>Was uns aus macht.</h2>
-            <p> Unsere Leidenschaft für den Sport, unsere herzliche Gastfreundschaft und unser breites Angebot an Getränken. Wir laden Sie ein, Teil einer einzigartigen Atmosphäre zu werden, in der Sport und Geselligkeit Hand in Hand gehen.</p>
+            <p> Unsere Leidenschaft für den Sport, unsere herzliche Gastfreundschaft und unser breites Angebot an
+                Getränken. Wir laden Sie ein, Teil einer einzigartigen Atmosphäre zu werden, in der Sport und
+                Geselligkeit Hand in Hand gehen.</p>
         </div>
 
         <div class="infoimg">
@@ -77,20 +78,7 @@
             <img src="">
         </div>
     </div>
-    <div class="Contact">
-        <h1>BESUCHT UNS GERNE! </h1>
-        <h2>Kontaktiere Uns</h2>
-        <p>
-            Wir freuen uns, von Ihnen zu hören! Wenn Sie Fragen, Anmerkungen oder Anfragen haben,
-            zögern Sie nicht, uns über E-mail oder übers Telefon zu erreichen. Wir sind bestrebt, Ihnen so
-            schnell wie möglich zu antworten.
-        </p>
-        <ul>
-            <li>Telefon: </li>
-            <li>E-Mail: </li>
-            <li>Kp was noch</li>
-        </ul>
-    </div>
+
 </body>
 
 
