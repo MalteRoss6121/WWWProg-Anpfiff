@@ -22,6 +22,12 @@ export const getById = async (db, id) => {
   return result.length > 0 ? result[0] : null;
 };
 
+export const getEventsByTag = async (db, tag) => {
+  const sql = "SELECT * FROM events WHERE tag = $tag";
+  const result = await db.queryEntries(sql, { $tag: tag });
+  return result;
+};
+
 /**
  * Add a note to the database.
  * @param {object} db - Database connection

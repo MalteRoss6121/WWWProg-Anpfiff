@@ -16,7 +16,7 @@
     position: relative;
     left: 0;
     top: 4%;
-    width: 50%;
+    width: 90%;
     flex-direction: row;
     background-color: #FFFFFF;
     display: flex;
@@ -58,7 +58,7 @@
     /* box-shadow: 0px 10px 10px white inset; */
     position: relative;
     color: #007704;
-    background-image: url('fb.jpg');
+    background-image: url('templates/fb.png');
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -129,13 +129,13 @@
   .eventContainer ul {
         list-style: none;
         display: flex;
-        gap: 20px; /* Abstand zwischen den Elementen */
-        overflow-x: auto; /* Aktiviert horizontales Scrollen, wenn nötig */
+        gap: 20px; 
+        overflow-x: auto; 
     }
 
     .eventContainer li {
-        flex: 0 0 200px; /* Flexbox-Regeln für jedes Element */
-        border: 1px solid #ddd; /* Einfacher Rand für Sichtbarkeit */
+        flex: 0 0 200px; 
+        border: 1px solid #ddd;
         padding: 10px;
     }
 
@@ -191,6 +191,35 @@
         height: auto;
   }
 
+  .eventSide {
+  padding: 20px;
+  background-color: #696969;
+  display: flex;
+  flex-direction: row;
+  min-height: calc(90vh - 40px); /* Beispiel: 50% der Bildschirmhöhe abzüglich des Padding */
+  box-shadow: 0px 5px 5px rgb(50, 50, 50) inset;
+  overflow-x: auto;
+}
+
+.eventSide ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+.eventSide li {
+  flex: 0 0 400px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+
+.event-image {
+        max-width: 100%;
+        height: auto;
+  }
+
   </style>
 </head>
 
@@ -198,8 +227,9 @@
   <nav>
     <ul class="nav-menu">
       <li><a href="/" class="nav-link">Home</a></li>
-      <li><a href="/add"class="nav-link">Kontakt</a></li>
+      <li><a href="/add"class="nav-link">Event erstellen</a></li>
       <li><a href="/about" class="nav-link">Über Uns</a></li>
+      <li><a href="/about" class="nav-link">Login</a></li>
   </ul>
   <div class="hamburger">
     <span class="bar"></span>

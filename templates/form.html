@@ -3,23 +3,24 @@
 {% block content %}
 
 
+
 <form action="#" method="POST">
     <label for="date">Datum</label>
     <div>
         {{ formErrors.date }}
-        <input type="date" id="date" name="date" value="{{ formData.date }}">
+        <input type="date" id="date" name="date" value="{{ formData.datum }}">
     </div>
 
     <label for="title">Titel</label>
     <div>
         {{ formErrors.title }}
-        <input type="text" id="title" name="title" autofocus value="{{ formData.title }}">
+        <input type="text" id="title" name="title" autofocus value="{{ formData.titel }}">
     </div>
 
     <label for="text">Text</label>
     <div>
         {{ formErrors.text }}
-        <textarea id="text" name="text" rows="8" cols="20">{{ formData.text }}</textarea>
+        <textarea id="text" name="text" rows="8" cols="20">{{ formData.beschreibung }}</textarea>
     </div>
 
     <label for="tag">Tag</label>
@@ -36,13 +37,13 @@
     <label for="bildurl">Bild-URL</label>
     <div>
         {{ formErrors.bild }}
-        <input type="url" id="bildurl" name="bildurl" value="{{ formData.bild }}">
+        <input type="url" id="bildurl" name="bildurl" value="{{ formData.bildurl }}">
     </div>
 
     <label for="uhrzeit">Uhrzeit</label>
     <div>
         {{ formErrors.zeit }}
-        <input type="time" id="uhrzeit" name="uhrzeit" value="{{ formData.zeit }}">
+        <input type="time" id="uhrzeit" name="uhrzeit" value="{{ formData.uhrzeit }}">
     </div>
 
     <button type="submit">Speichern</button>

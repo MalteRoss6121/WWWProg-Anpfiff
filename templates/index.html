@@ -16,14 +16,16 @@
 
     <div class="firstContainer">
         <div class="firstContent">
-            <a href="#events">
+            <a href="/events">
                 <div class="btn-event">EVENTS</div>
             </a>
         </div>
     </div>
 
     <div class="eventsHead">
-        <h1 id="events">EVENTS</h1>
+        <a href = "/events">
+            <h1  id="events">EVENTS</h1>
+        </a>   
     </div>
     <div class="eventContainer">
 
@@ -38,7 +40,7 @@
                 <div>{{ note.beschreibung }}</div>
                 <img src="{{ note.bildurl }}" alt="Bild" class="note-image">
                 <div>{{ note.tag }}</div>
-                <p><a href="/edit/{{ note.id }}">Bearbeiten</a></p>
+                <p><a href="/edit/{{ note.EID }}">Bearbeiten</a></p>
 
             </li>
             {% endfor %}

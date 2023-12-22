@@ -8,6 +8,20 @@ export const handleIndex = async (ctx, db, nunjucks) => {
   return createResponse(ctx, body, 200, "text/html");
 };
 
+export const handleEvents = async (ctx, db, nunjucks, url) => {
+  const tag = url.searchParams.get("tag"); 
+  //console.log('Retrieved note from the database:', tag);
+
+  let filteredNotes;
+  if (tag && tag !== 'alle') {
+    filteredNotes = await model.getEventsByTag(db, tag);
+  } else {
+    filteredNotes = await model.index(db);
+  }
+
+  const body = nunjucks.render('events.html', { notes: filteredNotes });
+  return createResponse(ctx, body, 200, "text/html");
+};
 export const handleAbout = async (ctx, nunjucks) => {
   const body = nunjucks.render('about.html', {});
   return createResponse(ctx, body, 200, "text/html");
@@ -35,15 +49,17 @@ export const handleEdit = async (ctx, db, request, nunjucks) => {
   const url = ctx.Url;
   const noteId = parseInt(url.pathname.split("/")[2], 10);
   const note = await model.getById(db, noteId);
+  //console.log('Retrieved note from the database:', note);
 
   if (request.method === 'GET') {
     const body = nunjucks.render('form.html', {formData: note});
+    //console.log('Rendered body:', body);
     return createResponse(ctx, body, 200, "text/html");
   }
 
   if (request.method === 'POST') {
     const formData = await request.formData();
-    const { date, title, text, formErrors } = processFormData(formData);
+    const { date, title, text, zeit, tag, bild, formErrors } = processFormData(formData);
 
     if (Object.keys(formErrors).length > 0) {
       return handleForm(ctx, formData, formErrors, nunjucks);

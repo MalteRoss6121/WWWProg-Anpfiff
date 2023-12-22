@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="searchBar">
+    <label for="titleSearch">Titel suchen:</label>
+    <input type="text" id="titleSearch" name="titleSearch" placeholder="Titel eingeben...">
+</div>
+
+<div class="tagBar">
+    <label for="tagSelector">Filter nach Tag:</label>
+    <select id="tagSelector" name="tagSelector">
+        <option value=""></option>
+        <option value="sport">Sport</option>
+        <option value="musik">Musik</option>
+        <option value="kultur">Kultur</option>
+        <option value="alle">Alle</option>
+        <!-- Weitere Optionen nach Bedarf hinzufügen -->
+    </select>
+</div>
+
+<div class="eventSide">
+
+    
+
+    <ul>
+        {% for note in notes %}
+
+        <li>
+
+            <h2>{{ note.titel }}</h2>
+            <h3>{{ note.uhrzeit }}</h3>
+            <p>{{ note.datum }}</p>
+            <div>{{ note.beschreibung }}</div>
+            <img src="{{ note.bildurl }}" alt="Bild" class="event-image">
+            <div>{{ note.tag }}</div>
+            <p><a href="/edit/{{ note.EID }}">Bearbeiten</a></p>
+
+        </li>
+        {% endfor %}
+        <li><a href="/add" class="nav-link">Event hinzufügen</a></li>
+    </ul>
+
+</div>
+
+<script>
+    
+    const tagSelector = document.getElementById('tagSelector');
+  
+    tagSelector.addEventListener('change', function() {
+      const selectedTag = tagSelector.value;
+      const url = selectedTag ? `/events?tag=${selectedTag}` : '/events';
+      window.location.href = url;
+    });
+</script>
+  
+
+{% endblock %}

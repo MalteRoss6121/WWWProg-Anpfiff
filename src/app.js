@@ -1,5 +1,5 @@
 import { createContext } from './framework/context.js';
-import { handleIndex, handleAbout, handleAddGet, handleAddPost, handleEdit } from './notes/controller.js';
+import { handleIndex, handleEvents, handleAbout, handleAddGet, handleAddPost, handleEdit } from './notes/controller.js';
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import nunjucks from "npm:nunjucks@3.2.4";
 
@@ -29,6 +29,8 @@ export const handleRequest = async (request) => {
     }
   } else if (url.pathname.startsWith("/edit")) {
     context = await handleEdit(context, db, requests, nunjucks);
+  } else if (url.pathname.startsWith("/events")) {
+    context = await handleEvents(context, db, nunjucks, url);
   }
 
   if (!context.response || !context.response.status) {
