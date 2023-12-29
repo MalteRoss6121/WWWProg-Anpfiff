@@ -52,6 +52,16 @@
       const url = selectedTag ? `/events?tag=${selectedTag}` : '/events';
       window.location.href = url;
     });
+
+    const searchInput = document.getElementById('titleSearch');
+ 
+   searchInput.addEventListener('keyup', function(e) {
+       if (e.key === 'Enter') {
+           const searchValue = searchInput.value;
+           const url = searchValue ? `/events?title=${searchValue}` : '/events';
+           window.location.href = url;
+       }
+   });
 </script>
   
 

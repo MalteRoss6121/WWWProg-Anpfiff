@@ -11,18 +11,23 @@ export const handleIndex = async (ctx, db, nunjucks) => {
 
 export const handleEvents = async (ctx, db, nunjucks, url) => {
   const tag = url.searchParams.get("tag"); 
+  const title = url.searchParams.get("title"); 
   //console.log('Retrieved note from the database:', tag);
 
   let filteredNotes;
   if (tag && tag !== 'alle') {
     filteredNotes = await model.getEventsByTag(db, tag);
-  } else {
+  } else if(title) {
+    filteredNotes = await model.getEventsByTitle(db, title);
+  } else{
     filteredNotes = await model.index(db);
   }
 
   const body = nunjucks.render('events.html', { notes: filteredNotes });
   return createResponse(ctx, body, 200, "text/html");
 };
+
+
 export const handleAbout = async (ctx, nunjucks) => {
   const body = nunjucks.render('about.html', {});
   return createResponse(ctx, body, 200, "text/html");
