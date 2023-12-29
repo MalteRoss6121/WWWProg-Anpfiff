@@ -2,6 +2,7 @@
 
 import * as model from "./model.js";
 import { handleForm } from './formController.js';
+import { registerUser } from "./users.js";
 
 export const handleIndex = async (ctx, db, nunjucks) => {
   const body = nunjucks.render('index.html', {notes: await model.index(db)});
@@ -69,6 +70,74 @@ export const handleEdit = async (ctx, db, request, nunjucks) => {
     ctx.response = createRedirectResponse('http://localhost:8080/', 303);
     return ctx;
   }
+};
+
+
+export const handleLoginPost = async (ctx, db, request, nunjucks) => {
+  const formData = await request.formData();
+  const { email, password, formErrors } = processLoginFormData(formData);
+
+  if (Object.keys(formErrors).length > 0) {
+    // Handle login form errors
+    return handleLoginForm(ctx, formData, formErrors, nunjucks);
+  }
+
+  // Authenticate user
+  const isUserAuthenticated = await authenticateUser(email, password);
+
+  if (isUserAuthenticated) {
+    // Redirect to the home page or another authorized page
+    ctx.response = createRedirectResponse('http://localhost:8080/', 303);
+  } else {
+    // Display login form with an error message
+    formErrors.login = 'Invalid email or password';
+    return handleLoginForm(ctx, formData, formErrors, nunjucks);
+  }
+};
+
+// Add a new registration route
+export const handleRegisterGet = async (ctx, nunjucks) => {
+  const body = nunjucks.render('register.html', {});
+  return createResponse(ctx, body, 200, "text/html");
+};
+
+export const handleRegisterPost = async (ctx, db, request, nunjucks) => {
+  const formData = await request.formData();
+  const { email, password, formErrors } = processRegisterFormData(formData);
+
+  console.log('Registration data:', { email, password });
+  
+  if (Object.keys(formErrors).length > 0) {
+    // Handle registration form errors
+    return handleRegisterForm(ctx, formData, formErrors, nunjucks);
+  }
+
+  // Register the user
+  const isUserRegistered = await registerUser(email, password);
+
+  if (isUserRegistered) {
+    // Redirect to the login page or another page
+    ctx.response = createRedirectResponse('http://localhost:8080/login', 303);
+  } else {
+    // Display registration form with an error message
+    formErrors.registration = 'User with this email already exists';
+    return handleRegisterForm(ctx, formData, formErrors, nunjucks);
+  }
+};
+
+const processRegisterFormData = (formData) => {
+  const email = formData.get('email');
+  const password = formData.get('password');
+
+  const formErrors = {};
+  // Add validation logic for email and password if needed
+
+  return { email, password, formErrors };
+};
+
+const handleRegisterForm = (ctx, formData, formErrors, nunjucks) => {
+  const body = nunjucks.render('register.html', { formData, formErrors });
+  return createResponse(ctx, body, 200, "text/html");
 };
 
 // Hilfsfunktionen

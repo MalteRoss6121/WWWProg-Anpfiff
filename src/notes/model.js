@@ -56,3 +56,45 @@ export const update = async (db, formData, id) => {
     $bildurl: formData.bild,
   });
 };
+
+/**
+ * Get user by email from the database.
+ * @param {object} db - Database connection
+ * @param {string} email
+ * @returns {Promise<Array<Record<string, any>>>}
+ */
+export const getUserByEmail = async (db, email) => {
+  const sql = "SELECT * FROM benutzer WHERE email = $email";
+  const result = await db.query(sql, { $email: email });
+  return result;
+};
+/**
+ * Register a new user in the database.
+ * @param {object} db - Database connection
+ * @param {string} email
+ * @param {string} password
+ * @returns {Promise<boolean>}
+ */
+export const registerUser = async (db, email, password) => {
+  const sql = "INSERT INTO benutzer (email, passwort) VALUES ($email, $passwort)";
+  const result = await db.query(sql, { $email: email, $password: password });
+  return result ? true : false;
+};
+
+/**
+ * Authenticate user credentials against the database.
+ * @param {object} db - Database connection
+ * @param {string} email
+ * @param {string} password
+ * @returns {Promise<boolean>}
+ */
+export const authenticateUser = async (db, email, password) => {
+  const user = await getUserByEmail(db, email);
+
+  if (user && user.length > 0) {
+    // Check the password (insecure, for educational purposes only)
+    return user[0].password === password;
+  }
+
+  return false;
+};
