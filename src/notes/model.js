@@ -77,9 +77,15 @@ export const getUserByEmail = async (db, email) => {
  */
 export const registerUser = async (db, email, password) => {
   const sql = "INSERT INTO benutzer (email, passwort) VALUES ($email, $passwort)";
-  const result = await db.query(sql, { $email: email, $password: password });
-  return result ? true : false;
-};
+  try {
+    const result = await db.query(sql, { $email: email, $passwort: password });
+    return result ? true : false;
+  } catch (error) {
+    console.error('Failed to register user:', error);
+    return false;
+  }
+ };
+
 
 /**
  * Authenticate user credentials against the database.
