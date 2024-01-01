@@ -1,4 +1,4 @@
-
+import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 /**
  * Get all notes from the database.
  * @param {object} db - Database connection
@@ -27,7 +27,6 @@ export const getEventsByTag = async (db, tag) => {
   const result = await db.queryEntries(sql, { $tag: tag });
   return result;
 };
-
 export const getEventsByTitle = async (db, title) => {
   const sql = "SELECT * FROM events WHERE titel = $titel";
   const result = await db.queryEntries(sql, { $titel: title });
@@ -82,9 +81,10 @@ export const getUserByEmail = async (db, email) => {
  * @returns {Promise<boolean>}
  */
 export const registerUser = async (db, email, password) => {
+  const hashedPassword = await bcrypt.hash(password, 10);
   const sql = "INSERT INTO benutzer (email, passwort) VALUES ($email, $passwort)";
   try {
-    const result = await db.query(sql, { $email: email, $passwort: password });
+    const result = await db.query(sql, { $email: email, $passwort: hashedPassword });
     return result ? true : false;
   } catch (error) {
     console.error('Failed to register user:', error);
@@ -102,11 +102,11 @@ export const registerUser = async (db, email, password) => {
  */
 export const authenticateUser = async (db, email, password) => {
   const user = await getUserByEmail(db, email);
-
+ 
   if (user && user.length > 0) {
-    // Check the password (insecure, for educational purposes only)
-    return user[0].password === password;
+    const match = await bcrypt.compare(password, user[0].password);
+    return match;
   }
-
+ 
   return false;
-};
+ };

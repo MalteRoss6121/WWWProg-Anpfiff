@@ -21,7 +21,7 @@ export const handleEvents = async (ctx, db, nunjucks, url) => {
   } else{
     filteredNotes = await model.index(db);
   }
-  
+
   const body = nunjucks.render('events.html', { notes: filteredNotes });
   return createResponse(ctx, body, 200, "text/html");
 };
@@ -82,29 +82,32 @@ const processRegisterFormData = (formData) => {
   return { email, password, formErrors };
 };
 
-export const handleLoginPost = async (ctx, db, request, nunjucks) => {
-  const formData = await request.formData();
-  const { email, password, formErrors } = processLoginFormData(formData);
-
-  if (Object.keys(formErrors).length > 0) {
-    // Handle login form errors
-    return handleLoginForm(ctx, formData, formErrors, nunjucks);
-  }
-
-  // Authenticate user
-  const isUserAuthenticated = await authenticateUser(email, password);
-
-  if (isUserAuthenticated) {
-    // Redirect to the home page or another authorized page
-    ctx.response = createRedirectResponse('http://localhost:8080/', 303);
-  } else {
-    // Display login form with an error message
-    formErrors.login = 'Invalid email or password';
-    return handleLoginForm(ctx, formData, formErrors, nunjucks);
-  }
+export const handleLoginGet = async (ctx, nunjucks) => {
+  const body = nunjucks.render('login.html', {});
+  return createResponse(ctx, body, 200, "text/html");
 };
 
-// Add a new registration route
+export const handleLoginPost = async (ctx, db, request, nunjucks) => {
+  const formData = await request.formData();
+  const { email, password, formErrors } = processRegisterFormData(formData);
+ 
+  if (Object.keys(formErrors).length > 0) {
+   // Handle form errors (render the login form with error messages)
+   return handleLoginForm(ctx, formData, formErrors, nunjucks);
+  }
+ 
+  // Authenticate user
+  const isUserAuthenticated = await model.authenticateUser(db, email, password);
+ 
+  if (isUserAuthenticated) {
+   ctx.response = createRedirectResponse('http://localhost:8080/', 303);
+   return ctx;
+  } else {
+   formErrors.login = 'Invalid email or password';
+   return handleLoginForm(ctx, formData, formErrors, nunjucks);
+  }
+ };
+
 export const handleRegisterGet = async (ctx, nunjucks) => {
   const body = nunjucks.render('register.html', {});
   return createResponse(ctx, body, 200, "text/html");
@@ -132,10 +135,14 @@ export const handleRegisterPost = async (ctx, db, request, nunjucks) => {
   return ctx;
 };
 
-const handleRegisterForm = (ctx, formData, formErrors, nunjucks) => {
-  const body = nunjucks.render('register.html', { formData, formErrors });
-  return createResponse(ctx, body, 200, "text/html");
-};
+const handleLoginForm = async (ctx, formData, formErrors, nunjucks) => {
+  const html = nunjucks.render('login.html', {
+    formData: Object.fromEntries(formData),
+    formErrors: formErrors
+  });
+ 
+  ctx.response.body = html;
+ };
 
 // Hilfsfunktionen
 const processFormData = (formData) => {

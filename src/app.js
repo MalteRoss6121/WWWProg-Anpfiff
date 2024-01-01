@@ -8,6 +8,8 @@ import {
   handleIndex,
   handleRegisterGet, 
   handleRegisterPost,
+  handleLoginGet, 
+  handleLoginPost,
 } from "./notes/controller.js";
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import nunjucks from "npm:nunjucks@3.2.4";
