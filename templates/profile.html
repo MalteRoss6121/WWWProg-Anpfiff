@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<html>
+<head>
+  <title>Profilseite</title>
+</head>
+<body>
+  <h1>Mein Profil</h1>
+  <div id="benutzername">
+      <form>
+          <label for="username">Benutzername:</label><br>
+          <input type="text" id="username" name="username"><br>
+      </form>
+  </div>
+  <div id="email">
+      <form>
+          <label for="mail">E-Mail:</label><br>
+          <input type="email" id="mail" name="mail"><br>
+      </form>
+  </div>
+  <div id="status">
+      <form>
+          <label for="status">Status:</label><br>
+          <textarea id="status" name="status"></textarea><br>
+      </form>
+  </div>
+  <div id="events">
+      <form>
+          <label for="events">Events:</label><br>
+          <textarea id="events" name="events" readonly></textarea><br>
+      </form>
+  </div>
+  <button type="submit">Änderungen speichern</button>
+</body>
+</html>
+
+{% endblock %}
