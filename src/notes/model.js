@@ -78,17 +78,19 @@ export const getUserByEmail = async (db, email) => {
  * @param {object} db - Database connection
  * @param {string} email
  * @param {string} password
+ * @param {string} username
  * @returns {Promise<boolean>}
  */
-export const registerUser = async (db, email, password) => {
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const sql = "INSERT INTO benutzer (email, passwort) VALUES ($email, $passwort)";
+export const registerUser = async (db, email, password, username) => {
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+  const sql = "INSERT INTO benutzer (email, passwort, name) VALUES ($email, $passwort, $name)";
   try {
-    const result = await db.query(sql, { $email: email, $passwort: hashedPassword });
-    return result ? true : false;
+  const result = await db.query(sql, { $email: email, $passwort: hashedPassword, $name: username });
+  return result ? true : false;
   } catch (error) {
-    console.error('Failed to register user:', error);
-    return false;
+  console.error('Failed to register user:', error);
+  return false;
   }
  };
 

@@ -76,10 +76,11 @@ export const handleEdit = async (ctx, db, request, nunjucks) => {
 const processRegisterFormData = (formData) => {
   const email = formData.get('email');
   const password = formData.get('password');
+  const username = formData.get('username');
 
   const formErrors = {};
 
-  return { email, password, formErrors };
+  return { email, password, username, formErrors };
 };
 
 export const handleLoginGet = async (ctx, nunjucks) => {
@@ -115,14 +116,14 @@ export const handleRegisterGet = async (ctx, nunjucks) => {
 
 export const handleRegisterPost = async (ctx, db, request, nunjucks) => {
   const formData = await request.formData();
-  const { email, password, formErrors } = processRegisterFormData(formData);
+  const { email, password, username, formErrors } = processRegisterFormData(formData);
 
   if (Object.keys(formErrors).length > 0) {
     return handleRegisterGet(ctx, nunjucks, formErrors);
   }
 
   // Register user
-  const registrationResult = await model.registerUser(db, email, password);
+  const registrationResult = await model.registerUser(db, email, password, username);
 
   if (!registrationResult) {
     console.error('!! User registration failed !!');
