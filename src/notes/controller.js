@@ -109,6 +109,11 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
   }
  };
 
+ export const handleProfile = async (ctx, nunjucks) => {
+  const body = nunjucks.render('profile.html');
+  return createResponse(ctx, body, 200, "text/html");
+};
+
 export const handleRegisterGet = async (ctx, nunjucks) => {
   const body = nunjucks.render('register.html', {});
   return createResponse(ctx, body, 200, "text/html");

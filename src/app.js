@@ -10,6 +10,7 @@ import {
   handleRegisterPost,
   handleLoginGet, 
   handleLoginPost,
+  handleProfile,
 } from "./notes/controller.js";
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import nunjucks from "npm:nunjucks@3.2.4";
@@ -54,6 +55,8 @@ export const handleRequest = async (request) => {
     } else if (context.request.method === "POST") {
       context = await handleLoginPost(context, db, requests, nunjucks);
     }
+  } else if(url.pathname === "/profile"){
+    context = await handleProfile(context, nunjucks);
   }
   if (!context.response || !context.response.status) {
     context.response = {
