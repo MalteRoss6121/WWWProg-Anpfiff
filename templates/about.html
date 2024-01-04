@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-
+<form action="#" method="POST">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,19 +24,22 @@
     <fieldset>
       <legend>Kontaktformular</legend>
       <label for="name">Vorname</label>
-      <input id="name" name="vorname" type="text" value="Name">
+      <input id="vorname" name="vorname" type="text" value="Name">
       <label for="surname">Name</label>
-      <input id="surname" name="name" type="text" value="Nachname">
+      <input id="nachname" name="nachname" type="text" value="Nachname">
     </fieldset>
     <fieldset>
-      <label for="text">Text</label>
-      <input id="text" name="text" type="text" value="Ihr Text">
-      <button type="submit" class="positive">
-        <img src="tick.png" alt="">senden
-      </button>
+      <label for="titel">Ihr Kontaktgrund</label>
+      <input id="titel" name="titel" type="text" value="Ihr Kontaktgrund">
     </fieldset>
+    <fieldset>
+      <label for="text">weitere Beschreibung des Kontaktgrunds</label>
+      <input id="text" name="text" type="text" value="Ihr Text">
+    </fieldset>
+    <button type="submit">Speichern</button>
   </div>
 </div>
+</form>
 
 
 

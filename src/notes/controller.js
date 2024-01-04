@@ -1,7 +1,7 @@
 // controller.js
 
 import * as model from "./model.js";
-import { handleForm } from './formController.js';
+import { handleForm, handleFormContact} from './formController.js';
 
 export const handleIndex = async (ctx, db, nunjucks) => {
   const body = nunjucks.render('index.html', {notes: await model.index(db)});
@@ -25,9 +25,24 @@ export const handleEvents = async (ctx, db, nunjucks, url) => {
   const body = nunjucks.render('events.html', { notes: filteredNotes });
   return createResponse(ctx, body, 200, "text/html");
 };
+
 export const handleAbout = async (ctx, nunjucks) => {
   const body = nunjucks.render('about.html', {});
   return createResponse(ctx, body, 200, "text/html");
+};
+
+export const handleAboutPost = async (ctx, db, request, nunjucks) => {
+  const formData = await request.formData();
+  const { vorname, nachname, titel, text, formErrors } = processContactFormData(formData);
+
+  if (Object.keys(formErrors).length > 0) {
+    return handleFormContact(ctx, formData, formErrors, nunjucks);
+  }
+  
+
+  model.addContact(db, {vorname, nachname, titel, text}) 
+  ctx.response = createRedirectResponse('http://localhost:8080/', 303);
+  return ctx;
 };
 
 export const handleAddGet = async (ctx, nunjucks) => {
@@ -73,15 +88,7 @@ export const handleEdit = async (ctx, db, request, nunjucks) => {
     return ctx;
   }
 };
-const processRegisterFormData = (formData) => {
-  const email = formData.get('email');
-  const password = formData.get('password');
-  const username = formData.get('username');
 
-  const formErrors = {};
-
-  return { email, password, username, formErrors };
-};
 
 export const handleLoginGet = async (ctx, nunjucks) => {
   const body = nunjucks.render('login.html', {});
@@ -113,6 +120,7 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
   const body = nunjucks.render('profile.html');
   return createResponse(ctx, body, 200, "text/html");
 };
+
 
 export const handleRegisterGet = async (ctx, nunjucks) => {
   const body = nunjucks.render('register.html', {});
@@ -173,6 +181,27 @@ const processFormData = (formData) => {
 
 
   return { date, title, text, zeit, tag, bild, formErrors };
+};
+
+const processRegisterFormData = (formData) => {
+  const email = formData.get('email');
+  const password = formData.get('password');
+  const username = formData.get('username');
+
+  const formErrors = {};
+
+  return { email, password, username, formErrors };
+};
+
+const processContactFormData = (formData) => {
+  const vorname = formData.get("vorname");
+  const nachname = formData.get("nachname");
+  const titel = formData.get("titel");
+  const text = formData.get("text");
+
+  const formErrors = {};
+
+  return { vorname, nachname, titel, text, formErrors };
 };
 
 const createResponse = (ctx, body, status, header) => {

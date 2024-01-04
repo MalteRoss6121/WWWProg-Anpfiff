@@ -11,6 +11,7 @@ import {
   handleLoginGet, 
   handleLoginPost,
   handleProfile,
+  handleAboutPost, 
 } from "./notes/controller.js";
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import nunjucks from "npm:nunjucks@3.2.4";
@@ -32,7 +33,11 @@ export const handleRequest = async (request) => {
   if (url.pathname === "/") {
     context = await handleIndex(context, db, nunjucks);
   } else if (url.pathname === "/about") {
-    context = await handleAbout(context, nunjucks);
+    if(context.request.method === "GET"){
+      context = await handleAbout(context, nunjucks);
+    } else if (context.request.method === "POST") {
+      context = await handleAboutPost(context,db, requests,  nunjucks);
+    }
   } else if (url.pathname === "/add") {
     if (context.request.method === "GET") {
       context = await handleAddGet(context, nunjucks);

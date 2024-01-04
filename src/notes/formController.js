@@ -7,6 +7,11 @@ export const handleForm = async (ctx, formData, formErrors, nunjucks) => {
   return createResponse(ctx, body, 400, "text/html");
 };
 
+export const handleFormContact = async (ctx, formData, formErrors, nunjucks) => {
+  const body = nunjucks.render('about.html', {formData,formErrors});
+  return createResponse(ctx, body, 400, "text/html");
+};
+
 // Helper functions
 const createResponse = (ctx, body, status, header) => {
   ctx.response.body = body;

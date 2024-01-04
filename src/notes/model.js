@@ -62,6 +62,27 @@ export const update = async (db, formData, id) => {
   });
 };
 
+export const updateContact = async (db, formData, id) => {
+  const sql = "UPDATE kontakt SET titel = $title, text = $text, vorname = $vorname, nachname = $nachname WHERE KID = $id";
+  await db.queryEntries(sql, {
+    $id: id,
+    $title: formData.titel,
+    $text: formData.text,
+    $vorname: formData.vorname,
+    $nachname: formData.nachname,
+  });
+};
+
+export const addContact = async (db, formData, id) => {
+  const sql = "INSERT INTO kontakt (titel, text, vorname, nachname) VALUES ($title, $text, $vorname, $nachname)";
+  await db.queryEntries(sql, {
+    $title: formData.titel,
+    $text: formData.text,
+    $vorname: formData.vorname,
+    $nachname: formData.nachname,
+  });
+};
+
 /**
  * Get user by email from the database.
  * @param {object} db - Database connection
