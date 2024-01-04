@@ -7,6 +7,7 @@ export const createContext = (request, extras) => ({
     headers: new Headers({
       'Content-Type': "text/html", 
     }),
+    cookies: request.cookies,
   },
   db: extras.db,
   staticPath: extras.staticPath,
