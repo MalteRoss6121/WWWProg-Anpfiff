@@ -2,6 +2,8 @@
 
 import * as model from "./model.js";
 import { handleForm, handleFormContact} from './formController.js';
+import { createUniqueSessionID } from './utils.js';
+
 
 export const handleIndex = async (ctx, db, nunjucks) => {
   const body = nunjucks.render('index.html', {notes: await model.index(db)});
@@ -108,11 +110,16 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
   const isUserAuthenticated = await model.authenticateUser(db, email, password);
  
   if (isUserAuthenticated) {
-   ctx.response = createRedirectResponse('http://localhost:8080/', 303);
-   return ctx;
+   // Set a cookie
+  const sessionID = createUniqueSessionID(); 
+  const cookieString = `session_id=${sessionID}; HttpOnly; Secure; SameSite=Lax`;
+  ctx.response.headers.append("Set-Cookie", cookieString);
+  ctx.response = createRedirectResponse('http://localhost:8080/', 303);
+ 
+  return ctx;
   } else {
-   formErrors.login = 'Invalid email or password';
-   return handleLoginForm(ctx, formData, formErrors, nunjucks);
+    formErrors.login = 'Invalid email or password';
+    return handleLoginForm(ctx, formData, formErrors, nunjucks);
   }
  };
 
