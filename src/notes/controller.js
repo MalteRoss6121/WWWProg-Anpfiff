@@ -99,18 +99,22 @@ export const handleLoginGet = async (ctx, nunjucks) => {
 
 export const handleLoginPost = async (ctx, db, request, nunjucks) => {
   const formData = await request.formData();
-  const { email, password, formErrors } = processRegisterFormData(formData);
- 
+  const email = formData.get('email');
+  const password = formData.get('password');
+  const { formErrors } = processLoginFormData(formData);
+  console.log('Form errors:', formErrors);
+
   if (Object.keys(formErrors).length > 0) {
    // Handle form errors (render the login form with error messages)
    return handleLoginForm(ctx, formData, formErrors, nunjucks);
   }
- 
+  
   // Authenticate user
   const isUserAuthenticated = await model.authenticateUser(db, email, password);
- 
+  
   if (isUserAuthenticated) {
    // Set a cookie
+  console.log(' ! NUTZER BESTÄTIGT !');
   const sessionID = createUniqueSessionID(); 
   const cookieString = `session_id=${sessionID}; HttpOnly; Secure; SameSite=Lax`;
   ctx.response.headers.append("Set-Cookie", cookieString);
@@ -118,6 +122,7 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
  
   return ctx;
   } else {
+    console.log(' ! NICHT BESTÄTIGT !' , email, password);
     formErrors.login = 'Invalid email or password';
     return handleLoginForm(ctx, formData, formErrors, nunjucks);
   }
@@ -163,6 +168,9 @@ const handleLoginForm = async (ctx, formData, formErrors, nunjucks) => {
   });
  
   ctx.response.body = html;
+  ctx.response.status = 200;
+  ctx.response.headers.set("Content-Type", "text/html");
+  return ctx;
  };
 
 // Hilfsfunktionen
@@ -197,8 +205,37 @@ const processRegisterFormData = (formData) => {
 
   const formErrors = {};
 
+  if (!email || !email.includes('@')) {
+    formErrors.email = 'ungültige email';
+  }
+ 
+  if (!password || password.length < 1) {
+    formErrors.password = 'Passwort muss min 8 Buchstaben haben';
+  }
+ 
+  if (!username) {
+    formErrors.username = 'Nutzername kann nicht leer sein';
+  }
+ 
   return { email, password, username, formErrors };
 };
+
+export const processLoginFormData = (formData) => {
+  const email = formData.get('email');
+  const password = formData.get('password');
+ 
+  const formErrors = {};
+ 
+  if (!email || !email.includes('@')) {
+    formErrors.email = 'ungültige email';
+  }
+ 
+  if (!password) {
+    formErrors.password = 'Passwort kann nicht leer sein';
+  }
+ 
+  return { email, password, formErrors };
+ };
 
 const processContactFormData = (formData) => {
   const vorname = formData.get("vorname");

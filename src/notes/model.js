@@ -90,10 +90,11 @@ export const addContact = async (db, formData, id) => {
  * @returns {Promise<Array<Record<string, any>>>}
  */
 export const getUserByEmail = async (db, email) => {
-  const sql = "SELECT * FROM benutzer WHERE email = $email";
+  const sql = "SELECT * FROM benutzer WHERE email = $email LIMIT 1";
   const result = await db.query(sql, { $email: email });
-  return result;
-};
+  console.log('Result:', result)
+  return result.length > 0 ? result[0] : null;
+ };
 /**
  * Register a new user in the database.
  * @param {object} db - Database connection
@@ -125,9 +126,9 @@ export const registerUser = async (db, email, password, username) => {
  */
 export const authenticateUser = async (db, email, password) => {
   const user = await getUserByEmail(db, email);
- 
-  if (user && user.length > 0) {
-    const match = await bcrypt.compare(password, user[0].password);
+  if (user) {
+    const match = await bcrypt.compare(password, user[3]);
+    console.log("YOOYOY", user[3])
     return match;
   }
  
