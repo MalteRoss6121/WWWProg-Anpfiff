@@ -12,7 +12,7 @@ export const createContext = (request, extras) => ({
   db: extras.db,
   staticPath: extras.staticPath,
   nunjucks: extras.nunjucks,
-  sessionExists: request.cookies && request.cookies["session"] !== undefined,
-  sessionData: request.cookies && request.cookies["session"] !== undefined ? sessions.get(request.cookies["session"]) : null,
+  //sessionExists: request.cookies && request.cookies["session"] !== undefined,
+  //sessionData: request.cookies && request.cookies["session"] !== undefined ? sessions.get(request.cookies["session"]) : null,
   ...extras 
  });

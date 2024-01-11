@@ -7,21 +7,16 @@ import { Cookies } from "https://deno.land/x/oak/mod.ts";
 
 export const handleIndex = async (ctx, db, nunjucks) => {
   const sessionExists = ctx.request.cookies &&
-   ctx.request.cookies["session"] !== undefined;
+    ctx.request.cookies["session"] !== undefined;
   console.log("Cookies:", ctx.request.cookies);
- 
-  const sessionId = ctx.request.cookies["session"];
- 
-  const sessionData = sessionExists ? sessions.get(sessionId) : null;
- 
+
   const body = nunjucks.render("index.html", {
-   notes: await model.index(db),
-   sessionExists,
-   sessionData,
-   cookies: ctx.request.cookies
+    notes: await model.index(db),
+    sessionExists,
+    cookies: ctx.request.cookies
   });
   return createResponse(ctx, body, 200, "text/html");
- };
+};
 
 export const handleEvents = async (ctx, db, nunjucks, url) => {
   const tag = url.searchParams.get("tag");
