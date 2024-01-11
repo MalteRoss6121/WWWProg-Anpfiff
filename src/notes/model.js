@@ -128,7 +128,6 @@ export const authenticateUser = async (db, email, password) => {
   const user = await getUserByEmail(db, email);
   if (user) {
     const match = await bcrypt.compare(password, user[3]);
-    console.log("YOOYOY", user[3])
     return match;
   }
  

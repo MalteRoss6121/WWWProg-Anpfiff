@@ -11,9 +11,10 @@ import {
   handleLoginGet, 
   handleLoginPost,
   handleProfile,
-  handleAboutPost, 
+  handleAboutPost 
 } from "./notes/controller.js";
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
+import { deleteCookie } from "https://deno.land/std/http/mod.ts";
 import nunjucks from "npm:nunjucks@3.2.4";
 
 const db = new DB("./data/data.sqlite");
@@ -54,12 +55,15 @@ export const handleRequest = async (request) => {
     } else if (context.request.method === "POST") {
       context = await handleRegisterPost(context, db, requests, nunjucks);
     }
-  } else if (url.pathname === "/login") {
+  }  else if (url.pathname === "/login") {
     if (context.request.method === "GET") {
       context = await handleLoginGet(context, nunjucks);
     } else if (context.request.method === "POST") {
       context = await handleLoginPost(context, db, requests, nunjucks);
     }
+  }  else if (url.pathname === "/logout") {
+    context = await handleLogout(context, nunjucks);
+    return context;
   } else if(url.pathname === "/profile"){
     context = await handleProfile(context, nunjucks);
   }

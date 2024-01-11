@@ -1,67 +1,83 @@
 // controller.js
 
 import * as model from "./model.js";
-import { handleForm, handleFormContact} from './formController.js';
-import { createUniqueSessionID } from './utils.js';
-
+import { handleForm, handleFormContact } from "./formController.js";
+import { createUniqueSessionID } from "./utils.js";
+import { Cookies } from "https://deno.land/x/oak/mod.ts";
 
 export const handleIndex = async (ctx, db, nunjucks) => {
-  const body = nunjucks.render('index.html', {notes: await model.index(db)});
+  const sessionExists = ctx.request.cookies &&
+   ctx.request.cookies["session"] !== undefined;
+  console.log("Cookies:", ctx.request.cookies);
+ 
+  const sessionId = ctx.request.cookies["session"];
+ 
+  const sessionData = sessionExists ? sessions.get(sessionId) : null;
+ 
+  const body = nunjucks.render("index.html", {
+   notes: await model.index(db),
+   sessionExists,
+   sessionData,
+   cookies: ctx.request.cookies
+  });
   return createResponse(ctx, body, 200, "text/html");
-};
+ };
 
 export const handleEvents = async (ctx, db, nunjucks, url) => {
-  const tag = url.searchParams.get("tag"); 
-  const title = url.searchParams.get("title"); 
+  const tag = url.searchParams.get("tag");
+  const title = url.searchParams.get("title");
   //console.log('Retrieved note from the database:', tag);
 
   let filteredNotes;
-  if (tag && tag !== 'alle') {
+  if (tag && tag !== "alle") {
     filteredNotes = await model.getEventsByTag(db, tag);
-  } else if(title) {
+  } else if (title) {
     filteredNotes = await model.getEventsByTitle(db, title);
-  } else{
+  } else {
     filteredNotes = await model.index(db);
   }
 
-  const body = nunjucks.render('events.html', { notes: filteredNotes });
+  const body = nunjucks.render("events.html", { notes: filteredNotes });
   return createResponse(ctx, body, 200, "text/html");
 };
 
 export const handleAbout = async (ctx, nunjucks) => {
-  const body = nunjucks.render('about.html', {});
+  const body = nunjucks.render("about.html", {});
   return createResponse(ctx, body, 200, "text/html");
 };
 
 export const handleAboutPost = async (ctx, db, request, nunjucks) => {
   const formData = await request.formData();
-  const { vorname, nachname, titel, text, formErrors } = processContactFormData(formData);
+  const { vorname, nachname, titel, text, formErrors } = processContactFormData(
+    formData,
+  );
 
   if (Object.keys(formErrors).length > 0) {
     return handleFormContact(ctx, formData, formErrors, nunjucks);
   }
-  
 
-  model.addContact(db, {vorname, nachname, titel, text}) 
-  ctx.response = createRedirectResponse('http://localhost:8080/', 303);
+  model.addContact(db, { vorname, nachname, titel, text });
+  ctx.response = createRedirectResponse("http://localhost:8080/", 303);
   return ctx;
 };
 
 export const handleAddGet = async (ctx, nunjucks) => {
-  const body = nunjucks.render('form.html', {});
+  const body = nunjucks.render("form.html", {});
   return createResponse(ctx, body, 200, "text/html");
 };
 
 export const handleAddPost = async (ctx, db, request, nunjucks) => {
   const formData = await request.formData();
-  const { date, title, text, zeit, tag, bild, formErrors } = processFormData(formData);
+  const { date, title, text, zeit, tag, bild, formErrors } = processFormData(
+    formData,
+  );
 
   if (Object.keys(formErrors).length > 0) {
     return handleForm(ctx, formData, formErrors, nunjucks);
   }
 
   model.add(db, { date, title, text, zeit, tag, bild });
-  ctx.response = createRedirectResponse('http://localhost:8080/', 303);
+  ctx.response = createRedirectResponse("http://localhost:8080/", 303);
   return ctx;
 };
 
@@ -71,171 +87,194 @@ export const handleEdit = async (ctx, db, request, nunjucks) => {
   const note = await model.getById(db, noteId);
   //console.log('Retrieved note from the database:', note);
 
-  if (request.method === 'GET') {
-    const body = nunjucks.render('form.html', {formData: note});
+  if (request.method === "GET") {
+    const body = nunjucks.render("form.html", { formData: note });
     //console.log('Rendered body:', body);
     return createResponse(ctx, body, 200, "text/html");
   }
 
-  if (request.method === 'POST') {
+  if (request.method === "POST") {
     const formData = await request.formData();
-    const { date, title, text, zeit, tag, bild, formErrors } = processFormData(formData);
+    const { date, title, text, zeit, tag, bild, formErrors } = processFormData(
+      formData,
+    );
 
     if (Object.keys(formErrors).length > 0) {
       return handleForm(ctx, formData, formErrors, nunjucks);
     }
 
     await model.update(db, { date, title, text, zeit, tag, bild }, noteId);
-    ctx.response = createRedirectResponse('http://localhost:8080/', 303);
+    ctx.response = createRedirectResponse("http://localhost:8080/", 303);
     return ctx;
   }
 };
 
-
 export const handleLoginGet = async (ctx, nunjucks) => {
-  const body = nunjucks.render('login.html', {});
+  const body = nunjucks.render("login.html", {});
   return createResponse(ctx, body, 200, "text/html");
 };
-
+let sessions = new Map();
 export const handleLoginPost = async (ctx, db, request, nunjucks) => {
   const formData = await request.formData();
-  const email = formData.get('email');
-  const password = formData.get('password');
+  const email = formData.get("email");
+  const password = formData.get("password");
   const { formErrors } = processLoginFormData(formData);
-  console.log('Form errors:', formErrors);
+
+  //console.log("Form errors:", formErrors);
 
   if (Object.keys(formErrors).length > 0) {
-   // Handle form errors (render the login form with error messages)
-   return handleLoginForm(ctx, formData, formErrors, nunjucks);
-  }
-  
-  // Authenticate user
-  const isUserAuthenticated = await model.authenticateUser(db, email, password);
-  
-  if (isUserAuthenticated) {
-   // Set a cookie
-  console.log(' ! NUTZER BESTÄTIGT !');
-  const sessionID = createUniqueSessionID(); 
-  const cookieString = `session_id=${sessionID}; HttpOnly; Secure; SameSite=Lax`;
-  ctx.response.headers.append("Set-Cookie", cookieString);
-  ctx.response = createRedirectResponse('http://localhost:8080/', 303);
- 
-  return ctx;
-  } else {
-    console.log(' ! NICHT BESTÄTIGT !' , email, password);
-    formErrors.login = 'Invalid email or password';
+    // Handle form errors (render the login form with error messages)
     return handleLoginForm(ctx, formData, formErrors, nunjucks);
   }
- };
 
- export const handleProfile = async (ctx, nunjucks) => {
-  const body = nunjucks.render('profile.html');
+  // Authenticate user
+  const isUserAuthenticated = await model.authenticateUser(db, email, password);
+
+  if (isUserAuthenticated) {
+    // Set a cookie
+    console.log(" ! NUTZER BESTÄTIGT !");
+
+    const sessionId = createUniqueSessionID();
+    sessions.set(sessionId, { /* user data */ });
+    ctx.cookies.set("session", sessionId, { httpOnly: true, secure: true });
+ 
+    console.log(" ! COOKIE GESETZT !");
+
+    ctx.response = createRedirectResponse("http://localhost:8080/", 303);
+    return ctx;
+  } else {
+    console.log(" ! NICHT BESTÄTIGT !", email, password);
+    formErrors.login = "Invalid email or password";
+    return handleLoginForm(ctx, formData, formErrors, nunjucks);
+  }
+};
+export const handleLogout = async (ctx, nunjucks) => {
+  // Retrieve the session ID from the cookie
+  const sessionId = ctx.request.cookies["session"];
+ 
+  // Remove the session data from the sessions map
+  sessions.delete(sessionId);
+ 
+  // Clear the session cookie
+  deleteCookie(ctx.response, 'session');
+  
+  // Redirect the user to the login page
+  ctx.response = createRedirectResponse('/login', 303);
+  return ctx;
+ };
+ 
+export const handleProfile = async (ctx, nunjucks) => {
+  const body = nunjucks.render("profile.html");
   return createResponse(ctx, body, 200, "text/html");
 };
 
-
 export const handleRegisterGet = async (ctx, nunjucks) => {
-  const body = nunjucks.render('register.html', {});
+  const body = nunjucks.render("register.html", {});
   return createResponse(ctx, body, 200, "text/html");
 };
 
 export const handleRegisterPost = async (ctx, db, request, nunjucks) => {
   const formData = await request.formData();
-  const { email, password, username, formErrors } = processRegisterFormData(formData);
+  const { email, password, username, formErrors } = processRegisterFormData(
+    formData,
+  );
 
   if (Object.keys(formErrors).length > 0) {
     return handleRegisterGet(ctx, nunjucks, formErrors);
   }
 
   // Register user
-  const registrationResult = await model.registerUser(db, email, password, username);
+  const registrationResult = await model.registerUser(
+    db,
+    email,
+    password,
+    username,
+  );
 
   if (!registrationResult) {
-    console.error('!! User registration failed !!');
+    console.error("!! User registration failed !!");
     return ctx;
   }
 
-  console.log('!! User registration successful !!');
+  console.log("!! User registration successful !!");
 
-  ctx.response = createRedirectResponse('http://localhost:8080/login', 303);
+  ctx.response = createRedirectResponse("http://localhost:8080/login", 303);
   return ctx;
 };
 
 const handleLoginForm = async (ctx, formData, formErrors, nunjucks) => {
-  const html = nunjucks.render('login.html', {
+  const html = nunjucks.render("login.html", {
     formData: Object.fromEntries(formData),
-    formErrors: formErrors
+    formErrors: formErrors,
   });
- 
+
   ctx.response.body = html;
   ctx.response.status = 200;
   ctx.response.headers.set("Content-Type", "text/html");
   return ctx;
- };
+};
 
 // Hilfsfunktionen
 const processFormData = (formData) => {
-  
-  const date = formData.get('date');
-  const title = formData.get('title');
-  const text = formData.get('text');
-  const zeit = formData.get('uhrzeit');
-  const tag = formData.get('tag');
-  const bild = formData.get('bildurl');
+  const date = formData.get("date");
+  const title = formData.get("title");
+  const text = formData.get("text");
+  const zeit = formData.get("uhrzeit");
+  const tag = formData.get("tag");
+  const bild = formData.get("bildurl");
 
   const formErrors = {};
   if (!isValidDate(date)) {
-    formErrors.date = 'Invalid date';
+    formErrors.date = "Invalid date";
   }
   if (!isValidText(title)) {
-    formErrors.title = 'Titel muss mind. 3 character lang sein!';
+    formErrors.title = "Titel muss mind. 3 character lang sein!";
   }
   if (!isValidText(text)) {
-    formErrors.text = 'Text muss mind. 3 character lang sein!';
+    formErrors.text = "Text muss mind. 3 character lang sein!";
   }
-
 
   return { date, title, text, zeit, tag, bild, formErrors };
 };
 
 const processRegisterFormData = (formData) => {
-  const email = formData.get('email');
-  const password = formData.get('password');
-  const username = formData.get('username');
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const username = formData.get("username");
 
   const formErrors = {};
 
-  if (!email || !email.includes('@')) {
-    formErrors.email = 'ungültige email';
+  if (!email || !email.includes("@")) {
+    formErrors.email = "ungültige email";
   }
- 
+
   if (!password || password.length < 1) {
-    formErrors.password = 'Passwort muss min 8 Buchstaben haben';
+    formErrors.password = "Passwort muss min 8 Buchstaben haben";
   }
- 
+
   if (!username) {
-    formErrors.username = 'Nutzername kann nicht leer sein';
+    formErrors.username = "Nutzername kann nicht leer sein";
   }
- 
+
   return { email, password, username, formErrors };
 };
 
 export const processLoginFormData = (formData) => {
-  const email = formData.get('email');
-  const password = formData.get('password');
- 
+  const email = formData.get("email");
+  const password = formData.get("password");
+
   const formErrors = {};
- 
-  if (!email || !email.includes('@')) {
-    formErrors.email = 'ungültige email';
+
+  if (!email || !email.includes("@")) {
+    formErrors.email = "ungültige email";
   }
- 
+
   if (!password) {
-    formErrors.password = 'Passwort kann nicht leer sein';
+    formErrors.password = "Passwort kann nicht leer sein";
   }
- 
+
   return { email, password, formErrors };
- };
+};
 
 const processContactFormData = (formData) => {
   const vorname = formData.get("vorname");
@@ -259,10 +298,9 @@ const createRedirectResponse = (url, status) => {
   return Response.redirect(url, status);
 };
 
-
 export const isValidDate = (date) => {
-    const test = new Date(date);
-    return test != "Invalid Date" && date.length >= 4;
+  const test = new Date(date);
+  return test != "Invalid Date" && date.length >= 4;
 };
 
 export const isValidText = (text) => text.length >= 3;
