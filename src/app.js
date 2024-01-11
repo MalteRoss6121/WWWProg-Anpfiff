@@ -11,7 +11,8 @@ import {
   handleLoginGet, 
   handleLoginPost,
   handleProfile,
-  handleAboutPost 
+  handleAboutPost,
+  handleERROR 
 } from "./notes/controller.js";
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import { deleteCookie } from "https://deno.land/std/http/mod.ts";
@@ -66,13 +67,11 @@ export const handleRequest = async (request) => {
     return context;
   } else if(url.pathname === "/profile"){
     context = await handleProfile(context, nunjucks);
+  } else{
+    context = await handleERROR(context, nunjucks);
   }
   if (!context.response || !context.response.status) {
-    context.response = {
-      body: "404 - Not Found",
-      status: 404,
-      headers: new Headers().set("content-type", "text/plain"),
-    };
+    context = await handleERROR(context, nunjucks);
   }
 
   return new Response(context.response.body, {

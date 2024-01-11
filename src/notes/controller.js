@@ -1,7 +1,7 @@
 // controller.js
 
 import * as model from "./model.js";
-import { handleForm, handleFormContact } from "./formController.js";
+import { handleForm, handleFormContact, handleLoginForm, processFormData, processRegisterFormData, processLoginFormData, processContactFormData } from "./formController.js";
 import { createUniqueSessionID } from "./utils.js";
 import { Cookies } from "https://deno.land/x/oak/mod.ts";
 
@@ -18,10 +18,14 @@ export const handleIndex = async (ctx, db, nunjucks) => {
   return createResponse(ctx, body, 200, "text/html");
 };
 
+export const handleERROR = async (ctx, nunjucks) =>{
+  const body = nunjucks.render("error404.html");
+  return createResponse(ctx, body, 404, "text/html");
+}
+
 export const handleEvents = async (ctx, db, nunjucks, url) => {
   const tag = url.searchParams.get("tag");
   const title = url.searchParams.get("title");
-  //console.log('Retrieved note from the database:', tag);
 
   let filteredNotes;
   if (tag && tag !== "alle") {
@@ -197,90 +201,7 @@ export const handleRegisterPost = async (ctx, db, request, nunjucks) => {
   return ctx;
 };
 
-const handleLoginForm = async (ctx, formData, formErrors, nunjucks) => {
-  const html = nunjucks.render("login.html", {
-    formData: Object.fromEntries(formData),
-    formErrors: formErrors,
-  });
 
-  ctx.response.body = html;
-  ctx.response.status = 200;
-  ctx.response.headers.set("Content-Type", "text/html");
-  return ctx;
-};
-
-// Hilfsfunktionen
-const processFormData = (formData) => {
-  const date = formData.get("date");
-  const title = formData.get("title");
-  const text = formData.get("text");
-  const zeit = formData.get("uhrzeit");
-  const tag = formData.get("tag");
-  const bild = formData.get("bildurl");
-
-  const formErrors = {};
-  if (!isValidDate(date)) {
-    formErrors.date = "Invalid date";
-  }
-  if (!isValidText(title)) {
-    formErrors.title = "Titel muss mind. 3 character lang sein!";
-  }
-  if (!isValidText(text)) {
-    formErrors.text = "Text muss mind. 3 character lang sein!";
-  }
-
-  return { date, title, text, zeit, tag, bild, formErrors };
-};
-
-const processRegisterFormData = (formData) => {
-  const email = formData.get("email");
-  const password = formData.get("password");
-  const username = formData.get("username");
-
-  const formErrors = {};
-
-  if (!email || !email.includes("@")) {
-    formErrors.email = "ungültige email";
-  }
-
-  if (!password || password.length < 1) {
-    formErrors.password = "Passwort muss min 8 Buchstaben haben";
-  }
-
-  if (!username) {
-    formErrors.username = "Nutzername kann nicht leer sein";
-  }
-
-  return { email, password, username, formErrors };
-};
-
-export const processLoginFormData = (formData) => {
-  const email = formData.get("email");
-  const password = formData.get("password");
-
-  const formErrors = {};
-
-  if (!email || !email.includes("@")) {
-    formErrors.email = "ungültige email";
-  }
-
-  if (!password) {
-    formErrors.password = "Passwort kann nicht leer sein";
-  }
-
-  return { email, password, formErrors };
-};
-
-const processContactFormData = (formData) => {
-  const vorname = formData.get("vorname");
-  const nachname = formData.get("nachname");
-  const titel = formData.get("titel");
-  const text = formData.get("text");
-
-  const formErrors = {};
-
-  return { vorname, nachname, titel, text, formErrors };
-};
 
 const createResponse = (ctx, body, status, header) => {
   ctx.response.body = body;
