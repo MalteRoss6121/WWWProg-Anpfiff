@@ -12,7 +12,9 @@ import {
   handleLoginPost,
   handleProfile,
   handleAboutPost,
-  handleERROR 
+  handleERROR,
+  handleDelete,
+  handleEvent,
 } from "./notes/controller.js";
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import { deleteCookie } from "https://deno.land/std/http/mod.ts";
@@ -67,7 +69,12 @@ export const handleRequest = async (request) => {
     return context;
   } else if(url.pathname === "/profile"){
     context = await handleProfile(context, nunjucks);
-  } else{
+  }else if(url.pathname.startsWith("/dele")){
+    context = await handleDelete(context, db, requests, nunjucks);
+  } else if(url.pathname.startsWith("/event")){
+    context = await handleEvent(context, db, requests, nunjucks);
+  } 
+  else{
     context = await handleERROR(context, nunjucks);
   }
   if (!context.response || !context.response.status) {

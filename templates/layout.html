@@ -12,48 +12,65 @@
     margin-bottom: 0;
   }
 
-  .nav-menu {
-    position: relative;
-    left: 0;
-    top: 4%;
-    width: 90%;
-    flex-direction: row;
-    background-color: #FFFFFF;
+  body {
+    font-family: 'Arial', sans-serif; /* Choose a suitable font-family */
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #007704;
+    color: #fff;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 60px;
-  }
+}
 
-  .nav-menu li {
-    margin: 0;
+.nav-menu {
     list-style: none;
-  }
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
 
-  .nav-item {
-    justify-content: space-between;
-    margin: 240;
-  }
+.nav-menu li {
+    margin-right: 20px;
+}
 
-  .nav-name {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 5rem;
-  }
+.nav-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+}
 
-  .nav-link {
-    transition: 0.7s ease;
-  }
+.nav-link:hover {
+    text-decoration: underline;
+}
 
-  .nav-link:hover {
-    color: #343434;
-  }
-
-  .hamburger {
-    display: none;
+.button {
+    background-color: #fff;
+    color: #007704;
+    border: none;
+    padding: 8px 15px;
+    font-size: 16px;
     cursor: pointer;
-  }
+    border-radius: 5px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    background-color: #fff;
+    height: 3px;
+    width: 25px;
+    margin: 5px 0;
+}
+
   .firstContainer {
     /* box-shadow: 0px 10px 10px white inset; */
     position: relative;
@@ -109,48 +126,80 @@
   }
 
   .eventsHead {
-    padding: 20px;
-    background-color: #696969;
+    background-color: #176321;
+    color: #fff;
     text-align: center;
-    color: #fefefe;
-    font-family: Verdana;
-    font-weight: bolder;
-    box-shadow: 0px 5px 5px rgb(50, 50, 50) inset;
-  }
+    padding: 10px 0;
+}
 
-  .eventContainer {
-    padding: 20px;
-    background-color: #696969;
-    overflow-x: scroll;
+#events {
+    margin: 0;
+}
+
+.eventContainer {
+    overflow-x: auto;
+}
+
+.eventContainer ul {
+    list-style: none;
+    padding: 0;
     display: flex;
-    flex-direction: row;
-    min-height: 420px;
-    box-shadow: 0px 5px 5px rgb(50, 50, 50) inset;
-  }
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px;
+}
 
-  .eventContainer ul {
-        list-style: none;
-        display: flex;
-        gap: 20px; 
-        overflow-x: auto; 
-    }
-
-    .eventContainer li {
-        flex: 0 0 200px; 
-        border: 1px solid #ddd;
-        padding: 10px;
-    }
-
-  .event {
-    flex: 0 0 auto;
+.eventContainer li {
+    min-width: 300px;
+    max-width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     margin-right: 20px;
-    float: left;
-    text-align: center;
-    color: #ffffff;
-    font-family: 'Lucida Sans';
-    font-weight: bolder;
-    font-size: 1.5rem;
-  }
+    padding: 15px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.eventContainer h2 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.eventContainer h3 {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.eventContainer p,
+.eventContainer div {
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.eventContainer img.note-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.eventContainer a {
+    color: #3498db;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.eventContainer a:hover {
+    background-color: #2980b9;
+    text-decoration: none;
+}
+
 
 
   .imgPlc {
@@ -164,25 +213,32 @@
   .imgPlc:hover {
     margin-top: 10px;
   }
-
   .info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-  }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px;
+}
 
-  .infoelement {
-    text-align: center;
-    grid-column: 1/3;
-  }
+.infoelement {
+    flex: 1 1 calc(50% - 20px);
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
 
-  .infoimg,
-  .infoimg2 {
-    background-color: antiquewhite;
-    padding-top: 40%;
-    padding-bottom: 40%;
-    margin: 10px;
-  }
+.infoelement h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.infoelement p {
+    color: #666;
+    font-size: 16px;
+}
+
 
   .header {
     box-shadow: 0px -4px 4px rgb(92, 92, 92) inset;
@@ -193,34 +249,197 @@
         height: auto;
   }
 
-  .eventSide {
-  padding: 20px;
-  background-color: #696969;
-  display: flex;
-  flex-direction: row;
-  min-height: calc(90vh - 40px); /* Beispiel: 50% der Bildschirmhöhe abzüglich des Padding */
-  box-shadow: 0px 5px 5px rgb(50, 50, 50) inset;
-  overflow-x: auto;
+  .searchBar,
+.tagBar,
+.eventSide {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.searchBar label,
+.tagBar label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.searchBar input,
+.tagBar select {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .eventSide ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
+    list-style: none;
+    padding: 0;
 }
 
 .eventSide li {
-  flex: 0 0 400px;
-  border: 1px solid #ddd;
-  padding: 15px;
-  text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.eventSide h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.eventSide h3 {
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.eventSide p,
+.eventSide div {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.eventSide img.event-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.eventSide a {
+    color: #3498db;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.eventSide a:hover {
+    text-decoration: underline;
 }
 
 .event-image {
         max-width: 100%;
         height: auto;
   }
+
+  .delEvent {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.delEvent h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.delEvent h3 {
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.delEvent p,
+.delEvent div {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.delEvent img.event-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.delEvent form {
+    margin-top: 10px;
+}
+
+.delEvent button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.delEvent button:hover {
+    background-color: #c0392b;
+}
+
+.delEvent button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.delEvent button:hover {
+    background-color: #2980b9;
+}
+
+form {
+    max-width: 600px; /* Adjust the width as needed */
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+form input[type="date"],
+form input[type="text"],
+form textarea,
+form select,
+form input[type="url"],
+form input[type="time"] {
+    width: calc(100% - 16px); /* Adjust the padding as needed */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+form button:hover {
+    background-color: #2980b9;
+}
+
 
   </style>
 </head>

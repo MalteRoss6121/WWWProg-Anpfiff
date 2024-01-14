@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="delEvent">
+        <h2>{{ formData.titel }}</h2>
+        <h3>{{ formData.uhrzeit }}</h3>
+        <p>{{ formData.datum }}</p>
+        <div>{{ formData.beschreibung }}</div>
+        <img src="{{ formData.bildurl }}" alt="Bild" class="event-image">
+        <div>{{ formData.tag }}</div>
+
+
+        <form action="/delete/{{ formData.EID }}" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+{% endblock %}

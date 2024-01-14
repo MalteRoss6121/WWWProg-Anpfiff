@@ -103,3 +103,12 @@ const createResponse = (ctx, body, status, header) => {
   ctx.response.status = status;
   return ctx;
 };
+
+
+export const isValidDate = (date) => {
+  const test = new Date(date);
+  return test != "Invalid Date" && date.length >= 4;
+};
+
+export const isValidText = (text) => text.length >= 3;
+

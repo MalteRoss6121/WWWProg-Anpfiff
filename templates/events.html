@@ -28,13 +28,14 @@
 
         <li>
 
-            <h2>{{ note.titel }}</h2>
+            <h2><a href="/event/{{ note.EID }}">{{ note.titel }}</a></h2>
             <h3>{{ note.uhrzeit }}</h3>
             <p>{{ note.datum }}</p>
             <div>{{ note.beschreibung }}</div>
             <img src="{{ note.bildurl }}" alt="Bild" class="event-image">
             <div>{{ note.tag }}</div>
             <p><a href="/edit/{{ note.EID }}">Bearbeiten</a></p>
+            <p><a href="/dele/{{ note.EID }}">Delete</a></p>
 
         </li>
         {% endfor %}

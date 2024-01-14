@@ -65,6 +65,7 @@ export const handleAddGet = async (ctx, nunjucks) => {
   return createResponse(ctx, body, 200, "text/html");
 };
 
+
 export const handleAddPost = async (ctx, db, request, nunjucks) => {
   const formData = await request.formData();
   const { date, title, text, zeit, tag, bild, formErrors } = processFormData(
@@ -79,6 +80,43 @@ export const handleAddPost = async (ctx, db, request, nunjucks) => {
   ctx.response = createRedirectResponse("http://localhost:8080/", 303);
   return ctx;
 };
+
+export const handleDelete = async (ctx, db, request, nunjucks) => {
+  const url = ctx.Url;
+  const noteId = parseInt(url.pathname.split("/")[2], 10);
+  const note = await model.getById(db, noteId);
+
+  if (!note) {
+    return handleERROR(ctx,nunjucks);
+  }
+
+  if (request.method === "GET") {
+    const body = nunjucks.render("delete.html", { formData: note });
+    return createResponse(ctx, body, 200, "text/html");
+  }
+
+  if (request.method === "POST") {
+    await model.deleteEvent(db, noteId);
+    ctx.response = createRedirectResponse("http://localhost:8080/", 303);
+    return ctx;
+  }
+};
+
+export const handleEvent = async (ctx, db, request, nunjucks) => {
+  const url = ctx.Url;
+  const noteId = parseInt(url.pathname.split("/")[2], 10);
+  const note = await model.getById(db, noteId);
+
+  if (!note) {
+    return handleERROR(ctx,nunjucks);
+  }
+
+  if (request.method === "GET") {
+    const body = nunjucks.render("event.html", { formData: note });
+    return createResponse(ctx, body, 200, "text/html");
+  }
+};
+
 
 export const handleEdit = async (ctx, db, request, nunjucks) => {
   const url = ctx.Url;

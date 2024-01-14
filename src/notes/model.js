@@ -1,21 +1,11 @@
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
-/**
- * Get all notes from the database.
- * @param {object} db - Database connection
- * @returns {Promise<Array<Record<string, any>>>}
- */
+
 export const index = async (db) => {
   const sql = "SELECT * FROM events";
   const result = db.queryEntries(sql); 
   return result;
 };
 
-/**
- * Get one note by id from the database.
- * @param {object} db - Database connection
- * @param {Integer} id
- * @returns {Promise<Record<string, any> | null>}
- */
 export const getById = async (db, id) => {
   const sql = "SELECT * FROM events WHERE EID = $id";
   const result = await db.queryEntries(sql, { $id: id });
@@ -33,22 +23,13 @@ export const getEventsByTitle = async (db, title) => {
   return result;
 };
 
-/**
- * Add a note to the database.
- * @param {object} db - Database connection
- * @param {Record<string, any>} formData
- */
+
 export const add = async (db, formData) => {
   const sql = "INSERT INTO events (titel, beschreibung, datum, tag, uhrzeit, bildurl) VALUES ( $titel, $beschreibung, $datum, $tag, $uhrzeit, $bildurl)";
   await db.queryEntries(sql, { $titel: formData.title, $beschreibung: formData.text, $datum: formData.date, $tag: formData.tag, $uhrzeit: formData.zeit, $bildurl: formData.bild });
 };
 
-/**
- * Update a note in the database.
- * @param {object} db - Database connection
- * @param {Record<string, any>} formData
- * @param {Integer} id
- */
+
 export const update = async (db, formData, id) => {
   const sql = "UPDATE events SET titel = $title, beschreibung = $text, datum = $date, tag = $tag, uhrzeit = $zeit, bildurl = $bildurl WHERE EID = $id";
   await db.queryEntries(sql, {
@@ -61,6 +42,14 @@ export const update = async (db, formData, id) => {
     $bildurl: formData.bild,
   });
 };
+
+export const deleteEvent = async (db, id) => {
+  const sql = "DELETE FROM events WHERE EID = $id";
+  await db.queryEntries(sql, {
+    $id: id,
+  });
+};
+
 
 export const updateContact = async (db, formData, id) => {
   const sql = "UPDATE kontakt SET titel = $title, text = $text, vorname = $vorname, nachname = $nachname WHERE KID = $id";
