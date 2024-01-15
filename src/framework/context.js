@@ -1,3 +1,4 @@
+import { CookieMap, mergeHeaders } from "https://deno.land/std/http/mod.ts";
 export const createContext = (request, extras) => ({
   request,
   Url: new URL(request.url),
@@ -12,7 +13,9 @@ export const createContext = (request, extras) => ({
   db: extras.db,
   staticPath: extras.staticPath,
   nunjucks: extras.nunjucks,
-  //sessionExists: request.cookies && request.cookies["session"] !== undefined,
-  //sessionData: request.cookies && request.cookies["session"] !== undefined ? sessions.get(request.cookies["session"]) : null,
+  sessionStore: extras.sessionStore,
+  cookies: new CookieMap(request),
+  sessionId: undefined,
+  session: {},
   ...extras 
  });

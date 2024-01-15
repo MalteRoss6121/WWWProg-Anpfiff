@@ -3,7 +3,6 @@
 import * as model from "./model.js";
 import { handleForm, handleFormContact, handleLoginForm, processFormData, processRegisterFormData, processLoginFormData, processContactFormData } from "./formController.js";
 import { createUniqueSessionID } from "./utils.js";
-import { Cookies } from "https://deno.land/x/oak/mod.ts";
 
 export const handleIndex = async (ctx, db, nunjucks) => {
   const sessionExists = ctx.request.cookies &&
@@ -150,7 +149,7 @@ export const handleLoginGet = async (ctx, nunjucks) => {
   const body = nunjucks.render("login.html", {});
   return createResponse(ctx, body, 200, "text/html");
 };
-let sessions = new Map();
+
 export const handleLoginPost = async (ctx, db, request, nunjucks) => {
   const formData = await request.formData();
   const email = formData.get("email");
@@ -170,17 +169,14 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
   if (isUserAuthenticated) {
     // Set a cookie
     console.log(" ! NUTZER BESTÄTIGT !");
+    console.log(ctx.session.user, );
 
-    const sessionId = createUniqueSessionID();
-    sessions.set(sessionId, { /* user data */ });
-    ctx.cookies.set("session", sessionId, { httpOnly: true, secure: true });
- 
-    console.log(" ! COOKIE GESETZT !");
+    ctx.session.user = email;
 
     ctx.response = createRedirectResponse("http://localhost:8080/", 303);
     return ctx;
   } else {
-    console.log(" ! NICHT BESTÄTIGT !", email, password);
+    console.log(" ! NICHT BESTÄTIGT !");
     formErrors.login = "Invalid email or password";
     return handleLoginForm(ctx, formData, formErrors, nunjucks);
   }
