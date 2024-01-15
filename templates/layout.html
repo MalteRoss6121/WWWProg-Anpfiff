@@ -563,6 +563,7 @@ form button:hover {
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: center;
+      margin: auto;
     }
 
     .profile-title {
@@ -688,6 +689,39 @@ form button:hover {
         .form-button:hover {
             background-color: #2980b9;
         }
+        .login-link {
+      font-size: 16px;
+      color: #176321;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .login-link a {
+      color: #176321;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+    .logout-button {
+      background-color: #e74c3c;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 15px;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .logout-button:hover {
+      background-color: #c0392b;
+    }
 
   </style>
 </head>
@@ -702,10 +736,10 @@ form button:hover {
       
       {% if sessionExists %}
       <!-- Logout button -->
-      <button onclick="location.href='/logout'">Logout</button>
+      <button  onclick="location.href='/profile'">Dein Profil</button>
      {% else %}
       <!-- Login button -->
-      <button onclick="location.href='/register'">Login</button>
+      <button onclick="location.href='/register'">Register</button>
      {% endif %}
 
      
