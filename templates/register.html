@@ -8,25 +8,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
+  <link rel="stylesheet" href="your_stylesheet.css"> <!-- Replace 'your_stylesheet.css' with the path to your CSS file -->
 </head>
 <body>
-  <h1>Register</h1>
-  <form action="/register" method="post">
+  <form action="/register" method="post" class="register-container">
+    <h1 class="register-title">Register</h1>
 
-    <label for="name">Anzeigename:</label><br>
-    <input type="text" id="username" name="username"><br>
+    <label for="username" class="register-label">Anzeigename:</label>
+    <input type="text" id="username" name="username" class="register-input" required>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
+    <label for="email" class="register-label">Email:</label>
+    <input type="email" id="email" name="email" class="register-input" required>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
+    <label for="password" class="register-label">Password:</label>
+    <input type="password" id="password" name="password" class="register-input" required>
 
-    <button type="submit">Register</button>
+    <button type="submit" class="register-button">Register</button>
   </form>
 </body>
 </html>
-
-
 
 {% endblock %}

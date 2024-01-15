@@ -11,7 +11,6 @@
     margin-top: 0;
     margin-bottom: 0;
   }
-
   body {
     font-family: 'Arial', sans-serif; /* Choose a suitable font-family */
     margin: 0;
@@ -19,7 +18,7 @@
 }
 
 nav {
-    background-color: #007704;
+    background-color: #176321;
     color: #fff;
     padding: 15px 20px;
     display: flex;
@@ -32,10 +31,12 @@ nav {
     margin: 0;
     padding: 0;
     display: flex;
+    width: 100%;
 }
 
 .nav-menu li {
     margin-right: 20px;
+    flex-grow: 1; /* Distribute the available space equally */
 }
 
 .nav-link {
@@ -50,7 +51,31 @@ nav {
 
 .button {
     background-color: #fff;
-    color: #007704;
+    color: #176321;
+    border: none;
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    background-color: #fff;
+    height: 3px;
+    width: 25px;
+    margin: 5px 0;
+}
+
+
+.button {
+    background-color: #fff;
+    color: #176321;
     border: none;
     padding: 8px 15px;
     font-size: 16px;
@@ -74,7 +99,7 @@ nav {
   .firstContainer {
     /* box-shadow: 0px 10px 10px white inset; */
     position: relative;
-    color: #007704;
+    color: #176321;
     background-image: url("https://i.imgur.com/eelMuqj.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -186,11 +211,11 @@ nav {
 }
 
 .eventContainer a {
-    color: #3498db;
+    color: #176321;
     text-decoration: none;
     display: inline-block;
     padding: 8px 15px;
-    background-color: #3498db;
+    background-color: #176321;
     color: #fff;
     border-radius: 5px;
 }
@@ -313,7 +338,7 @@ nav {
 }
 
 .eventSide a {
-    color: #3498db;
+    color: #176321;
     text-decoration: none;
     margin-right: 10px;
 }
@@ -381,7 +406,7 @@ nav {
 }
 
 .delEvent button {
-    background-color: #3498db;
+    background-color: #176321;
     color: #fff;
     border: none;
     padding: 10px 15px;
@@ -427,7 +452,7 @@ form input[type="time"] {
 }
 
 form button {
-    background-color: #3498db;
+    background-color: #176321;
     color: #fff;
     border: none;
     padding: 10px 15px;
@@ -440,6 +465,229 @@ form button:hover {
     background-color: #2980b9;
 }
 
+.register-container {
+      max-width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .register-title {
+      text-align: center;
+      color: #176321;
+    }
+
+    .register-label {
+      display: block;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    .register-input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .register-button {
+      background-color: #176321;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .register-button:hover {
+      background-color: #2980b9;
+    }
+
+    .login-container {
+      max-width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-title {
+      text-align: center;
+      color: #176321;
+    }
+
+    .login-label {
+      display: block;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    .login-input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .login-button {
+      background-color: #176321;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .login-button:hover {
+      background-color: #2980b9;
+    }
+    .profile-container {
+      max-width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .profile-title {
+      color: #176321;
+    }
+
+    .profile-form {
+      margin-top: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .form-textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .save-button {
+      background-color: #176321;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .save-button:hover {
+      background-color: #2980b9;
+    }
+
+    .contact-container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .contact-container h1 {
+            color: #176321;
+        }
+
+        .contact-container h2 {
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .contact-container p {
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .contact-form {
+            margin-top: 20px;
+        }
+
+        .form-fieldset {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .form-legend {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-button {
+            background-color: #176321;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-button:hover {
+            background-color: #2980b9;
+        }
 
   </style>
 </head>

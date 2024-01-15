@@ -7,33 +7,40 @@
   <title>Profilseite</title>
 </head>
 <body>
-  <h1>Mein Profil</h1>
-  <div id="benutzername">
-      <form>
-          <label for="username">Benutzername:</label><br>
-          <input type="text" id="username" name="username"><br>
-      </form>
-  </div>
-  <div id="email">
-      <form>
-          <label for="mail">E-Mail:</label><br>
-          <input type="email" id="mail" name="mail"><br>
-      </form>
-  </div>
-  <div id="status">
-      <form>
-          <label for="status">Status:</label><br>
-          <textarea id="status" name="status"></textarea><br>
-      </form>
-  </div>
-  <div id="events">
-      <form>
-          <label for="events">Events:</label><br>
-          <textarea id="events" name="events" readonly></textarea><br>
-      </form>
-  </div>
-  <button type="submit">Änderungen speichern</button>
-</body>
+    <div class="profile-container">
+      <h1 class="profile-title">Mein Profil</h1>
+      
+      <div class="profile-form" id="benutzername">
+        <form>
+          <label for="username" class="form-label">Benutzername:</label>
+          <input type="text" id="username" name="username" class="form-input">
+        </form>
+      </div>
+  
+      <div class="profile-form" id="email">
+        <form>
+          <label for="mail" class="form-label">E-Mail:</label>
+          <input type="email" id="mail" name="mail" class="form-input">
+        </form>
+      </div>
+  
+      <div class="profile-form" id="status">
+        <form>
+          <label for="status" class="form-label">Status:</label>
+          <textarea id="status" name="status" class="form-textarea"></textarea>
+        </form>
+      </div>
+  
+      <div class="profile-form" id="events">
+        <form>
+          <label for="events" class="form-label">Events:</label>
+          <textarea id="events" name="events" class="form-textarea" readonly></textarea>
+        </form>
+      </div>
+  
+      <button type="submit" class="save-button">Änderungen speichern</button>
+    </div>
+  </body>
 </html>
 
 {% endblock %}
