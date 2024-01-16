@@ -12,6 +12,17 @@ export const getById = async (db, id) => {
   return result.length > 0 ? result[0] : null;
 };
 
+export const getAdmin = async (db, email) => {
+  const sql = "SELECT permissions FROM benutzer WHERE email = $email"
+  const result = await db.queryEntries(sql, {$email: email});
+  return result;
+}
+
+export const getProfile = async (db, email) => {
+  const sql = "SELECT "
+}
+
+
 export const getEventsByTag = async (db, tag) => {
   const sql = "SELECT * FROM events WHERE tag = $tag";
   const result = await db.queryEntries(sql, { $tag: tag });

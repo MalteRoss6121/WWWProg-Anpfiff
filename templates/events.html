@@ -34,12 +34,16 @@
             <div>{{ note.beschreibung }}</div>
             <img src="{{ note.bildurl }}" alt="Bild" class="event-image">
             <div>{{ note.tag }}</div>
+            {% if useradmin  %}
             <p><a href="/edit/{{ note.EID }}">Bearbeiten</a></p>
             <p><a href="/dele/{{ note.EID }}">Delete</a></p>
+            {% endif %}
 
         </li>
         {% endfor %}
+        {% if useradmin  %}
         <li><a href="/add" class="nav-link">Event hinzufügen</a></li>
+        {% endif %}
     </ul>
 
 </div>

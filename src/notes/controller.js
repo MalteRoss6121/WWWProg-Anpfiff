@@ -5,17 +5,23 @@ import { handleForm, handleFormContact, handleLoginForm, processFormData, proces
 import { createUniqueSessionID } from "./utils.js";
 
 export const handleIndex = async (ctx, db, nunjucks) => {
-  
-    const userlogin = ctx.session.user;
-    let useradmin = null;
-    if(userlogin == "molti@axa.de"){
-      useradmin = ctx.session.user;
-      console.log(useradmin, "admin");
+  const userlogin = ctx.session.user;
+  let useradmin = null;
+  const adminResult = await model.getAdmin(db, userlogin);
+
+    if (adminResult && adminResult.length > 0) {
+        const isAdmin = adminResult[0].permissions === 1;
+        if (isAdmin) {
+            useradmin = ctx.session.user;
+        }
     }
-    console.log(ctx.session ,userlogin);
+
+  console.log(ctx.session, userlogin);
+
   const body = nunjucks.render("index.html", {
-    notes: await model.index(db),
-    useradmin,
+      notes: await model.index(db),
+      useradmin,
+      userlogin,
   });
   return createResponse(ctx, body, 200, "text/html");
 };
@@ -25,11 +31,20 @@ export const handleERROR = async (ctx, nunjucks) =>{
   return createResponse(ctx, body, 404, "text/html");
 }
 
+
 export const handleEvents = async (ctx, db, nunjucks, url) => {
   const tag = url.searchParams.get("tag");
   const title = url.searchParams.get("title");
-
   const userlogin = ctx.session.user;
+  let useradmin = null;
+  const adminResult = await model.getAdmin(db, userlogin);
+
+    if (adminResult && adminResult.length > 0) {
+        const isAdmin = adminResult[0].permissions === 1;
+        if (isAdmin) {
+            useradmin = ctx.session.user;
+        }
+    }
 
   let filteredNotes;
   if (tag && tag !== "alle") {
@@ -40,7 +55,7 @@ export const handleEvents = async (ctx, db, nunjucks, url) => {
     filteredNotes = await model.index(db);
   }
 
-  const body = nunjucks.render("events.html", { notes: filteredNotes, userlogin });
+  const body = nunjucks.render("events.html", { notes: filteredNotes, userlogin, useradmin });
   return createResponse(ctx, body, 200, "text/html");
 };
 
