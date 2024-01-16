@@ -5,14 +5,17 @@ import { handleForm, handleFormContact, handleLoginForm, processFormData, proces
 import { createUniqueSessionID } from "./utils.js";
 
 export const handleIndex = async (ctx, db, nunjucks) => {
-  const sessionExists = ctx.request.cookies &&
-    ctx.request.cookies["session"] !== undefined;
-  console.log("Cookies:", ctx.request.cookies);
-
+  
+    const userlogin = ctx.session.user;
+    let useradmin = null;
+    if(userlogin == "molti@axa.de"){
+      useradmin = ctx.session.user;
+      console.log(useradmin, "admin");
+    }
+    console.log(ctx.session ,userlogin);
   const body = nunjucks.render("index.html", {
     notes: await model.index(db),
-    sessionExists,
-    cookies: ctx.request.cookies
+    useradmin,
   });
   return createResponse(ctx, body, 200, "text/html");
 };
@@ -26,6 +29,8 @@ export const handleEvents = async (ctx, db, nunjucks, url) => {
   const tag = url.searchParams.get("tag");
   const title = url.searchParams.get("title");
 
+  const userlogin = ctx.session.user;
+
   let filteredNotes;
   if (tag && tag !== "alle") {
     filteredNotes = await model.getEventsByTag(db, tag);
@@ -35,7 +40,7 @@ export const handleEvents = async (ctx, db, nunjucks, url) => {
     filteredNotes = await model.index(db);
   }
 
-  const body = nunjucks.render("events.html", { notes: filteredNotes });
+  const body = nunjucks.render("events.html", { notes: filteredNotes, userlogin });
   return createResponse(ctx, body, 200, "text/html");
 };
 
@@ -169,10 +174,10 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
   if (isUserAuthenticated) {
     // Set a cookie
     console.log(" ! NUTZER BESTÄTIGT !");
-    console.log(ctx.session.user, );
+    
 
     ctx.session.user = email;
-
+    console.log(ctx.session.user );
     ctx.response = createRedirectResponse("http://localhost:8080/", 303);
     return ctx;
   } else {

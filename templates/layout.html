@@ -734,11 +734,11 @@ form button:hover {
       <li><a href="/about" class="nav-link">Über Uns</a></li>
       
       
-      {% if sessionExists %}
-      <!-- Logout button -->
+      {% if useradmin  %}
+      <!-- Profile button -->
       <button  onclick="location.href='/profile'">Dein Profil</button>
      {% else %}
-      <!-- Login button -->
+      <!-- Register button -->
       <button onclick="location.href='/register'">Register</button>
      {% endif %}
 

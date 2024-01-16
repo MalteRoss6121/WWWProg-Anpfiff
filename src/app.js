@@ -16,6 +16,7 @@ import {
   handleERROR,
   handleDelete,
   handleEvent,
+  handleLogout
 } from "./notes/controller.js";
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import nunjucks from "npm:nunjucks@3.2.4";
@@ -52,16 +53,18 @@ const sessionStore = createSessionStore();
 
 export const handleRequest = async (request) => {
   let context = createContext(request, { db: db, staticPath: "web" });
+  const requests = context.request;
+  const url = context.Url;
+  
 
   context.sessionStore = sessionStore; 
   // Get cookie
-  context.cookies = new CookieMap(request); 
+  context.cookies = new CookieMap(requests); 
   // Get Session
   context.sessionId = context.cookies.get(SESSION_KEY); 
   context.session = context.sessionStore.get(context.sessionId, MAX_AGE) ?? {};
-
-  const url = context.Url;
-  const requests = context.request;
+  console.log(Array.from(context.cookies.entries()));
+    
 
   if (url.pathname === "/") {
     context = await handleIndex(context, db, nunjucks);
@@ -111,30 +114,24 @@ export const handleRequest = async (request) => {
   }
 
   if (context.session.user) {
+    const usernew = context.session.user;
+    console.log(usernew);
     console.log("Session aktiv");
-    const sessionId = createUniqueSessionID();
+    const sessionId = context.sessionId || createUniqueSessionID();
 
+    //console.log(sessionId, context.session.user);
     context.session = context.sessionStore.set(sessionId, context.session, MAX_AGE);
     context.cookies.set(SESSION_KEY, sessionId);
-
+    //console.log(context.cookies)
     //context.response.headers = new mergeHeaders(context.response.headers, context.cookies);
     let header1 = context.response.headers;
-    let newheader = new Headers(header1);
 
-    mergeHeaders(newheader, context.cookies);
+    const newheader = mergeHeaders(header1, context.cookies);
 
-    let response1 = new Response(context.response.body,{
+   return new Response(context.response.body,{
       status: context.response.status,
       headers: newheader
     });
-    /*
-    context.response = new Response("hello", {
-      headers: mergeHeaders({
-        context.response.headers ,
-      }, context.cookies),
-    });
-    */
-    console.log(response1.headers);
   }
 
   return new Response(context.response.body, {
