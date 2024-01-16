@@ -31,19 +31,29 @@ export const updateProfile = async (db, formData, email) => {
 
 export const addEventToProfile = async (db, email, eventTitle) => {
   const existingUser = await db.queryEntries("SELECT * FROM benutzer WHERE email = $email", { $email: email });
+
   if (existingUser.length === 0) {
+    // If the user doesn't exist, insert a new row
     const insertSql = "INSERT INTO benutzer (email, events) VALUES ($email, $eventTitle)";
     await db.queryEntries(insertSql, { $email: email, $eventTitle: eventTitle });
   } else {
-    const eventsArray = existingUser[0].events ? existingUser[0].events.split(', ') : [];
+    const eventsArray = existingUser[0].events ? existingUser[0].events.split(',') : [];
     const isTitleExists = eventsArray.includes(eventTitle);
+
     if (!isTitleExists) {
-    const updateSql = "UPDATE benutzer SET events = CASE WHEN events = '' THEN $eventTitle ELSE events || ', ' || $eventTitle END WHERE email = $email";
+      const updateSql = "UPDATE benutzer SET events = CASE WHEN events = '' THEN $eventTitle ELSE events || ', ' || $eventTitle END WHERE email = $email";
     await db.queryEntries(updateSql, { $email: email, $eventTitle: eventTitle });
+
+      const name = existingUser[0].name || '';
+      const addToEventsSql = `
+        UPDATE events
+        SET angemeldet = COALESCE(angemeldet || ',', '') || $name
+        WHERE titel = $eventTitle
+      `;
+      await db.queryEntries(addToEventsSql, { $eventTitle: eventTitle, $name: name });
     }
   }
 };
-
 
 export const getEventsByTag = async (db, tag) => {
   const sql = "SELECT * FROM events WHERE tag = $tag";

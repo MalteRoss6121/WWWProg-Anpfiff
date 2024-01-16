@@ -2,15 +2,16 @@
 
 {% block content %}
 <form action="#" method="POST">
-    <div >
+    <div class="event-details">
         <h2>{{ formData.titel }}</h2>
-        <h3>{{ formData.uhrzeit }}</h3>
-        <p>{{ formData.datum }}</p>
-        <div>{{ formData.beschreibung }}</div>
-        <img src="{{ formData.bildurl }}" alt="Bild" class="event-image">
-        <div>{{ formData.tag }}</div>
+        <h3>Uhrzeit: {{ formData.uhrzeit }}</h3>
+        <p>Datum: {{ formData.datum }}</p>
+        <div class="description">{{ formData.beschreibung }}</div>
+        <img src="{{ formData.bildurl }}" alt="Event-Bild" class="event-image">
+        <p>Tag: {{ formData.tag }}</p>
+        <p>Angemeldete Teilnehmer: {{ formData.angemeldet }}</p>
 
-        <button type="submit">Anmelden</button>
+        <button type="submit" class="signup-button">Jetzt anmelden</button>
     </div>
 </form>
 {% endblock %}

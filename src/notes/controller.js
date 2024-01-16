@@ -130,6 +130,7 @@ export const handleEvent = async (ctx, db, request, nunjucks) => {
   const url = ctx.Url;
   const noteId = parseInt(url.pathname.split("/")[2], 10);
   const note = await model.getById(db, noteId);
+  console.log(note);
 
   if (!note) {
     return handleERROR(ctx,nunjucks);
