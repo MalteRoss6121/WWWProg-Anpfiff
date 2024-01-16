@@ -28,10 +28,22 @@ export const updateProfile = async (db, formData, email) => {
   const sql = "UPDATE benutzer SET name = $name, events = $events WHERE email = $email";
   await db.queryEntries(sql, { $name: formData.name, $events: formData.events, $email: email });
 };
+
 export const addEventToProfile = async (db, email, eventTitle) => {
-  const sql = "UPDATE benutzer SET events = $eventTitle WHERE email = $email";
-  await db.queryEntries(sql, { $eventTitle: eventTitle, $email: email  });
+  const existingUser = await db.queryEntries("SELECT * FROM benutzer WHERE email = $email", { $email: email });
+  if (existingUser.length === 0) {
+    const insertSql = "INSERT INTO benutzer (email, events) VALUES ($email, $eventTitle)";
+    await db.queryEntries(insertSql, { $email: email, $eventTitle: eventTitle });
+  } else {
+    const eventsArray = existingUser[0].events ? existingUser[0].events.split(', ') : [];
+    const isTitleExists = eventsArray.includes(eventTitle);
+    if (!isTitleExists) {
+    const updateSql = "UPDATE benutzer SET events = CASE WHEN events = '' THEN $eventTitle ELSE events || ', ' || $eventTitle END WHERE email = $email";
+    await db.queryEntries(updateSql, { $email: email, $eventTitle: eventTitle });
+    }
+  }
 };
+
 
 export const getEventsByTag = async (db, tag) => {
   const sql = "SELECT * FROM events WHERE tag = $tag";

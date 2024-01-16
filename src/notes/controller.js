@@ -143,7 +143,7 @@ export const handleEvent = async (ctx, db, request, nunjucks) => {
     console.log(note.titel);
     const userlogin = ctx.session.user;
     console.log(userlogin);
-    await model.addEventToProfile(db, userlogin, note.title);
+    await model.addEventToProfile(db, userlogin, note.titel);
     ctx.response = createRedirectResponse("http://localhost:8080/", 303);
     return ctx;
   }
