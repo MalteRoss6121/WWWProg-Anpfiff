@@ -15,7 +15,10 @@
       <h1>BESUCHT UNS GERNE! </h1>
       <h2>Kontaktiere Uns</h2>
       <p>Wir freuen uns, von Ihnen zu hören! Wenn Sie Fragen, Anmerkungen oder Anfragen haben, zögern Sie nicht, uns über E-mail oder übers Telefon zu erreichen. Wir sind bestrebt, Ihnen so schnell wie möglich zu antworten.</p>
+      <p>Email: <a href="mailto:example@gmail.com">example@gmail.com</a></p>
 
+      <p>Telefon: <a href="tel:+0123412345678">01234/12345678</a></p>
+      {% if userlogin  %}    
       <div class="contact-form">
           <form action="#" method="POST">
               <fieldset class="form-fieldset">
@@ -36,6 +39,12 @@
               <button type="submit" class="form-button">Speichern</button>
           </form>
       </div>
+      {% else %}
+      <div class="contact-form">
+        <p>Logge dich ein um eine Nachricht zu hinterlassen.</p>
+      </div>
+
+      {% endif %}
   </div>
 </body>
 
