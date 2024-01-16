@@ -70,13 +70,13 @@ export const handleRequest = async (request) => {
     context = await handleIndex(context, db, nunjucks);
   } else if (url.pathname === "/about") {
     if (context.request.method === "GET") {
-      context = await handleAbout(context, nunjucks);
+      context = await handleAbout(db, context, nunjucks);
     } else if (context.request.method === "POST") {
       context = await handleAboutPost(context, db, requests, nunjucks);
     }
   } else if (url.pathname === "/add") {
     if (context.request.method === "GET") {
-      context = await handleAddGet(context, nunjucks);
+      context = await handleAddGet(context, db, nunjucks);
     } else if (context.request.method === "POST") {
       context = await handleAddPost(context, db, requests, nunjucks);
     }
