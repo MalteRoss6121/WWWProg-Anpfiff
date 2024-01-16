@@ -227,17 +227,10 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
   }
 };
 export const handleLogout = async (ctx, nunjucks) => {
-  // Retrieve the session ID from the cookie
   const sessionId = ctx.request.cookies["session"];
- 
-  // Remove the session data from the sessions map
   sessions.delete(sessionId);
- 
-  // Clear the session cookie
   deleteCookie(ctx.response, 'session');
-  
-  // Redirect the user to the login page
-  ctx.response = createRedirectResponse('/login', 303);
+  ctx.response = createRedirectResponse('http://localhost:8080/', 303);
   return ctx;
  };
  
