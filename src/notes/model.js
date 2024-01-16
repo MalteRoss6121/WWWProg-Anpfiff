@@ -28,7 +28,10 @@ export const updateProfile = async (db, formData, email) => {
   const sql = "UPDATE benutzer SET name = $name, events = $events WHERE email = $email";
   await db.queryEntries(sql, { $name: formData.name, $events: formData.events, $email: email });
 };
-
+export const addEventToProfile = async (db, email, eventTitle) => {
+  const sql = "UPDATE benutzer SET events = $eventTitle WHERE email = $email";
+  await db.queryEntries(sql, { $eventTitle: eventTitle, $email: email  });
+};
 
 export const getEventsByTag = async (db, tag) => {
   const sql = "SELECT * FROM events WHERE tag = $tag";

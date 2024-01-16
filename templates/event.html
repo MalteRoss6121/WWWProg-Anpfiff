@@ -1,7 +1,8 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <div class="delEvent">
+<form action="#" method="POST"></form>
+    <div >
         <h2>{{ formData.titel }}</h2>
         <h3>{{ formData.uhrzeit }}</h3>
         <p>{{ formData.datum }}</p>
@@ -9,6 +10,7 @@
         <img src="{{ formData.bildurl }}" alt="Bild" class="event-image">
         <div>{{ formData.tag }}</div>
 
-        <button type="button">Anmelden</button>
+        <button type="submit">Anmelden</button>
     </div>
+</form>
 {% endblock %}

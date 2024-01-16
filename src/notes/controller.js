@@ -6,15 +6,8 @@ import { createUniqueSessionID } from "./utils.js";
 
 export const handleIndex = async (ctx, db, nunjucks) => {
   const userlogin = ctx.session.user;
-  let useradmin = null;
-  const adminResult = await model.getAdmin(db, userlogin);
-
-    if (adminResult && adminResult.length > 0) {
-        const isAdmin = adminResult[0].permissions === 1;
-        if (isAdmin) {
-            useradmin = ctx.session.user;
-        }
-    }
+  const useradmin = await checkAdminStatus(db, ctx, userlogin);
+  console.log("TEST",useradmin)
 
   console.log(ctx.session, userlogin);
 
@@ -36,15 +29,7 @@ export const handleEvents = async (ctx, db, nunjucks, url) => {
   const tag = url.searchParams.get("tag");
   const title = url.searchParams.get("title");
   const userlogin = ctx.session.user;
-  let useradmin = null;
-  const adminResult = await model.getAdmin(db, userlogin);
-
-    if (adminResult && adminResult.length > 0) {
-        const isAdmin = adminResult[0].permissions === 1;
-        if (isAdmin) {
-            useradmin = ctx.session.user;
-        }
-    }
+  const useradmin = await checkAdminStatus(db, ctx, userlogin);
 
   let filteredNotes;
   if (tag && tag !== "alle") {
@@ -59,8 +44,14 @@ export const handleEvents = async (ctx, db, nunjucks, url) => {
   return createResponse(ctx, body, 200, "text/html");
 };
 
-export const handleAbout = async (ctx, nunjucks) => {
-  const body = nunjucks.render("about.html", {});
+export const handleAbout = async (db, ctx, nunjucks) => {
+  const userlogin = ctx.session.user;
+  const useradmin = await checkAdminStatus(db, ctx, userlogin);
+  console.log("TEST",useradmin)
+  const body = nunjucks.render("about.html", {
+    userlogin,
+    useradmin,
+  });
   return createResponse(ctx, body, 200, "text/html");
 };
 
@@ -79,10 +70,23 @@ export const handleAboutPost = async (ctx, db, request, nunjucks) => {
   return ctx;
 };
 
-export const handleAddGet = async (ctx, nunjucks) => {
-  const body = nunjucks.render("form.html", {});
-  return createResponse(ctx, body, 200, "text/html");
-};
+export const handleAddGet = async (ctx, db, nunjucks) => {
+  const userlogin = ctx.session.user;
+  const useradmin = await checkAdminStatus(db, ctx, userlogin);
+  if (useradmin) {
+    const body = nunjucks.render("form.html", {
+      userlogin,
+      useradmin,
+    });
+    return createResponse(ctx, body, 200, "text/html");
+  } else {
+    
+    const body = nunjucks.render("error.html", {
+      userlogin,
+    });
+    return createResponse(ctx, body, 200, "text/html");
+  }
+ };
 
 
 export const handleAddPost = async (ctx, db, request, nunjucks) => {
@@ -122,6 +126,7 @@ export const handleDelete = async (ctx, db, request, nunjucks) => {
 };
 
 export const handleEvent = async (ctx, db, request, nunjucks) => {
+  const userlogin = ctx.session.user;
   const url = ctx.Url;
   const noteId = parseInt(url.pathname.split("/")[2], 10);
   const note = await model.getById(db, noteId);
@@ -131,8 +136,16 @@ export const handleEvent = async (ctx, db, request, nunjucks) => {
   }
 
   if (request.method === "GET") {
-    const body = nunjucks.render("event.html", { formData: note });
+    const body = nunjucks.render("event.html", { formData: note , userlogin});
     return createResponse(ctx, body, 200, "text/html");
+  }
+  if (request.method === "POST"){
+    console.log(note.titel);
+    const userlogin = ctx.session.user;
+    console.log(userlogin);
+    await model.addEventToProfile(db, userlogin, note.title);
+    ctx.response = createRedirectResponse("http://localhost:8080/", 303);
+    return ctx;
   }
 };
 
@@ -144,9 +157,21 @@ export const handleEdit = async (ctx, db, request, nunjucks) => {
   //console.log('Retrieved note from the database:', note);
 
   if (request.method === "GET") {
-    const body = nunjucks.render("form.html", { formData: note });
-    //console.log('Rendered body:', body);
-    return createResponse(ctx, body, 200, "text/html");
+    const userlogin = ctx.session.user;
+    const useradmin = await checkAdminStatus(db, ctx, userlogin);
+    if (useradmin) {
+      const body = nunjucks.render("form.html", {
+        userlogin,
+        useradmin,
+      });
+      return createResponse(ctx, body, 200, "text/html");
+    } else {
+      
+      const body = nunjucks.render("error.html", {
+        userlogin,
+      });
+      return createResponse(ctx, body, 200, "text/html");
+    }
   }
 
   if (request.method === "POST") {
@@ -301,6 +326,19 @@ const createResponse = (ctx, body, status, header) => {
 const createRedirectResponse = (url, status) => {
   return Response.redirect(url, status);
 };
+
+async function checkAdminStatus(db, ctx, userlogin) {
+  let useradmin = null;
+  const adminResult = await model.getAdmin(db, userlogin);
+ 
+  if (adminResult && adminResult.length > 0) {
+      const isAdmin = adminResult[0].permissions === 1;
+      if (isAdmin) {
+          useradmin = ctx.session.user;
+      }
+  }
+  return useradmin;
+ }
 
 export const isValidDate = (date) => {
   const test = new Date(date);
