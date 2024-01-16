@@ -554,20 +554,21 @@ form button:hover {
     }
 
     .login-button:hover {
-      background-color: #2980b9;
+      background-color: #176321;
     }
     .profile-container {
       max-width: 400px;
+      width: 100%;
       padding: 20px;
       background-color: #fff;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: center;
-      margin: auto;
+      margin: auto; /* Center the profile container */
     }
 
     .profile-title {
-      color: #176321;
+      color: #3498db;
     }
 
     .profile-form {
@@ -580,17 +581,7 @@ form button:hover {
       color: #333;
     }
 
-    .form-input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      margin-bottom: 15px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-
+    .form-input,
     .form-textarea {
       width: 100%;
       padding: 10px;
@@ -612,10 +603,30 @@ form button:hover {
       border-radius: 5px;
       width: 100%;
       box-sizing: border-box;
+      margin-top: 15px;
+      transition: background-color 0.3s ease-in-out;
     }
 
     .save-button:hover {
-      background-color: #2980b9;
+      background-color: #176321;
+    }
+
+    .logout-button {
+      background-color: #e74c3c;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 15px;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .logout-button:hover {
+      background-color: #c0392b;
     }
 
     .contact-container {

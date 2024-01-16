@@ -1,7 +1,7 @@
 // controller.js
 
 import * as model from "./model.js";
-import { handleForm, handleFormContact, handleLoginForm, processFormData, processRegisterFormData, processLoginFormData, processContactFormData } from "./formController.js";
+import { handleForm, handleFormContact, handleLoginForm, processFormData, processRegisterFormData, processLoginFormData, processContactFormData, processProfileFormData  } from "./formController.js";
 import { createUniqueSessionID } from "./utils.js";
 
 export const handleIndex = async (ctx, db, nunjucks) => {
@@ -216,9 +216,43 @@ export const handleLogout = async (ctx, nunjucks) => {
   return ctx;
  };
  
-export const handleProfile = async (ctx, nunjucks) => {
-  const body = nunjucks.render("profile.html");
-  return createResponse(ctx, body, 200, "text/html");
+ export const handleProfile = async (ctx, db, request, nunjucks) => {
+  const userlogin = ctx.session.user;
+
+    if (request.method === "GET") {
+        // Retrieve user's profile information for pre-filling the form
+        const profileResult = await model.getProfile(db, userlogin);
+
+        if (profileResult && profileResult.length > 0) {
+            const profileData = profileResult[0];
+            const body = nunjucks.render("profile.html", {
+                email: userlogin,
+                name: profileData.name,
+                events: profileData.events,
+                userlogin,
+            });
+            return createResponse(ctx, body, 200, "text/html");
+        }
+    }
+
+    if (request.method === "POST") {
+        const formData = await request.formData();
+        const { name, events, formErrors } = processProfileFormData(formData);
+
+        if (Object.keys(formErrors).length > 0) {
+            const body = nunjucks.render("profile.html", {
+                email: userlogin,
+                name,
+                events,
+                formErrors,
+                userlogin,
+            });
+        }
+
+        await model.updateProfile(db, { name, events }, userlogin);
+        ctx.response = createRedirectResponse("http://localhost:8080/", 303);
+        return ctx;
+    }
 };
 
 export const handleRegisterGet = async (ctx, nunjucks) => {

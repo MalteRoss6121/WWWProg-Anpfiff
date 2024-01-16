@@ -16,11 +16,18 @@ export const getAdmin = async (db, email) => {
   const sql = "SELECT permissions FROM benutzer WHERE email = $email"
   const result = await db.queryEntries(sql, {$email: email});
   return result;
-}
+};
 
 export const getProfile = async (db, email) => {
-  const sql = "SELECT "
-}
+  const sql = "SELECT name, events FROM benutzer WHERE email = $email"
+  const result = await db.queryEntries(sql,{$email: email});
+  return result;
+};
+
+export const updateProfile = async (db, formData, email) => {
+  const sql = "UPDATE benutzer SET name = $name, events = $events WHERE email = $email";
+  await db.queryEntries(sql, { $name: formData.name, $events: formData.events, $email: email });
+};
 
 
 export const getEventsByTag = async (db, tag) => {

@@ -100,7 +100,7 @@ export const handleRequest = async (request) => {
     context = await handleLogout(context, nunjucks);
     return context;
   } else if (url.pathname === "/profile") {
-    context = await handleProfile(context, nunjucks);
+    context = await handleProfile(context, db, requests, nunjucks);
   } else if (url.pathname.startsWith("/dele")) {
     context = await handleDelete(context, db, requests, nunjucks);
   } else if (url.pathname.startsWith("/event")) {
