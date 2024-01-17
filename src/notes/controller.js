@@ -50,7 +50,6 @@ export const handleEvents = async (ctx, db, nunjucks, url) => {
 export const handleAbout = async (db, ctx, nunjucks) => {
   const userlogin = ctx.session.user;
   const useradmin = await checkAdminStatus(db, ctx, userlogin);
-  console.log("TEST",useradmin)
   const body = nunjucks.render("about.html", {
     userlogin,
     useradmin,
@@ -233,9 +232,15 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
   }
 };
 export const handleLogout = async (ctx, nunjucks) => {
-  const sessionId = ctx.request.cookies["session"];
-  sessions.delete(sessionId);
-  deleteCookie(ctx.response, 'session');
+  // Clear the session data
+  ctx.session = {};
+ 
+  // Delete the session cookie
+  ctx.cookies.set('session', '', {
+    path: '/',
+    expires: new Date(0),
+  });
+  console.log( " COOKIE UND SESSION AUFGELÖST! " );
   ctx.response = createRedirectResponse('http://localhost:8080/', 303);
   return ctx;
  };
@@ -326,7 +331,19 @@ const createRedirectResponse = (url, status) => {
   return Response.redirect(url, status);
 };
 
-// Example usage:
+
+async function checkAdminStatus(db, ctx, userlogin) {
+  let useradmin = null;
+  const adminResult = await model.getAdmin(db, userlogin);
+ 
+  if (adminResult && adminResult.length > 0) {
+      const isAdmin = adminResult[0].permissions === 1;
+      if (isAdmin) {
+          useradmin = ctx.session.user;
+      }
+  }
+  return useradmin;
+ }
 
 export const isValidDate = (date) => {
   const test = new Date(date);

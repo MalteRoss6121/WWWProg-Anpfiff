@@ -115,18 +115,12 @@ export const handleRequest = async (request) => {
 
   if (context.session.user) {
     const usernew = context.session.user;
-    console.log(usernew);
-    console.log("Session aktiv");
     const sessionId = context.sessionId || createUniqueSessionID();
-
-    //console.log(sessionId, context.session.user);
     context.session = context.sessionStore.set(sessionId, context.session, MAX_AGE);
     context.cookies.set(SESSION_KEY, sessionId);
-    //console.log(context.cookies)
-    //context.response.headers = new mergeHeaders(context.response.headers, context.cookies);
-    let header1 = context.response.headers;
+    console.log("Session aktiv | User: " , usernew);
 
-    const newheader = mergeHeaders(header1, context.cookies);
+    const newheader = mergeHeaders(context.response.headers, context.cookies);
 
    return new Response(context.response.body,{
       status: context.response.status,
