@@ -89,18 +89,17 @@ export const processProfileFormData = (formData) => {
   const email = formData.get("email");
   const name = formData.get("username");
   const events = formData.get("events");
+  const perms = formData.get("perms");
+  const checkname = formData.get("checkName");
 
   const formErrors = {};
 
-  if (!email || !email.includes("@")) {
-    formErrors.email = "ungültige email";
-  }
 
   if (!name) {
-    formErrors.name = "Passwort kann nicht leer sein";
+    formErrors.name = "Name kann nicht leer sein";
   }
 
-  return { email, name, events, formErrors };
+  return { email, name, events, perms, checkname, formErrors };
 };
 
 export const processContactFormData = (formData) => {

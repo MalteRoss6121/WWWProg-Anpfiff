@@ -6,6 +6,14 @@ export const index = async (db) => {
   return result;
 };
 
+export const profile = async (db) => {
+  const sql = "SELECT name, permissions FROM benutzer";
+  const result = db.queryEntries(sql); 
+  return result;
+};
+
+
+
 export const getById = async (db, id) => {
   const sql = "SELECT * FROM events WHERE EID = $id";
   const result = await db.queryEntries(sql, { $id: id });
@@ -27,6 +35,12 @@ export const getProfile = async (db, email) => {
 export const updateProfile = async (db, formData, email) => {
   const sql = "UPDATE benutzer SET name = $name, events = $events WHERE email = $email";
   await db.queryEntries(sql, { $name: formData.name, $events: formData.events, $email: email });
+};
+
+export const updateProfilePerms = async (db, formData) => {
+  const sql = "UPDATE benutzer SET permissions = $perms WHERE name = $name";
+  console.log("perms2");
+  await db.queryEntries(sql, { $name: formData.checkname, $perms: formData.perms });
 };
 
 export const addEventToProfile = async (db, email, eventTitle) => {

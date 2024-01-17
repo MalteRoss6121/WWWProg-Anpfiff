@@ -258,6 +258,7 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
 
  export const handleProfile = async (ctx, db, request, nunjucks) => {
   const userlogin = ctx.session.user;
+  const useradmin = await checkAdminStatus(db, ctx, userlogin);
 
     if (request.method === "GET") {
         // Retrieve user's profile information for pre-filling the form
@@ -266,10 +267,12 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
         if (profileResult && profileResult.length > 0) {
             const profileData = profileResult[0];
             const body = nunjucks.render("profile.html", {
+                user_list: await model.profile(db),
                 email: userlogin,
                 name: profileData.name,
                 events: profileData.events,
                 userlogin,
+                useradmin,
             });
             return createResponse(ctx, body, 200, "text/html");
         }
@@ -277,7 +280,7 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
 
     if (request.method === "POST") {
         const formData = await request.formData();
-        const { name, events, formErrors } = processProfileFormData(formData);
+        const { name, events, perms, checkname,  formErrors } = processProfileFormData(formData);
 
         if (Object.keys(formErrors).length > 0) {
             const body = nunjucks.render("profile.html", {
@@ -286,10 +289,14 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
                 events,
                 formErrors,
                 userlogin,
-            });
+                useradmin,
+              });
+              console.log(formErrors);
+              return createResponse(ctx, body, 400, "text/html");
         }
 
-        await model.updateProfile(db, { name, events }, userlogin);
+        await model.updateProfile(db, { name, events}, userlogin);
+        await model.updateProfilePerms(db, {checkname, perms});
         ctx.response = createRedirectResponse("http://localhost:8080/", 303);
         return ctx;
     }
