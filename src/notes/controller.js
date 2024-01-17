@@ -4,6 +4,9 @@ import * as model from "./model.js";
 import { handleForm, handleFormContact, handleLoginForm, processFormData, processRegisterFormData, processLoginFormData, processContactFormData, processProfileFormData  } from "./formController.js";
 import { createUniqueSessionID } from "./utils.js";
 
+
+
+
 export const handleIndex = async (ctx, db, nunjucks) => {
   const userlogin = ctx.session.user;
   const useradmin = await checkAdminStatus(db, ctx, userlogin);
@@ -162,6 +165,7 @@ export const handleEdit = async (ctx, db, request, nunjucks) => {
     const useradmin = await checkAdminStatus(db, ctx, userlogin);
     if (useradmin) {
       const body = nunjucks.render("form.html", {
+        formData:note,
         userlogin,
         useradmin,
       });
@@ -177,15 +181,16 @@ export const handleEdit = async (ctx, db, request, nunjucks) => {
 
   if (request.method === "POST") {
     const formData = await request.formData();
-    const { date, title, text, zeit, tag, bild, formErrors } = processFormData(
-      formData,
-    );
+    const { date, title, text, zeit, tag, bild, formErrors } = processFormData(formData);
 
+   
     if (Object.keys(formErrors).length > 0) {
       return handleForm(ctx, formData, formErrors, nunjucks);
     }
 
+    // Update model with file path
     await model.update(db, { date, title, text, zeit, tag, bild }, noteId);
+
     ctx.response = createRedirectResponse("http://localhost:8080/", 303);
     return ctx;
   }
@@ -321,18 +326,7 @@ const createRedirectResponse = (url, status) => {
   return Response.redirect(url, status);
 };
 
-async function checkAdminStatus(db, ctx, userlogin) {
-  let useradmin = null;
-  const adminResult = await model.getAdmin(db, userlogin);
- 
-  if (adminResult && adminResult.length > 0) {
-      const isAdmin = adminResult[0].permissions === 1;
-      if (isAdmin) {
-          useradmin = ctx.session.user;
-      }
-  }
-  return useradmin;
- }
+// Example usage:
 
 export const isValidDate = (date) => {
   const test = new Date(date);
@@ -340,3 +334,4 @@ export const isValidDate = (date) => {
 };
 
 export const isValidText = (text) => text.length >= 3;
+
