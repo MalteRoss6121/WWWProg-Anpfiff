@@ -39,7 +39,6 @@ export const updateProfile = async (db, formData, email) => {
 
 export const updateProfilePerms = async (db, formData) => {
   const sql = "UPDATE benutzer SET permissions = $perms WHERE name = $name";
-  console.log("perms2");
   await db.queryEntries(sql, { $name: formData.checkname, $perms: formData.perms });
 };
 

@@ -280,7 +280,10 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
 
     if (request.method === "POST") {
         const formData = await request.formData();
-        const { name, events, perms, checkname,  formErrors } = processProfileFormData(formData);
+        const { name, events, formErrors } = processProfileFormData(formData);
+        const permsArray = formData.getAll("perms");
+        const checknamesArray = formData.getAll("checkName[]");
+        console.log("HUSO",permsArray, checknamesArray);
 
         if (Object.keys(formErrors).length > 0) {
             const body = nunjucks.render("profile.html", {
@@ -295,8 +298,17 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
               return createResponse(ctx, body, 400, "text/html");
         }
 
+        for (let i = 0; i < permsArray.length; i++) {
+          const perms = permsArray[i];
+          const checkname = checknamesArray[i];
+          
+  
+          // Update the database for each user
+          await model.updateProfilePerms(db, { checkname, perms });
+        }
+        
+        
         await model.updateProfile(db, { name, events}, userlogin);
-        await model.updateProfilePerms(db, {checkname, perms});
         ctx.response = createRedirectResponse("http://localhost:8080/", 303);
         return ctx;
     }

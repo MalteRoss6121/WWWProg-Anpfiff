@@ -26,6 +26,26 @@
       </div>
 
       <button type="submit" class="save-button">Änderungen speichern</button>
+
+      
+      {% if useradmin %}
+      <label for="events" class="form-label">1 für permissions, 0 für keine Permissions</label>
+ <div class="profile-form" id="user-list">
+   <label class="form-label">Benutzerliste:</label>
+   <div class="row">
+     <div class="col-md-6" style="overflow-y: scroll; height: 500px;">
+       {% for user in user_list %}
+         <div class="profile-form">
+          <label class="form-check-label" for="{{ user.name }}">
+            <input type="hidden" name="checkName[]" value="{{ user.name }}"> 
+            {{ user.name }}
+           <input type="text" id="username" name="perms" class="form-input" value="{{ user.permissions }}" >
+         </div>
+       {% endfor %}
+     </div>
+   </div>
+ </div>
+{% endif %}
     </form>
       <button class="logout-button" onclick="location.href='/logout'">Logout</button>
     
