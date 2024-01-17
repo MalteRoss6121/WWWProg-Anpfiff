@@ -231,20 +231,31 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
     return handleLoginForm(ctx, formData, formErrors, nunjucks);
   }
 };
-export const handleLogout = async (ctx, nunjucks) => {
-  // Clear the session data
-  ctx.session = {};
+
+export const handleLogoutGet = async (ctx, nunjucks) => {
+  const body = nunjucks.render("logout.html", {});
+  return createResponse(ctx, body, 200, "text/html");
+ };
+
+ export const handleLogoutPost = async (ctx, nunjucks) => {
+  // Clear the session
+  ctx.session.user = undefined;
  
-  // Delete the session cookie
+  // Clear the cookies
   ctx.cookies.set('session', '', {
     path: '/',
     expires: new Date(0),
+    maxAge: 0,
+    httpOnly: true,
   });
-  console.log( " COOKIE UND SESSION AUFGELÖST! " );
-  ctx.response = createRedirectResponse('http://localhost:8080/', 303);
+ 
+  ctx.response.headers.set('location', '/');
+  ctx.response.status = 302; 
+  ctx.response.body = ''; 
+ 
   return ctx;
  };
- 
+
  export const handleProfile = async (ctx, db, request, nunjucks) => {
   const userlogin = ctx.session.user;
 

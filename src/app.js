@@ -16,7 +16,8 @@ import {
   handleERROR,
   handleDelete,
   handleEvent,
-  handleLogout
+  handleLogoutGet,
+  handleLogoutPost,
 } from "./notes/controller.js";
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import nunjucks from "npm:nunjucks@3.2.4";
@@ -97,8 +98,11 @@ export const handleRequest = async (request) => {
       context = await handleLoginPost(context, db, requests, nunjucks);
     }
   } else if (url.pathname === "/logout") {
-    context = await handleLogout(context, nunjucks);
-    return context;
+    if (context.request.method === "GET") {
+      context = await handleLogoutGet(context, nunjucks);
+    } else if (context.request.method === "POST") {
+      context = await handleLogoutPost(context, db, requests, nunjucks);
+    }
   } else if (url.pathname === "/profile") {
     context = await handleProfile(context, db, requests, nunjucks);
   } else if (url.pathname.startsWith("/dele")) {
