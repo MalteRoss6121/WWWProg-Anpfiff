@@ -12,9 +12,26 @@
     <title>Anpfiff Flensburg</title>
 </head>
 
-<body>
+<body data-userlogin="{{ userlogin }}">
 
     <div class="firstContainer">
+        {% if userlogin %}
+        <div id="popup">
+            Wilkommen, {{ userlogin }}!
+            <script>
+                window.addEventListener('DOMContentLoaded', (event) => {
+                    var popup = document.getElementById('popup');
+                    var userlogin = document.body.dataset.userlogin;
+                    if (popup && userlogin) {
+                        popup.style.display = 'block';
+                        setTimeout(function(){
+                          popup.style.display = 'none';
+                        }, 2000);
+                    }
+                });
+            </script>
+         </div>
+         {% endif %}
         <div class="firstContent">
 
         </div>

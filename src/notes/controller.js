@@ -239,7 +239,10 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
 };
 
 export const handleLogoutGet = async (ctx, nunjucks) => {
-  const body = nunjucks.render("logout.html", {});
+  const userlogin = ctx.session.user;
+  const body = nunjucks.render("logout.html", {
+    userlogin,
+  });
   return createResponse(ctx, body, 200, "text/html");
  };
 
@@ -366,7 +369,6 @@ const createRedirectResponse = (url, status) => {
   return Response.redirect(url, status);
 };
 
-
 async function checkAdminStatus(db, ctx, userlogin) {
   let useradmin = null;
   const adminResult = await model.getAdmin(db, userlogin);
@@ -378,7 +380,8 @@ async function checkAdminStatus(db, ctx, userlogin) {
       }
   }
   return useradmin;
- }
+ };
+ 
 
 export const isValidDate = (date) => {
   const test = new Date(date);
