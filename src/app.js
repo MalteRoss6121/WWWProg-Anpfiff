@@ -57,13 +57,13 @@ export const handleRequest = async (request) => {
   let context = createContext(request, { db: db, staticPath: "web" });
   const requests = context.request;
   const url = context.Url;
-  
 
-  context.sessionStore = sessionStore; 
-  context.cookies = new CookieMap(requests); 
-  context.sessionId = context.cookies.get(SESSION_KEY); 
+
+  context.sessionStore = sessionStore;
+  context.cookies = new CookieMap(requests);
+  context.sessionId = context.cookies.get(SESSION_KEY);
   context.session = context.sessionStore.get(context.sessionId, MAX_AGE) ?? {};
-    
+
 
   if (url.pathname === "/") {
     context = await handleIndex(context, db, nunjucks);
@@ -107,7 +107,7 @@ export const handleRequest = async (request) => {
     context = await handleDelete(context, db, requests, nunjucks);
   } else if (url.pathname.startsWith("/event")) {
     context = await handleEvent(context, db, requests, nunjucks);
-  } else if(url.pathname === "/doku"){
+  } else if (url.pathname === "/doku") {
     context = await handleDoku(context, db, nunjucks);
   }
   else {
@@ -122,11 +122,11 @@ export const handleRequest = async (request) => {
     const sessionId = context.sessionId || createUniqueSessionID();
     context.session = context.sessionStore.set(sessionId, context.session, MAX_AGE);
     context.cookies.set(SESSION_KEY, sessionId);
-    console.log("Session aktiv | User: " , usernew);
+    console.log("Session aktiv | User: ", usernew);
 
     const newheader = mergeHeaders(context.response.headers, context.cookies);
 
-   return new Response(context.response.body,{
+    return new Response(context.response.body, {
       status: context.response.status,
       headers: newheader
     });

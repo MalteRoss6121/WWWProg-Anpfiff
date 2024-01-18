@@ -2,17 +2,19 @@
 
 {% block content %}
 <html>
+
 <head>
   <title>Profilseite</title>
 </head>
+
 <body>
   <div class="profile-container">
     <h1 class="profile-title">Mein Profil</h1>
-    
+
     <form action="#" method="POST">
       <div class="profile-form" id="benutzername">
         <label for="username" class="form-label">Benutzername:</label>
-        <input type="text" id="username" name="username" class="form-input" value="{{ name }}" >
+        <input type="text" id="username" name="username" class="form-input" value="{{ name }}">
         {{ formErrors.name }}
       </div>
 
@@ -23,38 +25,39 @@
 
       <div class="profile-form" id="events">
         <label for="events" class="form-label">Events:</label>
-        <textarea id="events" name="events" class="form-textarea" >{{ events }}</textarea>
+        <textarea id="events" name="events" class="form-textarea">{{ events }}</textarea>
       </div>
 
       <button type="submit" class="save-button">Änderungen speichern</button>
 
-      
+
       {% if useradmin %}
       <label for="events" class="form-label">1 für permissions, 0 für keine Permissions</label>
- <div class="profile-form" id="user-list">
-   <label class="form-label">Benutzerliste:</label>
-   <div class="row">
-     <div class="col-md-6" style="overflow-y: scroll; height: 500px;">
-       {% for user in user_list %}
-         <div class="profile-form">
-          <label class="form-check-label" for="{{ user.name }}">
-            <input type="hidden" name="checkName[]" value="{{ user.name }}"> 
-            {{ user.name }}
-           <input type="text" id="username" name="perms" class="form-input" value="{{ user.permissions }}" >
-           {{ formErrors.perms }}
-         </div>
-       {% endfor %}
-     </div>
-   </div>
- </div>
-{% endif %}
+      <div class="profile-form" id="user-list">
+        <label class="form-label">Benutzerliste:</label>
+        <div class="row">
+          <div class="col-md-6" style="overflow-y: scroll; height: 500px;">
+            {% for user in user_list %}
+            <div class="profile-form">
+              <label class="form-check-label" for="{{ user.name }}">
+                <input type="hidden" name="checkName[]" value="{{ user.name }}">
+                {{ user.name }}
+                <input type="text" id="username" name="perms" class="form-input" value="{{ user.permissions }}">
+                {{ formErrors.perms }}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
     </form>
-      <button class="logout-button" onclick="location.href='/logout'">Logout</button>
-    
+    <button class="logout-button" onclick="location.href='/logout'">Logout</button>
+
   </div>
   <footer>
     <p><a href="/doku">Dokumentation</a></p>
-</footer>
+  </footer>
 </body>
+
 </html>
 {% endblock %}

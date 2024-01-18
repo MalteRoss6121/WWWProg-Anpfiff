@@ -1,11 +1,11 @@
 
-export const handleForm = async (ctx, formData, formErrors, nunjucks,userlogin, useradmin) => {
-  const body = nunjucks.render('form.html', {formData,formErrors,userlogin, useradmin});
+export const handleForm = async (ctx, formData, formErrors, nunjucks, userlogin, useradmin) => {
+  const body = nunjucks.render('form.html', { formData, formErrors, userlogin, useradmin });
   return createResponse(ctx, body, 400, "text/html");
 };
 
 export const handleFormContact = async (ctx, formData, formErrors, userlogin, nunjucks) => {
-  const body = nunjucks.render('about.html', {formData,formErrors, userlogin});
+  const body = nunjucks.render('about.html', { formData, formErrors, userlogin });
   return createResponse(ctx, body, 400, "text/html");
 };
 

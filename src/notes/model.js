@@ -2,19 +2,19 @@ import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 
 export const index = async (db) => {
   const sql = "SELECT * FROM events";
-  const result = db.queryEntries(sql); 
+  const result = db.queryEntries(sql);
   return result;
 };
 
 export const profile = async (db) => {
   const sql = "SELECT name, permissions FROM benutzer";
-  const result = db.queryEntries(sql); 
+  const result = db.queryEntries(sql);
   return result;
 };
 
 export const getEmails = async (db, formData) => {
   const sql = "SELECT * FROM benutzer WHERE email = $email";
-  const result = db.queryEntries(sql, {$email: formData.email}); 
+  const result = db.queryEntries(sql, { $email: formData.email });
   return result;
 }
 
@@ -26,13 +26,13 @@ export const getById = async (db, id) => {
 
 export const getAdmin = async (db, email) => {
   const sql = "SELECT permissions FROM benutzer WHERE email = $email"
-  const result = await db.queryEntries(sql, {$email: email});
+  const result = await db.queryEntries(sql, { $email: email });
   return result;
 };
 
 export const getProfile = async (db, email) => {
   const sql = "SELECT name, events FROM benutzer WHERE email = $email"
-  const result = await db.queryEntries(sql,{$email: email});
+  const result = await db.queryEntries(sql, { $email: email });
   return result;
 };
 
@@ -58,7 +58,7 @@ export const addEventToProfile = async (db, email, eventTitle) => {
 
     if (!isTitleExists) {
       const updateSql = "UPDATE benutzer SET events = CASE WHEN events = '' THEN $eventTitle ELSE events || ', ' || $eventTitle END WHERE email = $email";
-    await db.queryEntries(updateSql, { $email: email, $eventTitle: eventTitle });
+      await db.queryEntries(updateSql, { $email: email, $eventTitle: eventTitle });
 
       const name = existingUser[0].name || '';
       const addToEventsSql = `
@@ -136,20 +136,20 @@ export const getUserByEmail = async (db, email) => {
   const sql = "SELECT * FROM benutzer WHERE email = $email LIMIT 1";
   const result = await db.query(sql, { $email: email });
   return result.length > 0 ? result[0] : null;
- };
+};
 
 export const registerUser = async (db, email, password, username) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
   const sql = "INSERT INTO benutzer (email, passwort, name) VALUES ($email, $passwort, $name)";
   try {
-  const result = await db.query(sql, { $email: email, $passwort: hashedPassword, $name: username });
-  return result ? true : false;
+    const result = await db.query(sql, { $email: email, $passwort: hashedPassword, $name: username });
+    return result ? true : false;
   } catch (error) {
-  console.error('Failed to register user:', error);
-  return false;
+    console.error('Failed to register user:', error);
+    return false;
   }
- };
+};
 
 
 export const authenticateUser = async (db, email, password) => {
@@ -158,6 +158,6 @@ export const authenticateUser = async (db, email, password) => {
     const match = await bcrypt.compare(password, user[3]);
     return match;
   }
- 
+
   return false;
- };
+};

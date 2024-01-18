@@ -4,9 +4,9 @@ export const createContext = (request, extras) => ({
   Url: new URL(request.url),
   response: {
     body: undefined,
-    status: 200, 
+    status: 200,
     headers: new Headers({
-      'Content-Type': "text/html", 
+      'Content-Type': "text/html",
     }),
     cookies: request.cookies,
   },
@@ -17,5 +17,5 @@ export const createContext = (request, extras) => ({
   cookies: new CookieMap(request),
   sessionId: undefined,
   session: {},
-  ...extras 
- });
+  ...extras
+});

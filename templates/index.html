@@ -24,21 +24,21 @@
                     var userlogin = document.body.dataset.userlogin;
                     if (popup && userlogin) {
                         popup.style.display = 'block';
-                        setTimeout(function(){
-                          popup.style.display = 'none';
+                        setTimeout(function () {
+                            popup.style.display = 'none';
                         }, 2000);
                     }
                 });
             </script>
-         </div>
-         {% endif %}
+        </div>
+        {% endif %}
         <div class="firstContent">
 
         </div>
     </div>
 
     <div class="eventsHead">
-        <h1  id="events">EVENTS</h1>
+        <h1 id="events">EVENTS</h1>
     </div>
     <div class="eventContainer">
 
@@ -53,13 +53,13 @@
                 <div>{{ note.beschreibung }}</div>
                 <img src="{{ note.bildurl }}" alt="Bild" class="note-image">
                 <div>{{ note.tag }}</div>
-                {% if useradmin  %}
+                {% if useradmin %}
                 <p><a href="/edit/{{ note.EID }}">Bearbeiten</a></p>
                 {% endif %}
 
             </li>
             {% endfor %}
-            {% if useradmin  %}
+            {% if useradmin %}
             <li><a href="/add" class="nav-link">Event hinzufügen</a></li>
             {% endif %}
         </ul>
