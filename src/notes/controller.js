@@ -10,10 +10,6 @@ import { createUniqueSessionID } from "./utils.js";
 export const handleIndex = async (ctx, db, nunjucks) => {
   const userlogin = ctx.session.user;
   const useradmin = await checkAdminStatus(db, ctx, userlogin);
-  console.log("TEST",useradmin)
-
-  console.log(ctx.session, userlogin);
-
   const body = nunjucks.render("index.html", {
       notes: await model.index(db),
       useradmin,
@@ -146,7 +142,6 @@ export const handleEvent = async (ctx, db, request, nunjucks) => {
   const url = ctx.Url;
   const noteId = parseInt(url.pathname.split("/")[2], 10);
   const note = await model.getById(db, noteId);
-  console.log(note);
 
   if (!note) {
     return handleERROR(ctx,nunjucks);
@@ -157,9 +152,7 @@ export const handleEvent = async (ctx, db, request, nunjucks) => {
     return createResponse(ctx, body, 200, "text/html");
   }
   if (request.method === "POST"){
-    console.log(note.titel);
     const userlogin = ctx.session.user;
-    console.log(userlogin);
     await model.addEventToProfile(db, userlogin, note.titel);
     ctx.response = createRedirectResponse("http://localhost:8080/", 303);
     return ctx;
@@ -172,8 +165,7 @@ export const handleEdit = async (ctx, db, request, nunjucks) => {
   const noteId = parseInt(url.pathname.split("/")[2], 10);
   const note = await model.getById(db, noteId);
   const userlogin = ctx.session.user;
-    const useradmin = await checkAdminStatus(db, ctx, userlogin);
-  //console.log('Retrieved note from the database:', note);
+  const useradmin = await checkAdminStatus(db, ctx, userlogin);
 
   if (request.method === "GET") {
     
@@ -209,7 +201,6 @@ export const handleEdit = async (ctx, db, request, nunjucks) => {
       return createResponse(ctx, body, 400, "text/html");
     }
 
-    // Update model with file path
     await model.update(db, { date, title, text, zeit, tag, bild }, noteId);
 
     ctx.response = createRedirectResponse("http://localhost:8080/", 303);
@@ -236,9 +227,6 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
   const isUserAuthenticated = await model.authenticateUser(db, email, password);
 
   if (isUserAuthenticated) {
-    console.log(" ! NUTZER BESTÄTIGT !");
-    
-
     ctx.session.user = email;
     console.log(ctx.session.user );
     ctx.response = createRedirectResponse("http://localhost:8080/", 303);
@@ -256,10 +244,7 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
  };
 
  export const handleLogoutPost = async (ctx) => {
-  // Clear the session
   ctx.session.user = undefined;
- 
-  // Clear the cookies
   ctx.cookies.set('session', '', {
     path: '/',
     expires: new Date(0),
@@ -270,6 +255,7 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
   ctx.response.headers.set('location', '/');
   ctx.response.status = 302; 
   ctx.response.body = ''; 
+  console.log("Session geschlossen | User: " , ctx.session.user);
  
   return ctx;
  };
@@ -280,9 +266,6 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
   const profileResult = await model.getProfile(db, userlogin);
 
     if (request.method === "GET") {
-        // Retrieve user's profile information for pre-filling the form
-        
-
         if (profileResult && profileResult.length > 0) {
             const profileData = profileResult[0];
             const body = nunjucks.render("profile.html", {
@@ -320,10 +303,8 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
         for (let i = 0; i < permsArray.length; i++) {
           const perms = permsArray[i];
           const checkname = checknamesArray[i];
-          
-  
-          // Update the database for each user
           await model.updateProfilePerms(db, { checkname, perms });
+          console.log("Permissions geändert " , checkname);
         }
         
         
@@ -347,7 +328,6 @@ export const handleRegisterPost = async (ctx, db, request, nunjucks) => {
 
   if (existingEmails.length > 0) {
     formErrors.email = "Email bereits registriert";
-    console.log(formErrors.email);
   }
 
   if (Object.keys(formErrors).length > 0) {
@@ -355,7 +335,6 @@ export const handleRegisterPost = async (ctx, db, request, nunjucks) => {
   return createResponse(ctx, body, 200, "text/html");
   }
 
-  // Register user
   const registrationResult = await model.registerUser(
     db,
     email,

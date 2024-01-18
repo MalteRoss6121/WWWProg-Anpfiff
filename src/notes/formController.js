@@ -1,5 +1,3 @@
-// formController.js
-
 
 export const handleForm = async (ctx, formData, formErrors, nunjucks,userlogin, useradmin) => {
   const body = nunjucks.render('form.html', {formData,formErrors,userlogin, useradmin});
@@ -23,7 +21,6 @@ export const handleLoginForm = async (ctx, formData, formErrors, nunjucks) => {
   return ctx;
 };
 
-// Hilfsfunktionen
 export const processFormData = (formData) => {
   const date = formData.get("date");
   const title = formData.get("title");
@@ -99,9 +96,6 @@ export const processProfileFormData = (formData) => {
     formErrors.name = "Name kann nicht leer sein";
   }
 
- if(perms != 0 || perms != 1){
-    formErrors.perms = "perms müssen 1 oder 0 sein";
- }
 
   return { email, name, events, perms, checkname, formErrors };
 };
@@ -129,7 +123,6 @@ export const processContactFormData = (formData) => {
   return { vorname, nachname, titel, text, formErrors };
 };
 
-// Helper functions
 const createResponse = (ctx, body, status, header) => {
   ctx.response.body = body;
   ctx.response.headers.set("content-type", header);

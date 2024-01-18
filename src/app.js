@@ -50,7 +50,7 @@ export const createSessionStore = () => {
 };
 
 const SESSION_KEY = 'my_app.session';
-const MAX_AGE = 60 * 60 * 1000; // one hour
+const MAX_AGE = 60 * 60 * 1000;
 const sessionStore = createSessionStore();
 
 export const handleRequest = async (request) => {
@@ -60,12 +60,9 @@ export const handleRequest = async (request) => {
   
 
   context.sessionStore = sessionStore; 
-  // Get cookie
   context.cookies = new CookieMap(requests); 
-  // Get Session
   context.sessionId = context.cookies.get(SESSION_KEY); 
   context.session = context.sessionStore.get(context.sessionId, MAX_AGE) ?? {};
-  console.log(Array.from(context.cookies.entries()));
     
 
   if (url.pathname === "/") {

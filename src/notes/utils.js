@@ -1,5 +1,3 @@
-// utils.js
-
 
 export const createUniqueSessionID = () => {
   return v4.generate();

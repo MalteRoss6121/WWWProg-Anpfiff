@@ -50,7 +50,6 @@ export const addEventToProfile = async (db, email, eventTitle) => {
   const existingUser = await db.queryEntries("SELECT * FROM benutzer WHERE email = $email", { $email: email });
 
   if (existingUser.length === 0) {
-    // If the user doesn't exist, insert a new row
     const insertSql = "INSERT INTO benutzer (email, events) VALUES ($email, $eventTitle)";
     await db.queryEntries(insertSql, { $email: email, $eventTitle: eventTitle });
   } else {
@@ -136,7 +135,6 @@ export const addContact = async (db, formData, id) => {
 export const getUserByEmail = async (db, email) => {
   const sql = "SELECT * FROM benutzer WHERE email = $email LIMIT 1";
   const result = await db.query(sql, { $email: email });
-  console.log('Result:', result)
   return result.length > 0 ? result[0] : null;
  };
 
