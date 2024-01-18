@@ -1,95 +1,2126 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" lang="de">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anpfiff-Website Dokumentation</title>
-    <style>
-        /* Füge hier dein individuelles CSS-Styling hinzu */
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hausarbeit</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            text-indent: 0;
+        }
+
+        h1 {
+            color: black;
+            font-family: "Trebuchet MS", sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 23pt;
+        }
+
+        h2 {
+            color: #37751C;
+            font-family: "Trebuchet MS", sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 14pt;
+        }
+
+        .s1 {
+            color: black;
+            font-family: Gulim, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 14pt;
+        }
+
+        h4 {
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        .p,
+        p {
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+            margin: 0pt;
+        }
+
+        .s2 {
+            color: #264E12;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        .s3 {
+            color: #666;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        h3 {
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        .s4 {
+            color: #264E12;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        .s5 {
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l1 {
+            padding-left: 0pt;
+            counter-reset: c1 1;
+        }
+
+        #l1>li>*:first-child:before {
+            counter-increment: c1;
+            content: counter(c1, decimal)". ";
+            color: #264E12;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l1>li:first-child>*:first-child:before {
+            counter-increment: c1 0;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l2 {
+            padding-left: 0pt;
+            counter-reset: d1 3;
+        }
+
+        #l2>li>*:first-child:before {
+            counter-increment: d1;
+            content: "(" counter(d1, decimal)") ";
+            color: #264E12;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l2>li:first-child>*:first-child:before {
+            counter-increment: d1 0;
+        }
+
+        #l3 {
+            padding-left: 0pt;
+            counter-reset: d2 1;
+        }
+
+        #l3>li>*:first-child:before {
+            counter-increment: d2;
+            content: counter(d2, decimal)". ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l3>li:first-child>*:first-child:before {
+            counter-increment: d2 0;
+        }
+
+        #l4 {
+            padding-left: 0pt;
+        }
+
+        #l4>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l5 {
+            padding-left: 0pt;
+        }
+
+        #l5>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l6 {
+            padding-left: 0pt;
+        }
+
+        #l6>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l7 {
+            padding-left: 0pt;
+        }
+
+        #l7>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l8 {
+            padding-left: 0pt;
+        }
+
+        #l8>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l9 {
+            padding-left: 0pt;
+            counter-reset: d2 1;
+        }
+
+        #l9>li>*:first-child:before {
+            counter-increment: d2;
+            content: counter(d2, decimal)". ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l9>li:first-child>*:first-child:before {
+            counter-increment: d2 0;
+        }
+
+        #l10 {
+            padding-left: 0pt;
+        }
+
+        #l10>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l11 {
+            padding-left: 0pt;
+        }
+
+        #l11>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l12 {
+            padding-left: 0pt;
+            counter-reset: d2 1;
+        }
+
+        #l12>li>*:first-child:before {
+            counter-increment: d2;
+            content: counter(d2, decimal)". ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l12>li:first-child>*:first-child:before {
+            counter-increment: d2 0;
+        }
+
+        #l13 {
+            padding-left: 0pt;
+        }
+
+        #l13>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l14 {
+            padding-left: 0pt;
+        }
+
+        #l14>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l15 {
+            padding-left: 0pt;
+        }
+
+        #l15>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l16 {
+            padding-left: 0pt;
+        }
+
+        #l16>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l17 {
+            padding-left: 0pt;
+            counter-reset: f1 1;
+        }
+
+        #l17>li>*:first-child:before {
+            counter-increment: f1;
+            content: counter(f1, decimal)". ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l17>li:first-child>*:first-child:before {
+            counter-increment: f1 0;
+        }
+
+        #l18 {
+            padding-left: 0pt;
+        }
+
+        #l18>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l19 {
+            padding-left: 0pt;
+        }
+
+        #l19>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l20 {
+            padding-left: 0pt;
+        }
+
+        #l20>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l21 {
+            padding-left: 0pt;
+            counter-reset: d2 1;
+        }
+
+        #l21>li>*:first-child:before {
+            counter-increment: d2;
+            content: counter(d2, decimal)". ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l21>li:first-child>*:first-child:before {
+            counter-increment: d2 0;
+        }
+
+        #l22 {
+            padding-left: 0pt;
+        }
+
+        #l22>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l23 {
+            padding-left: 0pt;
+        }
+
+        #l23>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l24 {
+            padding-left: 0pt;
+        }
+
+        #l24>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l25 {
+            padding-left: 0pt;
+        }
+
+        #l25>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l26 {
+            padding-left: 0pt;
+        }
+
+        #l26>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l27 {
+            padding-left: 0pt;
+        }
+
+        #l27>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l28 {
+            padding-left: 0pt;
+        }
+
+        #l28>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l29 {
+            padding-left: 0pt;
+        }
+
+        #l29>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l30 {
+            padding-left: 0pt;
+        }
+
+        #l30>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l31 {
+            padding-left: 0pt;
+        }
+
+        #l31>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l32 {
+            padding-left: 0pt;
+        }
+
+        #l32>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l33 {
+            padding-left: 0pt;
+            counter-reset: h1 1;
+        }
+
+        #l33>li>*:first-child:before {
+            counter-increment: h1;
+            content: counter(h1, decimal)". ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l33>li:first-child>*:first-child:before {
+            counter-increment: h1 0;
+        }
+
+        #l34 {
+            padding-left: 0pt;
+        }
+
+        #l34>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l35 {
+            padding-left: 0pt;
+        }
+
+        #l35>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l36 {
+            padding-left: 0pt;
+        }
+
+        #l36>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l37 {
+            padding-left: 0pt;
+        }
+
+        #l37>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l38 {
+            padding-left: 0pt;
+        }
+
+        #l38>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l39 {
+            padding-left: 0pt;
+        }
+
+        #l39>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l40 {
+            padding-left: 0pt;
+        }
+
+        #l40>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l41 {
+            padding-left: 0pt;
+        }
+
+        #l41>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l42 {
+            padding-left: 0pt;
+        }
+
+        #l42>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l43 {
+            padding-left: 0pt;
+        }
+
+        #l43>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l44 {
+            padding-left: 0pt;
+        }
+
+        #l44>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l45 {
+            padding-left: 0pt;
+        }
+
+        #l45>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l46 {
+            padding-left: 0pt;
+        }
+
+        #l46>li>*:first-child:before {
+            content: "- ";
+            color: black;
+            font-family: Tahoma, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        table,
+        tbody {
+            vertical-align: top;
+            overflow: visible;
+        }
     </style>
 </head>
 
 <body>
-
-    <header>
-        <h1>Anpfiff-Website Dokumentation</h1>
-        <p>WWW-Programmierung - Wise 23/24</p>
-        <p>Malte Roß, Gino Günther - Hochschule Flensburg</p>
-        <p>JANUAR 2024</p>
-    </header>
-
-    <section>
-        <h2>Dokumentation</h2>
-        <!-- Hier füge deine Dokumentation ein -->
-        <!-- Legende, Ziel, Funktionsumfang, Threat Modelling usw. -->
-        <p>(1) Die Website haben wir für die Anpfiff-Sportsbar in Flensburg erstellt. Die Besitzer waren damit einverstanden und haben uns nur die Vorgabe gegeben, dass Events, die in der Bar stattfinden, dort auf der Website angezeigt werden.</p>
-        <!-- Weitere Dokumentationspunkte einfügen -->
-    </section>
-
-    <section>
-        <h2>Website für Anpfiff-Sportsbar</h2>
-        <!-- Hier füge Details zur Website ein -->
-        <!-- Inhaltstypen, Funktionen, Aufbau der Datenbank, Aufbau der Anwendung usw. -->
-        <p>(3) Die Hauptzielsetzung dieser Anwendung besteht darin, eine benutzerfreundliche Plattform für die Sportsbar zu schaffen...</p>
-        <!-- Weitere Details zur Website einfügen -->
-    </section>
-
-    <section>
-        <h2>Threat Modelling</h2>
-        <!-- Füge Details zum Threat Modelling ein -->
-        <!-- Bedrohungen, Ursachen, Schutzmaßnahmen usw. -->
-        <p>(4) Threat Modelling:<br>
-            Datenveröffentlichung:<br>
-            Bedrohung: Ein möglicher Angriffspunkt könnte sein, dass sensible Daten...</p>
-        <!-- Weitere Threat Modelling Details einfügen -->
-    </section>
-
-    <section>
-        <h2>Inhaltstypen und Funktionen</h2>
-        <!-- Hier füge Informationen zu Inhaltstypen und Funktionen ein -->
-        <p>(5) Inhaltstypen:<br>
-            Benutzer:<br>
-            UID (Integer): Eindeutige Benutzerkennung.<br>
-            Email (Text): Die E-Mail-Adresse des Benutzers.<br>
-            Name (Text): Der Name des Benutzers.<br>
-            ...</p>
-        <!-- Weitere Details zu Inhaltstypen und Funktionen einfügen -->
-    </section>
-
-    <!-- Füge weitere Abschnitte hinzu, je nach Bedarf -->
-
-    <section>
-        <h2>Aufgetretene Probleme und deren Lösungen</h2>
-        <!-- Hier füge Informationen zu Problemen und Lösungen ein -->
-        <!-- Projekttagebuch, Probleme und Lösungen -->
-        <p>(15) Projekttagebuch:<br>
-            13.12.2023 Heute hat Malte die bereits vorhandene HTML Datei der Anpfiff Seite hochgeladen...</p>
-        <!-- Weitere Probleme und Lösungen einfügen -->
-    </section>
-
-    <section>
-        <h2>Projekttagebuch</h2>
-        <!-- Hier füge das Projekttagebuch ein -->
-        <!-- Daten zu den Projekttagebuch-Einträgen einfügen -->
-    </section>
-
-    <section>
-        <h2>Kollophon aller externen Ressourcen</h2>
-        <!-- Hier füge Informationen zu externen Ressourcen ein -->
-        <!-- Externe Komponenten, Scripte, CSS, Vorlagen, Inspirationen usw. -->
-    </section>
-
-    <section>
-        <h2>Erklärung zu den Nutzungsrechten</h2>
-        <!-- Hier füge Erklärungen zu den Nutzungsrechten ein -->
-        <!-- Rechte für externe Inhalte, Bilder, Komponenten, URLs usw. -->
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Anpfiff-Website. Alle Rechte vorbehalten.</p>
-    </footer>
-
+    <h1 style="padding-top: 3pt;padding-left: 11pt;text-indent: 0pt;text-align: left;">Hausarbeit Anpfiff-Website</h1>
+    <h2 style="padding-top: 2pt;padding-left: 11pt;text-indent: 0pt;text-align: left;">WWW-Programmierung</h2>
+    <p class="s1" style="padding-top: 2pt;padding-left: 11pt;text-indent: 0pt;text-align: left;">—</p>
+    <h4 style="padding-top: 11pt;padding-left: 11pt;text-indent: 0pt;line-height: 113%;text-align: left;">Malte Roß, maro7439, 700259, <br>
+        Gino Günther, gigu7042, 710397 <span class="p"><br>Wise 23/24</span></h4>
+    <p class="s2" style="padding-left: 11pt;text-indent: 0pt;line-height: 112%;text-align: left;">Hochschule Flensburg
+        Medieninformatik</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 10pt;text-indent: 0pt;line-height: 2pt;text-align: left;"><span>
+    <hr>
+        </span></p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p class="s3" style="padding-left: 9pt;text-indent: 0pt;text-align: left;">JANUAR 2024</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <h3 style="padding-left: 9pt;text-indent: 0pt;text-align: left;">Dokumentation</h3>
+    <p style="padding-top: 1pt;padding-left: 9pt;text-indent: 0pt;text-align: left;">In der folgenden Dokumentation
+        werden wir unsere Website vorstellen. Die Seite wurde im Rahmen des Kurses ”WWW-Programmierung” an der
+        Hochschule Flensburg erstellt.</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-top: 9pt;padding-left: 9pt;text-indent: 0pt;text-align: left;">Legende:</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <ol id="l1">
+        <li data-list-text="1.">
+            <p style="padding-left: 45pt;text-indent: -18pt;line-height: 12pt;text-align: left;">die Person / Firma /
+                Institution</p>
+        </li>
+        <li data-list-text="2.">
+            <p style="padding-left: 45pt;text-indent: -18pt;line-height: 12pt;text-align: left;">das Ziel und Aufgabe
+                der Site</p>
+        </li>
+        <li data-list-text="3.">
+            <p style="padding-left: 45pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Ziel und
+                Funktionsumfang der Anwendung</p>
+        </li>
+        <li data-list-text="4.">
+            <p style="padding-left: 45pt;text-indent: -18pt;text-align: justify;">Überlegungen zum Threatmodelling:
+                Welche Gefahr droht, wenn z.B. alle Daten veröffentlicht werden? Wie könnte das geschehen? Wie haben Sie
+                die App davor geschützt?</p>
+        </li>
+        <li data-list-text="5.">
+            <p style="padding-left: 45pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Inhaltstypen und
+                Funktionen</p>
+        </li>
+        <li data-list-text="6.">
+            <p style="padding-left: 45pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Aufbau der Datenbank
+            </p>
+        </li>
+        <li data-list-text="7.">
+            <p style="padding-left: 45pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Aufbau der Anwendung
+            </p>
+        </li>
+        <li data-list-text="8.">
+            <p style="padding-left: 45pt;text-indent: -18pt;text-align: left;">Welche Funktionen/Seiten sind unter
+                welchen URL-Pfaden zu erreichen und warum?</p>
+        </li>
+        <li data-list-text="9.">
+            <p style="padding-left: 45pt;text-indent: -18pt;text-align: left;">Aufgabenteilung: Welcher Teil übernimmt
+                welche Aufgaben? Warum wurde diese Aufteilung gewählt?</p>
+        </li>
+        <li data-list-text="10.">
+            <p style="padding-left: 45pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Nutzung von JS im
+                Frontend</p>
+        </li>
+        <li data-list-text="11.">
+            <p style="padding-left: 45pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Überlegungen zum
+                Progressive Enhancement</p>
+        </li>
+        <li data-list-text="12.">
+            <p style="padding-left: 45pt;text-indent: -18pt;text-align: left;">Welche externen Komponenten, Scripte, CSS
+                etc. werden verwendet? Warum werden sie verwendet?</p>
+        </li>
+        <li data-list-text="13.">
+            <p style="padding-left: 45pt;text-indent: -18pt;text-align: left;">Welchen vorhandenen Lösungen haben Sie
+                als Vorlage oder Inspiration genutzt?</p>
+        </li>
+        <li data-list-text="14.">
+            <p style="padding-left: 45pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Aufgetretene Probleme
+                und deren Lösungen</p>
+        </li>
+        <li data-list-text="15.">
+            <p style="padding-left: 45pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Projekttagebuch</p>
+        </li>
+        <li data-list-text="16.">
+            <p style="padding-left: 45pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Wer hat was umgesetzt?
+            </p>
+        </li>
+        <li data-list-text="17.">
+            <p style="padding-left: 45pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Kollophon aller
+                externen Ressourcen</p>
+        </li>
+        <li data-list-text="18.">
+            <p style="padding-left: 45pt;text-indent: -18pt;text-align: justify;">Ggf. eine Erklärung, dass sie über die
+                nötigen Rechte für externe Inhalte, Bilder und Komponenten verfügen, ggf. mit URLs. Keine Ausdrucke der
+                AGB&#39;s beifügen!</p>
+        </li>
+        <li data-list-text="19.">
+            <p style="padding-left: 45pt;text-indent: -18pt;text-align: justify;">Erklärung zu den Nutzungsrechten (auch
+                wenn Sie der Hochschule keine einräumen)</p>
+        </li>
+    </ol>
+    <p class="s4" style="padding-top: 3pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Webseitenentwicklung für
+        Anpfiff-Sportsbar in Flensburg</p>
+    <p class="s2" style="padding-top: 11pt;padding-left: 8pt;text-indent: 0pt;line-height: 112%;text-align: left;">(1)
+        <span style=" color: #000;">Die Website haben wir für die Anpfiff-Sportsbar in Flensburg erstellt. Die Besitzer
+            waren damit einverstanden und haben uns nur die Vorgabe gegeben, dass Events, die in der Bar stattfinden,
+            dort auf der Website angezeigt werden. </span>(2) <span style=" color: #000;">Die Website sollte nur als
+            Werbung dienen. Da wir die Website auch im Rahmen des Kurses für die Hochschule erstellt haben, gibt es in
+            der Website Funktionen, die uns der Besitzer der Bar nicht aufgetragen hat.</span></p>
+    <ol id="l2">
+        <li data-list-text="(3)">
+            <p style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;line-height: 112%;text-align: left;">Die
+                Hauptzielsetzung dieser Anwendung besteht darin, eine benutzerfreundliche Plattform für die Sportsbar zu
+                schaffen, die es den Nutzern ermöglicht, die kommenden Events in der Sportsbar einzusehen und sich
+                unkompliziert für diese anzumelden. Gleichzeitig soll die Seite dazu dienen, die Reichweite der
+                Sportsbar zu erhöhen und somit mehr Kunden anzuziehen. Durch die Integration von Funktionen zur
+                einfachen Verwaltung der Events durch die Administratoren wird sichergestellt, dass die Informationen
+                stets aktuell und ansprechend präsentiert werden.</p>
+            <p style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Der Funktionsumfang ist
+                dabei:</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <ol id="l3">
+                <li data-list-text="1.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Event-Ansicht</p>
+                    <ul id="l4">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;text-align: left;">
+                                Übersichtliche Darstellung kommender Events in der Sportsbar</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;text-align: left;">
+                                Informationen zu Datum, Uhrzeit, Beschreibung und Art des Events</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;text-align: left;">Suchen
+                                durch Titel oder durch den Tag von dem Event</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;text-align: left;">Eine
+                                Einzelansicht mit Anmeldebutton</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="2.">
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Event-Anmeldung
+                    </p>
+                    <ul id="l5">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;text-align: left;">
+                                Anmeldung der Events für Nutzer</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;text-align: left;">Alle
+                                angemeldeten Nutzer zu sehen in der Einzelansicht des Events</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;text-align: left;">Alle
+                                angemeldeten Events übersichtlich auf der Profil Seite</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="3.">
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                        Profil-Bearbeitung</p>
+                    <ul id="l6">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;text-align: left;">
+                                Bearbeitung des Benutzernamens und der Events</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="4.">
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Administrator
+                        Verwaltungsfunktionen</p>
+                    <ul id="l7">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;text-align: left;">
+                                Veränderungen der Permissions der Nutzer auf der Profil Seite</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;text-align: left;">
+                                hinzufügen, bearbeiten und Löschen von Events mit wenigen Klicks</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="5.">
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                        Kontaktmöglichkeit</p>
+                    <ul id="l8">
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Kontaktformular oder direkte Kontaktinformationen, um Nutzern die Kommunikation mit der
+                                Sportsbar zu erleichtern.</p>
+                            <p class="s4" style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+                                Threat Modelling und Schutzmaßnahmen</p>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+        <li data-list-text="(4)">
+            <p style="padding-top: 11pt;padding-left: 21pt;text-indent: -13pt;text-align: left;">Threat Modelling:</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <ol id="l9">
+                <li data-list-text="1.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Datenveröffentlichung:</p>
+                    <ul id="l10">
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Bedrohung: Ein möglicher Angriffspunkt könnte sein, dass sensible Daten, wie persönliche
+                                Informationen der Nutzer, versehentlich oder absichtlich veröffentlicht werden.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-left: 80pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Mögliche Ursachen: Schwachstellen in der Authentifizierung, unzureichende
+                                Zugriffskontrollen, unsichere Datenübertragung.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-left: 80pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Schutzmaßnahmen: Einsatz von Verschlüsselungstechnologien für die sichere
+                                Datenübertragung von Passwörtern.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="2.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">SQL-Injection und Cross-Site
+                        Scripting (XSS):</p>
+                    <ul id="l11">
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Bedrohung: Angreifer könnten versuchen, schädlichen Code in Datenbankabfragen einzufügen
+                                oder Nutzer dazu verleiten, schädlichen Code auszuführen.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-left: 80pt;text-indent: -18pt;line-height: 12pt;text-align: left;">
+                                Mögliche Ursachen: Unsichere Datenvalidierung und unzureichende Eingabeüberprüfung.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 80pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Schutzmaßnahmen: Nutzung von SQL-Statements mit Platzhaltern, um SQL-Injection zu
+                                verhindern.</p>
+                            <p class="s4" style="padding-top: 3pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+                                Datenbankstruktur und Inhaltstypen</p>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+        <li data-list-text="(5)">
+            <p style="padding-top: 11pt;padding-left: 19pt;text-indent: -11pt;text-align: left;">Inhaltstypen:</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <ol id="l12">
+                <li data-list-text="1.">
+                    <p style="padding-left: 45pt;text-indent: -19pt;text-align: left;">Benutzer:</p>
+                    <ul id="l13">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">UID
+                                (Integer): Eindeutige Benutzerkennung.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Email
+                                (Text): Die E-Mail-Adresse des Benutzers.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Name
+                                (Text): Der Name des Benutzers.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Passwort
+                                (Integer): Das verschlüsselte Passwort des Benutzers.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Permissions (Integer): Die Berechtigungen des Benutzers.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Events
+                                (Text): Die Liste der vom Benutzer angemeldeten Events.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="2.">
+                    <p style="padding-top: 1pt;padding-left: 45pt;text-indent: -19pt;text-align: left;">Events:</p>
+                    <ul id="l14">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">EID
+                                (Integer): Eindeutige Event-Kennung.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Titel
+                                (Text): Der Titel des Events.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Datum
+                                (Text): Das Datum, an dem das Event stattfindet.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Uhrzeit
+                                (Text): Die Uhrzeit des Events.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Beschreibung (Text): Eine Beschreibung des Events.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Tag
+                                (Text): Der Tag des Events.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Bilder
+                                (Text): Die URL des Bilds im Event.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Angemeldet (Text): Liste der angemeldeten Benutzer für das Event.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="3.">
+                    <p style="padding-top: 1pt;padding-left: 45pt;text-indent: -19pt;text-align: left;">Kontakt:</p>
+                    <ul id="l15">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">KID
+                                (Integer): Eindeutige Kontakterkennung.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Titel
+                                (Text): Der Titel des Kontakts (z.B. &quot;Anfrage&quot;, &quot;Feedback&quot;).</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Text
+                                (Text): Der eigentliche Text der Kontaktanfrage oder des Feedbacks.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Vorname
+                                (Text): Vorname des Absenders, der Anfrage oder des Feedbacks.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Nachname
+                                (Text): Nachname des Absenders, der Anfrage oder des Feedbacks.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+        <li data-list-text="(6)">
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 199%;text-align: left;">Unsere Datenbank ist wie
+                folgt aufgebaut: benutzer:</p>
+            <table style="border-collapse:collapse;margin-left:5.5pt" cellspacing="0">
+                <tr style="height:13pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;line-height: 12pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;line-height: 12pt;text-align: left;">UID
+                        </p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            Integer</p>
+                    </td>
+                </tr>
+                <tr style="height:14pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;line-height: 12pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            email</p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            Text</p>
+                    </td>
+                </tr>
+                <tr style="height:14pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;line-height: 12pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            name</p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            Text</p>
+                    </td>
+                </tr>
+                <tr style="height:14pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;line-height: 12pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            passwort</p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            Integer</p>
+                    </td>
+                </tr>
+                <tr style="height:14pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;line-height: 12pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            permissions</p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            Integer</p>
+                    </td>
+                </tr>
+                <tr style="height:19pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;text-align: center;">-</p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;text-align: left;">events</p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;text-align: left;">Text</p>
+                    </td>
+                </tr>
+                <tr style="height:24pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-top: 5pt;padding-left: 2pt;text-indent: 0pt;text-align: left;">
+                            events:</p>
+                    </td>
+                    <td style="width:68pt">
+                        <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                    </td>
+                    <td style="width:41pt">
+                        <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                    </td>
+                </tr>
+                <tr style="height:19pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-top: 5pt;padding-left: 8pt;text-indent: 0pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-top: 5pt;padding-left: 2pt;text-indent: 0pt;text-align: left;">EID
+                        </p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-top: 5pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">
+                            Integer</p>
+                    </td>
+                </tr>
+                <tr style="height:14pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;line-height: 12pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            titel</p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            Text</p>
+                    </td>
+                </tr>
+                <tr style="height:14pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;line-height: 12pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            datum</p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            Text</p>
+                    </td>
+                </tr>
+                <tr style="height:14pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;line-height: 12pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            uhrzeit</p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            Text</p>
+                    </td>
+                </tr>
+                <tr style="height:14pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;line-height: 12pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            beschreibung</p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            Text</p>
+                    </td>
+                </tr>
+                <tr style="height:14pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;line-height: 12pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;line-height: 12pt;text-align: left;">tag
+                        </p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            Text</p>
+                    </td>
+                </tr>
+                <tr style="height:14pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;line-height: 12pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            bilder</p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
+                            Text</p>
+                    </td>
+                </tr>
+                <tr style="height:13pt">
+                    <td style="width:36pt">
+                        <p class="s5" style="padding-left: 8pt;text-indent: 0pt;line-height: 11pt;text-align: center;">-
+                        </p>
+                    </td>
+                    <td style="width:68pt">
+                        <p class="s5" style="padding-left: 2pt;text-indent: 0pt;line-height: 11pt;text-align: left;">
+                            angemeldet</p>
+                    </td>
+                    <td style="width:41pt">
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;line-height: 11pt;text-align: left;">
+                            Text</p>
+                    </td>
+                </tr>
+            </table>
+            <p style="padding-top: 3pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">kontakt:</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <ul id="l16">
+                <li data-list-text="-">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">KID Integer</p>
+                </li>
+                <li data-list-text="-">
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">titel Text</p>
+                </li>
+                <li data-list-text="-">
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">text Text</p>
+                </li>
+                <li data-list-text="-">
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">vorname Text</p>
+                </li>
+                <li data-list-text="-">
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">nachname Text
+                    </p>
+                </li>
+            </ul>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p class="s4" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Funktionen der Anwendung</p>
+            <p class="s2" style="padding-top: 11pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">(5)<span
+                    style=" color: #000;">Funktionen:</span></p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <ol id="l17">
+                <li data-list-text="1.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Benutzerfunktionen:</p>
+                    <ul id="l18">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Benutzerregistrierung: Neue Benutzer können sich auf der Plattform registrieren.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Anmeldefunktion: Angemeldete Benutzer können sich in ihr Profil einloggen.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Profilbearbeitung: Benutzer können ihren Benutzernamen und die von ihnen angemeldeten
+                                Events bearbeiten.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-left: 44pt;text-indent: -18pt;line-height: 12pt;text-align: left;">
+                                Eventanmeldung: Benutzer können sich auf der Detailseite der Events für diese anmelden.
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="2.">
+                    <p style="padding-top: 1pt;padding-left: 45pt;text-indent: -19pt;text-align: left;">Event
+                        Funktionen:</p>
+                    <ul id="l19">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Eventansicht: Übersichtliche Darstellung aller kommenden Events.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Einzelansicht: Detaillierte Informationen zu einem bestimmten Event, einschließlich
+                                Anmeldebutton.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Eventanmeldung: Benutzer können sich für Events anmelden.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Administratorfunktionen: Hinzufügen, Bearbeiten und Löschen von Events.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="3.">
+                    <p style="padding-top: 1pt;padding-left: 45pt;text-indent: -19pt;text-align: left;">
+                        Kontaktmöglichkeiten:</p>
+                    <ul id="l20">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Kontaktformular: Nutzer können über ein Kontaktformular Anfragen oder Feedback senden.
+                            </p>
+                        </li>
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Direkte Kontaktinformationen: Bereitstellung von direkten Kontaktinformationen für eine
+                                direkte Kommunikation.</p>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <p style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Diese
+                Funktionen und Inhaltstypen sollen die grundlegenden Anforderungen der Anwendung abdecken und eine
+                sichere und benutzerfreundliche Plattform für die Anpfiff-Sportsbar in Flensburg bieten.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p class="s4" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Aufbau der Anwendung und
+                URL-Pfade</p>
+        </li>
+        <li data-list-text="(7)">
+            <p style="padding-top: 11pt;padding-left: 19pt;text-indent: -11pt;text-align: left;">Aufbau der Anwendung:
+            </p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <ol id="l21">
+                <li data-list-text="1.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Startseite:</p>
+                    <ul id="l22">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Beschreibung: Die Hauptseite der Website, die eine allgemeine Einführung und Navigation
+                                bietet.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="2.">
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Event
+                        Übersichtsseite:</p>
+                    <ul id="l23">
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Beschreibung: Eine Seite, die eine übersichtliche Darstellung aller kommenden Events in
+                                der Sportsbar präsentiert.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="3.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Event
+                        Einzelseite:</p>
+                    <ul id="l24">
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Beschreibung: Einzelne Seite für jedes Event, wobei &quot;EID&quot; die eindeutige
+                                Kennung des Events ist. Hier findet der Nutzer detaillierte Informationen zum
+                                spezifischen Event.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="4.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Event Edit
+                        Seite:</p>
+                    <ul id="l25">
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Beschreibung: Seite zum Bearbeiten eines bestimmten Events, wobei &quot;EID&quot; die
+                                eindeutige Kennung des zu bearbeitenden Events ist.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="5.">
+                    <p style="padding-top: 3pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Event Add Seite:
+                    </p>
+                    <ul id="l26">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Beschreibung: Seite zum Hinzufügen neuer Events in die Sportsbar.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="6.">
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Über uns und
+                        Kontakt:</p>
+                    <ul id="l27">
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Beschreibung: Eine Seite mit Informationen über die Sportsbar und den Kontakt zur Bar.
+                                Hier kann der Nutzer mehr über die Bar erfahren und Kontakt aufnehmen.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="7.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Profilseite:
+                    </p>
+                    <ul id="l28">
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Beschreibung: Die persönliche Profilseite der Benutzer, auf der sie ihre angemeldeten
+                                Events und persönlichen Einstellungen verwalten können.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="8.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Logout Seite:
+                    </p>
+                    <ul id="l29">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Beschreibung: Seite zum sicheren Ausloggen aus dem Benutzerkonto.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="9.">
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Register Seite:
+                    </p>
+                    <ul id="l30">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">
+                                Beschreibung: Seite für die Benutzerregistrierung, auf der neue Benutzer ihre Konten
+                                erstellen können.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="10.">
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Login Seite:</p>
+                    <ul id="l31">
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Beschreibung: Seite für den Login-Prozess, auf der sich registrierte Benutzer in ihre
+                                Konten einloggen können.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+        <li data-list-text="(8)">
+            <p style="padding-left: 21pt;text-indent: -13pt;text-align: left;">Die verschiedenen URL Pfade der
+                verschiedenen Seiten lauten wie folgt:</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 44pt;text-indent: 0pt;text-align: left;">index/Homeside =&gt; “/”</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <ul id="l32">
+                <li data-list-text="-">
+                    <p style="padding-left: 44pt;text-indent: -18pt;line-height: 115%;text-align: left;">Die Startseite
+                        der Website wird durch den einfachen Schrägstrich (&quot;/&quot;) repräsentiert, was eine klare
+                        und kürzeste Darstellung für die Hauptseite ist.</p>
+                    <p style="padding-top: 9pt;padding-left: 44pt;text-indent: 0pt;text-align: left;">Event
+                        Übersichtsseite =&gt; “/events”</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                </li>
+                <li data-list-text="-">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Die Seite, die eine Übersicht
+                        aller kommenden Events in der Sportsbar bietet, ist unter &quot;/events&quot; erreichbar.</p>
+                    <p style="padding-top: 1pt;padding-left: 44pt;text-indent: 0pt;line-height: 112%;text-align: left;">
+                        Diese URL ist selbsterklärend und zeigt dem Benutzer direkt an, dass es sich um eine Seite mit
+                        Eventübersichten handelt.</p>
+                    <p style="padding-top: 9pt;padding-left: 44pt;text-indent: 0pt;text-align: left;">Event Einzelseite
+                        =&gt; “/event/EID”</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                </li>
+                <li data-list-text="-">
+                    <p style="padding-left: 44pt;text-indent: -18pt;line-height: 113%;text-align: left;">Hier wird jede
+                        einzelne Eventseite durch &quot;/event/EID&quot; dargestellt, wobei &quot;EID&quot; die
+                        eindeutige Kennung des jeweiligen Events ist. Dies ermöglicht eine klare Identifikation und den
+                        direkten Zugriff auf spezifische Events.</p>
+                    <p style="padding-top: 9pt;padding-left: 44pt;text-indent: 0pt;text-align: left;">Event Edit Seite
+                        =&gt; “/edit/EID”</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                </li>
+                <li data-list-text="-">
+                    <p style="padding-left: 44pt;text-indent: -18pt;line-height: 115%;text-align: left;">Die Seite zum
+                        Bearbeiten eines Events wird durch &quot;/edit/EID&quot; dargestellt. Ähnlich wie bei der
+                        Einzelseite ist &quot;EID&quot; die eindeutige Kennung des zu bearbeitenden Events.</p>
+                    <p style="padding-top: 9pt;padding-left: 44pt;text-indent: 0pt;text-align: left;">Event Add Seite
+                        =&gt; “/add”</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                </li>
+                <li data-list-text="-">
+                    <p style="padding-left: 44pt;text-indent: -18pt;line-height: 115%;text-align: left;">Die Seite zum
+                        Hinzufügen neuer Events ist unter &quot;/add&quot; erreichbar. Diese kurze URL gibt eine klare
+                        Anweisung, dass es sich um die Seite zum Hinzufügen neuer Events handelt.</p>
+                    <p style="padding-top: 9pt;padding-left: 44pt;text-indent: 0pt;text-align: left;">Über uns und
+                        Kontakt =&gt; “/about”</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                </li>
+                <li data-list-text="-">
+                    <p style="padding-left: 44pt;text-indent: -18pt;line-height: 113%;text-align: left;">Die Seite mit
+                        Informationen über die Sportsbar und den Kontakt zur Bar ist unter &quot;/about&quot;
+                        erreichbar. Dies macht es einfach für Benutzer, schnell auf Hintergrundinformationen und
+                        Kontaktmöglichkeiten zuzugreifen.</p>
+                    <p style="padding-top: 9pt;padding-left: 44pt;text-indent: 0pt;text-align: left;">Profilseite =&gt;
+                        “/profile”</p>
+                </li>
+                <li data-list-text="-">
+                    <p
+                        style="padding-top: 3pt;padding-left: 44pt;text-indent: -18pt;line-height: 115%;text-align: left;">
+                        Die Profilseite der Benutzer wird durch &quot;/profile&quot; repräsentiert, was eine einfache
+                        und leicht zu merkende URL für den persönlichen Bereich der Benutzer ist.</p>
+                    <p style="padding-top: 9pt;padding-left: 44pt;text-indent: 0pt;text-align: left;">Logout Seite =&gt;
+                        “/logout”</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                </li>
+                <li data-list-text="-">
+                    <p style="padding-left: 44pt;text-indent: -18pt;line-height: 115%;text-align: left;">Die Seite zum
+                        Ausloggen wird durch &quot;/logout&quot; dargestellt. Dies bietet eine klare und intuitive
+                        Möglichkeit für Benutzer, sich sicher aus ihrem Konto abzumelden.</p>
+                    <p style="padding-top: 9pt;padding-left: 44pt;text-indent: 0pt;text-align: left;">Register Seite
+                        =&gt; “/register”</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                </li>
+                <li data-list-text="-">
+                    <p style="padding-left: 44pt;text-indent: -18pt;line-height: 115%;text-align: left;">Die Seite zur
+                        Benutzerregistrierung ist unter &quot;/register&quot; erreichbar. Diese kurze URL gibt direkt
+                        an, dass es sich um die Seite für die Registrierung handelt.</p>
+                    <p style="padding-top: 9pt;padding-left: 44pt;text-indent: 0pt;text-align: left;">Login Seite =&gt;
+                        “/login”</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                </li>
+                <li data-list-text="-">
+                    <p style="padding-left: 44pt;text-indent: -18pt;line-height: 115%;text-align: left;">Die Seite für
+                        den Login-Prozess ist unter &quot;/login&quot; erreichbar. Diese URL ist einfach und leicht zu
+                        merken, was die Anmeldung für Benutzer erleichtert.</p>
+                </li>
+            </ul>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p class="s4" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Arbeitseinteilung und
+                Projekttagebuch</p>
+        </li>
+        <li data-list-text="(9)">
+            <p style="padding-top: 11pt;padding-left: 8pt;text-indent: 0pt;line-height: 112%;text-align: left;">Die
+                Arbeitseinteilung wurde nicht groß zuvor festgelegt, es wurde einfach daran gearbeitet, woran man mehr
+                Interesse hat. Dabei hat Gino an verschiedenen Formen gearbeitet und daran, dass man diese einfügen,
+                löschen, bearbeiten und anzeigen kann, außerdem hat er an dem Aussehen gearbeitet und eine Handvoll
+                weiterer Sachen. Malte hat an dem Login und Register gearbeitet und ebenfalls an den Cookies, Sessions
+                und die States. Die genaue Arbeitseinteilung kann man dem Projekttagebuch<span
+                    style=" color: #264E12;">(15) </span>entnehmen.</p>
+            <p class="s2" style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">(15)<span
+                    style=" color: #000;">Projekttagebuch:</span></p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">13.12.2023</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Heute hat Malte die
+                bereits vorhandene HTML Datei der Anpfiff Seite hochgeladen, damit wir damit unsere Seite bearbeiten
+                können.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">18.12.2023</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Heute hat Gino die Ordnerstruktur mit dem
+                Controller, der App, Server und Model hochgeladen.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">20.12.2023</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Heute hat Gino nunjucks in
+                die Dateien eingebaut und ebenfalls about, index, error, form und layout html hochgeladen.</p>
+            <p style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Ebenfalls hat Malte die
+                Datenbank hochgeladen</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Gino hat ebenso die Datenbank in die den
+                Code eingebaut und im model die Tabellennamen etc. angepasst.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">21.12.2023</p>
+            <p style="padding-top: 3pt;padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Heute hat
+                Gino die html und die Controller verändert, sodass die Events im Index angezeigt und verändert werden
+                können.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Malte hat die about.html und index.html
+                angepasst.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">22.12.2023</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Heute hat Gino die Seite
+                events.html hinzugefügt und ebenfalls hinzugefügt, dass man auf dieser Seite die Events aus der
+                Datenbank sehen kann</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">29.12.2023</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Heute hat Malte die
+                register.html und login.html hinzugefügt und die ersten Funktionen versucht einzufügen, für beide
+                Seiten.</p>
+            <p style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Ebenfalls hat Gino
+                eingebaut, dass man auf der Eventseite die Events mit den Titeln und Tags suchen kann.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">31.12.2023</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Heute hat Malte weiter an der Register
+                Funktion gearbeitet.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.01.2024</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 199%;text-align: left;">Heute hat Malte daran
+                gearbeitet die Passwörter mit bycript zu speichern. Gino hat eine profile.html hinzugefügt.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">3.01.2024</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Heute hat Malte eingeführt, dass die
+                Passwörter kryptisch gespeichert werden.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">4.01.2024</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Heute hat Malte weiter an dem Login
+                gearbeitet, nun werden Cookies gesetzt, es gibt aber noch Probleme.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Gino hat daran gearbeitet,
+                dass das Kontaktformular funktioniert und die Daten in der Datenbank gespeichert werden.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">5.01.2024</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Heute hat Malte die Login Funktion
+                eingeführt, welche funktioniert, jedoch gibt es noch keine Sessions.</p>
+            <p style="padding-top: 3pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">11.01.2024</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Heute hat Malte angefangen die Sessions
+                einzuführen, hier gab es auch noch Probleme.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Gino hat die error page
+                mit dem error handling eingeführt und ebenfalls den controller.js aufgeräumt und die wichtigen form
+                Sachen in den form controller getan.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">14.01.2024</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Heute hat Gino die Delete
+                Funktion der Events und die Detailansicht der Events eingeführt. Außerdem hat Gino das Aussehen mehrfach
+                verändert.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">15.01.2024</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 199%;text-align: left;">Heute hat Malte weiter an
+                den Sessions gearbeitet, nun funktioniert es größtenteils. Gino hat noch etwas mehr am Aussehen
+                gearbeitet.</p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 12pt;text-align: left;">Malte hat schon mal mit
+                der Dokumentation angefangen.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">16.01.2024</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Heute hat Malte die Sessions und state zum
+                Laufen gebracht.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Außerdem haben Gino und
+                Malte daran gearbeitet, dass alle Seiten, welche nur vom Admin und Benutzer zugreifbar sein sollen, nun
+                auch nur von diesen zugreifbar sind.</p>
+            <p style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Gino hat
+                daran gearbeitet, dass wenn man eingeloggt ist, dann werden die Nutzer Daten in das Profil gesetzt und
+                außerdem kann man diese bearbeiten.</p>
+            <p style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;line-height: 113%;text-align: left;">Gino hat
+                ebenfalls daran gearbeitet, dass Nutzer Events auf ihrer Profilseite hinzufügen können, wenn sie auf den
+                &quot;Anmelden&quot; Button drücken auf der Detailansicht Seite von Events. Ebenfalls werden die
+                Benutzernamen dann auf der Detailansicht Seite von Events gezeigt.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">17.01.2024</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Heute hat Malte den Logout eingeführt.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 199%;text-align: left;">Gino hat eingeführt, dass
+                Admins auf der Profilseite andere Benutzer zu Admins machen können. Gino hat ebenfalls die Dokumentation
+                weitergemacht.</p>
+            <p style="padding-top: 3pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">18.01.2024</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 199%;text-align: left;">Heute hat Gino an den Form
+                Errors fertig bearbeitet und den Footer mit dem Dokumentationslink eingebaut. Malte hat eine Willkommens
+                message eingebaut und ebenfalls weiter am Aussehen der Website gearbeitet.</p>
+            <p style="padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Malte und Gino haben
+                zusammen an der Dokumentation gearbeitet und ebenfalls den Code aufgeräumt und formatiert.</p>
+            <p class="s2" style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">(16)</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Arbeitseinteilung:</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <ol id="l33">
+                <li data-list-text="1.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Phase: Grundstruktur und
+                        Datenbankintegration</p>
+                    <ul id="l34">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Malte:
+                                Upload der vorhandenen HTML-Datei, Einrichtung der Datenbank.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Gino:
+                                Hochladen der Ordnerstruktur mit Controller, App, Server und Model.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="2.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Phase: Templating und
+                        Seitenentwicklung</p>
+                    <ul id="l35">
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Gino: Integration von Nunjucks in die Dateien, Hochladen von about, index, error, form
+                                und layout HTML. Einbau der Datenbank und Anpassung der Tabellennamen.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-left: 44pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Malte:
+                                Anpassungen in about.html und index.html.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="3.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Phase: Event Anzeige und
+                        -bearbeitung</p>
+                    <ul id="l36">
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Gino: Änderungen an HTML und Controllern für die Anzeige und Bearbeitung von Events auf
+                                der Indexseite und Events Seite.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-left: 44pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Malte:
+                                Anpassungen in about.html und index.html.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="4.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Phase: Erweiterung um Register
+                        und Login</p>
+                    <ul id="l37">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Malte:
+                                Hinzufügen von register.html und login.html, Implementierung erster Funktionen.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Gino:
+                                Einbau der Funktion zum Suchen von Events nach Titel und Tags auf der Eventseite.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="5.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Phase: Passwortsicherheit und
+                        Profilgestaltung</p>
+                    <ul id="l38">
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Malte: Implementierung von Bcrypt für Passwortspeicherung, Fortsetzung der Arbeit an der
+                                Register-Funktion.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-left: 44pt;text-indent: -18pt;line-height: 12pt;text-align: left;">Gino:
+                                Hinzufügen von profile.html, Fortsetzung der Arbeit an der Suche von Events und deren
+                                Anzeige.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="6.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Phase: Login und Cookie-Handling
+                    </p>
+                    <ul id="l39">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Malte:
+                                Abschluss der Login-Funktion mit Setzen von Cookies, Behebung von Problemen.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Gino:
+                                Arbeit am Kontaktformular und Datenbankintegration.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="7.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Phase: Sessions und
+                        Fehlerbehandlung</p>
+                    <ul id="l40">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Malte:
+                                Einführung der Session-Funktionen, Behebung von Problemen.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Gino: Implementierung der Error-Page, Aufräumen im Controller, Form-Sachen in den
+                                Form-Controller verschieben.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="8.">
+                    <p style="padding-top: 3pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Phase:
+                        Eventverwaltung und Designanpassungen</p>
+                    <ul id="l41">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Gino:
+                                Einführung der Delete-Funktion für Events, Detailansicht der Events, Designanpassungen.
+                            </p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Malte:
+                                Fortsetzung der Arbeit an den Sessions, Behebung von Problemen.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="9.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Phase: Profil- und
+                        Nutzerverwaltung</p>
+                    <ul id="l42">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Gino:
+                                Gestaltung und Funktionalität der Profilseite, Bearbeitung von Nutzerdaten.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Malte:
+                                Arbeit an der Implementierung von Nutzer-Events auf der Profilseite.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="10.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Phase: Vollständige
+                        Implementierung und Design Feinschliff</p>
+                    <ul id="l43">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Malte:
+                                Abschluss der Sessions und State-Implementierung, Zugriffsberechtigungen für
+                                verschiedene Seiten.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p
+                                style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                                Gino: Feinschliff am Design, Integration von Nutzerdaten in das Profil, Hinzufügen von
+                                Events auf der Detailansicht Seite.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="11.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Phase: Logout und Admin
+                        Funktionen</p>
+                    <ul id="l44">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Malte:
+                                Einführung der Logout-Funktion, finale Anpassungen an den Sessions.</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Gino:
+                                Implementierung, dass Admins andere Benutzer zu Admins machen können.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                        </li>
+                    </ul>
+                </li>
+                <li data-list-text="12.">
+                    <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Phase: Dokumentation</p>
+                    <ul id="l45">
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Malte:
+                                Design, Quellen und externe Ressourcen</p>
+                        </li>
+                        <li data-list-text="-">
+                            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Gino:
+                                Verbleibende Dokumentationsteile</p>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p class="s4" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Nutzung von JavaScript und
+                Gestaltung der Website</p>
+        </li>
+        <li data-list-text="(10)">
+            <p style="padding-top: 11pt;padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Die
+                einzige Nutzung von JS ist, dass man die Events anhand des Titels oder des Tags suchen kann und
+                ebenfalls, dass beim Login eine kleine Willkommensnachricht erscheint.</p>
+        </li>
+        <li data-list-text="(11)">
+            <p style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;line-height: 112%;text-align: left;">Die
+                Website ist so gestaltet worden, dass die mobile Sicht und die Desktop-Sicht gleich aussehen und bei
+                beidem alles gut funktioniert. Ebenfalls haben wir darauf geachtet, dass bei der Implementation von CSS
+                alle HTML Funktionen gut bleiben und es keine Probleme gibt, falls CSS ausgeschaltet wird. Außerdem
+                haben die JS Funktionen keine großen Änderungen auf der Seite und helfen nur die Bedienung (z.B. suchen
+                von Events).</p>
+        </li>
+        <li data-list-text="(12)">
+            <p style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Es werden
+                keine externen Dateien benutzt, alle Bilder sind durch URL hochgeladen, css ist im Layout gespeichert
+                und Skripte werden im html Code benutzt.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p class="s4" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Hilfequellen und Problemlösungen
+            </p>
+        </li>
+        <li data-list-text="(13)">
+            <p style="padding-top: 11pt;padding-left: 8pt;text-indent: 0pt;line-height: 113%;text-align: justify;">Ein
+                großteil der Hilfe stammt aus den Vorlesungsfolien oder aus dem Labor, ein weiterer Lösungsweg war die
+                deno online dokumentation, welche oftmals auch Beispiele hat. Ebenfalls kamen Lösungswege durch die
+                Hilfe von Kommilitonen und dem Professor.</p>
+        </li>
+        <li data-list-text="(14)">
+            <p style="padding-top: 3pt;padding-left: 8pt;text-indent: 0pt;line-height: 112%;text-align: left;">Die
+                meisten Probleme gab es beim Login und Register, da dort die Cookies und Sessions nie richtig
+                gespeichert wurden, um das zu fixen, sind wir ins Labor gegangen und haben Tobias Hiep nach Hilfe
+                gefragt. Der Fix war einfach ein paar Variablen, die wir zwar gesetzt, aber nicht benutzt haben.
+                Ebenfalls ein großes Problem war GitHub, da dieser immer große Probleme beim Merge mit der Datenbank
+                hatte. Um das zu fixen, haben wir die Datenbank einfach über Discord an den anderen geschickt. Sonst gab
+                es nur kleinere Probleme, welche durch die deno Doku oder durch Vorlesungsfolien gefixt wurden.</p>
+        </li>
+    </ol>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p class="s4" style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Externe Quellen und
+        Rechte</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">(17)</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Bildquellen:</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Hintergrundbild: &quot;Football Player in the
+        Stadium&quot; von Adobe Stock</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <ul id="l46">
+        <li data-list-text="-">
+            <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;"><a
+                    href="https://stock.adobe.com/de/images/football-player-in-the-stadium/317729652"
+                    style=" color: black; font-family:Tahoma, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 10pt;"
+                    target="_blank">Lizenz: Adobe Stock (</a><span
+                    style=" color: #1154CC; font-family:Tahoma, sans-serif; font-style: normal; font-weight: normal; text-decoration: underline; font-size: 10pt;">https://stock.adobe.com/de/images/football-player-in-the-stadium/317729652</span>)
+            </p>
+        </li>
+        <li data-list-text="-">
+            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;line-height: 112%;text-align: left;">
+                Eigenerstellte Bilder: Alle anderen Bilder wurden vom Besitzer selbst erstellt und uns zur Verfügung
+                gestellt.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Verwendete Software im Code:</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+        </li>
+        <li data-list-text="-">
+            <p style="padding-left: 44pt;text-indent: -18pt;text-align: left;">Deno: Eine sichere Laufzeitumgebung für
+                JavaScript und TypeScript.</p>
+        </li>
+        <li data-list-text="-">
+            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Bcrypt: Bcrypt-Modul für
+                Deno, verwendet für Passwort-Hashing.</p>
+        </li>
+        <li data-list-text="-">
+            <p style="padding-top: 1pt;padding-left: 44pt;text-indent: -18pt;text-align: left;">Nunjucks:
+                Template-Engine für JavaScript, Version 3.2.4.</p>
+        </li>
+    </ul>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">(18)</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 8pt;text-indent: 0pt;text-align: left;">Hintergrundbild von Adobe Stock:</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Das Hintergrundbild mit dem Titel
+        &quot;Football Player in the Stadium&quot; wurde von Adobe Stock erworben. Die Lizenzbedingungen für dieses Bild
+        finden Sie unter: Adobe Stock Lizenzbedingungen.</p>
+    <p style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Eigenerstellte Bilder:</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 8pt;text-indent: 0pt;line-height: 115%;text-align: left;">Alle Bilder, die nicht von
+        externen Quellen stammen und auf der Website verwendet werden, wurden vom Besitzer der Bar selbst erstellt.</p>
+    <p style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Verwendete Software:</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 8pt;text-indent: 0pt;line-height: 113%;text-align: left;">Die Softwarekomponenten im Code
+        der Website, einschließlich Deno, Bcrypt und Nunjucks, unterliegen den jeweiligen Open-Source-Lizenzen. Die
+        Lizenzbedingungen für Deno finden Sie unter Deno Lizenz, für Bcrypt unter Bcrypt Lizenz, und für Nunjucks unter
+        Nunjucks Lizenz.</p>
+    <p class="s2" style="padding-top: 9pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">(19) <span
+            style=" color: #000;">Die Erklärung zu den Nutzungsrechten ist wie angegeben “unterschrieben Digital
+            abzugeben&quot;.</span></p>
 </body>
 
 </html>
