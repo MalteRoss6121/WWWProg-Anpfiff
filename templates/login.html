@@ -12,6 +12,7 @@
 <body>
   <form action="/login" method="post" class="login-container">
     <h1 class="login-title">Login</h1>
+    {{ formErrors.login }}
 
     <label for="email" class="login-label">Email:</label>
     <input type="email" id="email" name="email" class="login-input" required>
@@ -23,6 +24,9 @@
 
     <button type="submit" class="login-button">Login</button>
   </form>
+  <footer>
+    <p><a href="/doku">Dokumentation</a></p>
+</footer>
 </body>
 </html>
 

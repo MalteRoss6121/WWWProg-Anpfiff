@@ -25,7 +25,18 @@ export const handleIndex = async (ctx, db, nunjucks) => {
 export const handleERROR = async (ctx, nunjucks) =>{
   const body = nunjucks.render("error404.html");
   return createResponse(ctx, body, 404, "text/html");
-}
+};
+
+export const handleDoku = async (ctx, db, nunjucks) => {
+  const userlogin = ctx.session.user;
+  const useradmin = await checkAdminStatus(db, ctx, userlogin);
+
+  const body = nunjucks.render("dokumentation.html", {
+      useradmin,
+      userlogin,
+  });
+  return createResponse(ctx, body, 200, "text/html");
+};
 
 
 export const handleEvents = async (ctx, db, nunjucks, url) => {
@@ -234,7 +245,7 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
     return ctx;
   } else {
     console.log(" ! NICHT BESTÄTIGT !");
-    formErrors.login = "Invalid email or password";
+    formErrors.login = "Ungültige Email oder Passwort";
     return handleLoginForm(ctx, formData, formErrors, nunjucks);
   }
 };
@@ -244,7 +255,7 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
   return createResponse(ctx, body, 200, "text/html");
  };
 
- export const handleLogoutPost = async (ctx, nunjucks) => {
+ export const handleLogoutPost = async (ctx) => {
   // Clear the session
   ctx.session.user = undefined;
  

@@ -18,6 +18,7 @@ import {
   handleEvent,
   handleLogoutGet,
   handleLogoutPost,
+  handleDoku,
 } from "./notes/controller.js";
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import nunjucks from "npm:nunjucks@3.2.4";
@@ -109,6 +110,8 @@ export const handleRequest = async (request) => {
     context = await handleDelete(context, db, requests, nunjucks);
   } else if (url.pathname.startsWith("/event")) {
     context = await handleEvent(context, db, requests, nunjucks);
+  } else if(url.pathname === "/doku"){
+    context = await handleDoku(context, db, nunjucks);
   }
   else {
     context = await handleERROR(context, nunjucks);
