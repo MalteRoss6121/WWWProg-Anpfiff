@@ -10,8 +10,9 @@
         <img src="{{ formData.bildurl }}" alt="Event-Bild" class="event-image">
         <p>Tag: {{ formData.tag }}</p>
         <p>Angemeldete Teilnehmer: {{ formData.angemeldet }}</p>
-
+        {% if userlogin  %}
         <button type="submit" class="signup-button">Jetzt anmelden</button>
+        {% endif  %}
     </div>
 </form>
 <footer>

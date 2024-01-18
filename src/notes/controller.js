@@ -240,10 +240,17 @@ export const handleLoginPost = async (ctx, db, request, nunjucks) => {
 
 export const handleLogoutGet = async (ctx, nunjucks) => {
   const userlogin = ctx.session.user;
+  if(userlogin){
   const body = nunjucks.render("logout.html", {
     userlogin,
   });
   return createResponse(ctx, body, 200, "text/html");
+}else{
+  const body = nunjucks.render("error.html", {
+    userlogin,
+  });
+  return createResponse(ctx, body, 200, "text/html");
+}
  };
 
  export const handleLogoutPost = async (ctx) => {
@@ -267,7 +274,7 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
   const userlogin = ctx.session.user;
   const useradmin = await checkAdminStatus(db, ctx, userlogin);
   const profileResult = await model.getProfile(db, userlogin);
-
+    if (userlogin){
     if (request.method === "GET") {
         if (profileResult && profileResult.length > 0) {
             const profileData = profileResult[0];
@@ -282,6 +289,12 @@ export const handleLogoutGet = async (ctx, nunjucks) => {
             return createResponse(ctx, body, 200, "text/html");
         }
     }
+  }else{
+    const body = nunjucks.render("error.html", {
+      userlogin,
+    });
+    return createResponse(ctx, body, 200, "text/html");
+  }
 
     if (request.method === "POST") {
         const formData = await request.formData();
