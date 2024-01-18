@@ -16,12 +16,15 @@
 
     <label for="username" class="register-label">Anzeigename:</label>
     <input type="text" id="username" name="username" class="register-input" required>
+    {{ formErrors.username }}
 
     <label for="email" class="register-label">Email:</label>
     <input type="email" id="email" name="email" class="register-input" required>
+    {{ formErrors.email }}
 
     <label for="password" class="register-label">Password:</label>
     <input type="password" id="password" name="password" class="register-input" required>
+    {{ formErrors.password }}
 
     <button type="submit" class="register-button">Register</button>
     <p class="login-link"><a href="/login"> Hier gehts zum Login! </a></p>

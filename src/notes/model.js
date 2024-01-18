@@ -12,7 +12,11 @@ export const profile = async (db) => {
   return result;
 };
 
-
+export const getEmails = async (db, formData) => {
+  const sql = "SELECT * FROM benutzer WHERE email = $email";
+  const result = db.queryEntries(sql, {$email: formData.email}); 
+  return result;
+}
 
 export const getById = async (db, id) => {
   const sql = "SELECT * FROM events WHERE EID = $id";
@@ -128,26 +132,14 @@ export const addContact = async (db, formData, id) => {
   });
 };
 
-/**
- * Get user by email from the database.
- * @param {object} db - Database connection
- * @param {string} email
- * @returns {Promise<Array<Record<string, any>>>}
- */
+
 export const getUserByEmail = async (db, email) => {
   const sql = "SELECT * FROM benutzer WHERE email = $email LIMIT 1";
   const result = await db.query(sql, { $email: email });
   console.log('Result:', result)
   return result.length > 0 ? result[0] : null;
  };
-/**
- * Register a new user in the database.
- * @param {object} db - Database connection
- * @param {string} email
- * @param {string} password
- * @param {string} username
- * @returns {Promise<boolean>}
- */
+
 export const registerUser = async (db, email, password, username) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
@@ -162,13 +154,6 @@ export const registerUser = async (db, email, password, username) => {
  };
 
 
-/**
- * Authenticate user credentials against the database.
- * @param {object} db - Database connection
- * @param {string} email
- * @param {string} password
- * @returns {Promise<boolean>}
- */
 export const authenticateUser = async (db, email, password) => {
   const user = await getUserByEmail(db, email);
   if (user) {

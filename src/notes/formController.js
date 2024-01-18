@@ -1,13 +1,13 @@
 // formController.js
 
 
-export const handleForm = async (ctx, formData, formErrors, nunjucks) => {
-  const body = nunjucks.render('form.html', {formData,formErrors});
+export const handleForm = async (ctx, formData, formErrors, nunjucks,userlogin, useradmin) => {
+  const body = nunjucks.render('form.html', {formData,formErrors,userlogin, useradmin});
   return createResponse(ctx, body, 400, "text/html");
 };
 
-export const handleFormContact = async (ctx, formData, formErrors, nunjucks) => {
-  const body = nunjucks.render('about.html', {formData,formErrors});
+export const handleFormContact = async (ctx, formData, formErrors, userlogin, nunjucks) => {
+  const body = nunjucks.render('about.html', {formData,formErrors, userlogin});
   return createResponse(ctx, body, 400, "text/html");
 };
 
@@ -99,6 +99,10 @@ export const processProfileFormData = (formData) => {
     formErrors.name = "Name kann nicht leer sein";
   }
 
+ if(perms != 0 || perms != 1){
+    formErrors.perms = "perms müssen 1 oder 0 sein";
+ }
+
   return { email, name, events, perms, checkname, formErrors };
 };
 
@@ -109,6 +113,18 @@ export const processContactFormData = (formData) => {
   const text = formData.get("text");
 
   const formErrors = {};
+  if (!vorname) {
+    formErrors.vorname = "Name kann nicht leer sein";
+  }
+  if (!nachname) {
+    formErrors.nachname = "Name kann nicht leer sein";
+  }
+  if (!titel) {
+    formErrors.titel = "Name kann nicht leer sein";
+  }
+  if (!text) {
+    formErrors.text = "Name kann nicht leer sein";
+  }
 
   return { vorname, nachname, titel, text, formErrors };
 };

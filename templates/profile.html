@@ -13,6 +13,7 @@
       <div class="profile-form" id="benutzername">
         <label for="username" class="form-label">Benutzername:</label>
         <input type="text" id="username" name="username" class="form-input" value="{{ name }}" >
+        {{ formErrors.name }}
       </div>
 
       <div class="profile-form" id="email">
@@ -40,6 +41,7 @@
             <input type="hidden" name="checkName[]" value="{{ user.name }}"> 
             {{ user.name }}
            <input type="text" id="username" name="perms" class="form-input" value="{{ user.permissions }}" >
+           {{ formErrors.perms }}
          </div>
        {% endfor %}
      </div>
